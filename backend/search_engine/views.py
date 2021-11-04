@@ -2,6 +2,5 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 
-
 def login(request):
-    return render(request, '../../Frontend/Login/login.html', {'title': 'Login'})
+    return render(request, 'search_engine/login.html', {'title': 'Login'})
