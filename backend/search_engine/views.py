@@ -4,3 +4,6 @@ from django.http import HttpResponse
 
 def login(request):
     return render(request, 'search_engine/login.html', {'title': 'Login'})
+
+def signup(request):
+    return render(request, 'search_engine/signup.html', {'title': 'Signup'})

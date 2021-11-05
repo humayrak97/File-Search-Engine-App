@@ -1,0 +1,75 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Signup</title>
+	<link rel="stylesheet" type="text/css" href="/static/search_engine/signup.css">
+</head>
+<body>
+	
+	<div class="signUp">
+		<div class="container-profilesignUp" style="background-image: url('/static/search_engine/images/background-1.jpg');">
+			<div class="wrap-profilesignUp">
+				<form class="profilesignUp-form validate-form">
+					<span class="profilesignUp-form-title">
+						Sign Up
+					</span>
+
+					<div class="username_text">
+						<span class="text1">
+							Email
+						</span>
+					</div>
+					<div class="wrap-inputData validate-input" data-validate = "Email is required">
+						<input class="inputData" type="text" name="email" >
+						<span class="focus-inputData"></span>
+					</div>
+					
+					<div class="password_text">
+						<span class="text1">
+							Password
+						</span>
+					</div>
+					<div class="wrap-inputData validate-input" data-validate = "Password is required">
+						<input class="inputData" type="password" name="pass" >
+						<span class="focus-inputData"></span>
+					</div>
+
+					<div class="password_text">
+						<span class="text1">
+							Confirm Password
+						</span>
+
+					</div>
+
+					<div class="wrap-inputData validate-input" data-validate = "Password is required">
+						<input class="inputData" type="password" name="pass" >
+						<span class="focus-inputData"></span>
+					</div>
+
+					<div class="container-profilesignUp-form-button">
+						<button class="profilesignUp-form-button">
+							Sign Up
+						</button>
+					</div>
+					<div class="sign-up-prompt">
+						<span class="text2">
+							Already have an account?
+						</span>
+
+						<a href="{% url 'search_engine-login' %}">
+							Login
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+
+
+
+{% endblock content %}

@@ -1,3 +1,5 @@
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +64,7 @@
 							Not a member?
 						</span>
 
-						<a href="../Sign Up/signup.html" class="text2">
+						<a href="{% url 'search_engine-signup' %}" class="text2">
 							Sign Up Now
 						</a>
 					</div>
@@ -72,3 +74,7 @@
 	</div>
 </body>
 </html>
+
+
+
+{% endblock content %}
