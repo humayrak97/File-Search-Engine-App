@@ -7,3 +7,6 @@ def login(request):
 
 def signup(request):
     return render(request, 'search_engine/signup.html', {'title': 'Signup'})
+
+def accountRecovery(request):
+    return render(request, 'search_engine/recoveryPass.html', {'title': 'accountRecovery'})
