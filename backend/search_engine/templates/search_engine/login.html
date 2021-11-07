@@ -1,4 +1,5 @@
 {% block content %}
+{% load socialaccount %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,13 +17,13 @@
 						Sign In With
 					</span>
 
-					<a href="http://127.0.0.1:8000/accounts/google/login/?process=login" style="text-decoration:none;" class="button-google">
+					<a href="{% provider_login_url 'google' %}" style="text-decoration:none;" class="button-google">
 						<img src="/static/search_engine/images/icons/icon-google.png" alt="GOOGLE">
 						Google
 					</a>
 					
 
-					<a href="#" style="text-decoration:none;" class="button-face">
+					<a href="{% provider_login_url "facebook" method="oauth2" %}" style="text-decoration:none;" class="button-face">
 						<img src="/static/search_engine/images/icons/logo-facebook.png" alt="FACEBOOK">
 						<i class="fa fa-facebook-official">
 						</i>
