@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse
-from django.contrib.auth.models import User, auth
+from search_engine.models import People
 
 # Create your views here.
 
@@ -18,12 +18,15 @@ def signup(request):
         pass2 = request.POST['pass2']
 
         if pass1 == pass2:
-            if User.objects.filter(email=email).exists():
+            if People.objects.filter(email=email).exists():
                 messages.success(request, 'An account with that email already exists.')
                 return redirect('search_engine-signup')
             else:
-                user = User.objects.create_user(email = email, password=pass1)
-                user.Save();
+                user = People()
+                user.email = email
+                user.passs = pass1
+                user.save()
+                messages.success(request, 'Account created successfully!')
                 return redirect('search_engine-login')
 
         else:
