@@ -21,7 +21,6 @@
     <div class="col-sm-9">
       <h1 class="page-header" id="SRS">Software Requirements Specification</h1>
 
-			<p>See: <a href="https://afeld.github.io/bootstrap-toc/">https://afeld.github.io/bootstrap-toc/</a></p>
 
 <h2 id="intro-description">1. Introduction</h2>
 
@@ -30,196 +29,60 @@
 <twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-0" data-tweet-id="291978260433219584" style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;"></twitterwidget>
 <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<ol>
-  <li>Introduction
-    <ul>
-      <li>Put name on sticky note on back of monitor</li>
-      <li>Discuss what the class is going to cover</li>
-      <li>Everyone introduce themselves
-        <ul>
-          <li>Name</li>
-          <li>What you “do”</li>
-          <li>What are your goals for the class?</li>
-          <li>What’s something in JS (or technology) you worry that your peers understand but you don’t?</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Setup
-    <ul>
-      <li>How many people are comfortable with Git/GitHub?</li>
-      <li>Install <a href="https://desktop.github.com/">GitHub Desktop</a>
-        <ul>
-          <li>If you are comfortable with Git already, you can skip this.</li>
-        </ul>
-      </li>
-      <li>Sign up for GitHub</li>
-    </ul>
-  </li>
-  <li>GitHub workflow
-    <ul>
-      <li>Walk through <a href="#workflow">workflow</a></li>
-      <li>Create pull request on <a href="https://github.com/advanced-js/students">students repository</a></li>
-    </ul>
-  </li>
-  <li>Explain how slides work</li>
-  <li>Get through <code class="highlighter-rouge">countdown_exercise</code> slide</li>
-  <li>Talk through <a href="#requirements">requirements</a></li>
-</ol>
+<p>This document details the project plan for the development of “crazyCrawler.” <br>
 
-<h4 id="homework">Homework</h4>
+Apart from project investors, this document is intended for the developers, designers, and testers who are working on “crazyCrawler.” 
+This plan includes a summary of:</p>
 
 <ul>
-  <li>Join <a href="https://gitter.im/advanced-js/syllabus">the chat room</a>.</li>
-  <li><a href="https://github.com/settings/profile">Set up your GitHub profile.</a></li>
-  <li>Access <a href="https://newclasses.nyu.edu">NYU Classes</a> page, where grades will be posted.
-    <ul>
-      <li><a href="https://wikis.nyu.edu/display/nyuclasses/Student+Quick-Start">Documentation</a></li>
-    </ul>
-  </li>
-  <li>Read <a href="https://bonsaiden.github.io/JavaScript-Garden/">JavaScript Garden</a>.</li>
-  <li>Finish up and submit <a href="https://github.com/advanced-js/echo">echo</a> and <a href="https://github.com/advanced-js/countdown">countdown</a> exercises.</li>
-  <li>Complete <a href="https://github.com/advanced-js/blink">blink</a> exercise.</li>
+      <li>How the system is going to function</li>
+      <li>The technology and interfaces used for the development of the project</li>
+      <li>Scope of the project from the development viewpoint</li>
+      <li>System Features</li>
+      <li>Other nonfunctional Requirements</li>
+      <li>Overall Description</li>
 </ul>
+
+<p>Many big data companies depend on data that is scraped from the internet. They heavily depend on web crawlers. Often their job gets messy when they are trying to
+fetch files like pdfs, documents or texts. We are developing a search engine which any data driven company/ user can use to easily fetch the document they are looking 
+for. It is as easy as putting a URL in the search bar and choosing what files to get, and viola they will have all links leading to such files crawled and indexed for 
+them. Users can use this intuitive search engine not only to easily fetch such files, but also to create clusters on this data.</p>
+
+
 
 <h3 id="class-2">1.2 Document Conventions</h3>
-
-<ol>
-  <li>Look at various approaches for <code class="highlighter-rouge">countdown()</code>
-    <ul>
-      <li>Show recursive solution</li>
-    </ul>
-  </li>
-  <li>Developer Tools walkthrough
-    <ul>
-      <li>Elements (HTML)</li>
-      <li>Console (JS)</li>
-      <li>Scripts (JS)</li>
-    </ul>
-  </li>
-  <li>Pair program to build <a href="https://github.com/advanced-js/memory">Memory v1</a> (see <a href="#pairing-tips">pairing tips</a>)</li>
-  <li>Cover OOP, though “oop_inheritance” slide
-    <ul>
-      <li><a href="https://jsbin.com/baqopu/1/edit?css,js,output">Encapsulation example</a></li>
-      <li>Look at <a href="https://backbonejs.org/docs/backbone.html">Backbone.js Events</a></li>
-    </ul>
-  </li>
-</ol>
-
-<h4 id="homework-1">Homework</h4>
-
-<ul>
-  <li>Read <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript">Mozilla’s Introduction to Object-Oriented Javascript</a></li>
-  <li><a href="https://github.com/advanced-js/oop">OOP exercise</a>, through V2</li>
-  <li><a href="https://github.com/advanced-js/memory#v2">Memory v2</a> (individual)</li>
-</ul>
+<p><span style="color: #000000;">The following conventions are used in this doucment: </span></p>
+<table style="text-align: justify; height: 78px;" border="2" width="360" cellspacing="1" cellpadding="1">
+<tbody>
+<tr> 
+<td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">DB</span></td>
+<td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">Database</span></td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">RDBMS</span></td>
+<td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">Relational Database Management System</span></td>
+</tr>
+<tr>
+<td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">ER</span></td>
+<td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">Entity Relationship</span></td>
+</tr>
+</tbody>
+</table>
 
 <h3 id="class-3">1.3 Intended Audience and Reading Suggestions</h3>
 
-<ol>
-  <li>Code review Memory</li>
-  <li>Get through <a href="https://advanced-js.github.io/deck/examples/oop_inheritance/"><code class="highlighter-rouge">oop_inheritance</code></a> slide</li>
-  <li>Cover automated testing
-    <ul>
-      <li>Build up a test framework from scratch</li>
-      <li>Examples in QUnit
-        <ul>
-          <li><a href="https://jsbin.com/woqusi/edit?html,js,output">Simple</a></li>
-          <li><a href="https://jsbin.com/nukamun/edit?js,output">Classes</a></li>
-          <li><a href="http://qunitjs.com/">QUnit documentation</a></li>
-        </ul>
-      </li>
-      <li>Other frameworks</li>
-    </ul>
-  </li>
-  <li>Cover AJAX/CORS/JSONP (<a href="https://github.com/advanced-js/deck/tree/gh-pages/demos/ajax">files</a>)
-    <ul>
-      <li>Network tab in Developer Tools</li>
-    </ul>
-  </li>
-</ol>
-
-<h4 id="homework-2">Homework</h4>
-
-<ul>
-  <li>Read <a href="https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml">Google JavaScript Style Guide</a></li>
-  <li>Complete <a href="https://github.com/advanced-js/oop">OOP exercise</a> through V4.</li>
-  <li><a href="https://github.com/advanced-js/memory#v3">Memory V3</a></li>
-</ul>
+<p>...........</p>
 
 <h3 id="class-4">1.4 Prouduct Scope</h3>
 
-<ol>
-  <li>Finish slides</li>
-  <li>Getting Serious example
-    <ul>
-      <li>Quick intro to Backbone.js
-        <ul>
-          <li><a href="https://jsbin.com/IGivato/1/edit?html,js,output">Boilerplate</a></li>
-          <li>Click the Box <a href="https://jsbin.com/IGivato/5/edit?css,js,output">example app</a></li>
-          <li>TDD?</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Multiple async
-    <ul>
-      <li><a href="https://github.com/advanced-js/deck/tree/gh-pages/demos/ajax/promises">Promises</a>/<a href="https://api.jquery.com/jQuery.Deferred/">jQuery.Deferred</a></li>
-      <li>Possibly show <a href="https://github.com/caolan/async#control-flow-1">async</a> library?</li>
-    </ul>
-  </li>
-</ol>
 
-<h4 id="homework-3">Homework</h4>
+<p>...........</p>
 
-<ul>
-  <li><a href="https://github.com/advanced-js/deck/tree/gh-pages/demos/ajax#readme">Learn about AJAX</a></li>
-  <li><a href="https://github.com/advanced-js/mashup">Mashup</a></li>
-  <li>Improve your previous assignments</li>
-</ul>
 
 <h3 id="class-5">1.5 References</h3>
 
-<ol>
-  <li>Present and code review Mashup projects</li>
-  <li>Possible topics (vote?):
-    <ul>
-      <li>Node.js
-        <ul>
-          <li>Server “Hello World” (from <a href="http://nodejs.org/">Node.js homepage</a>)
-            <ul>
-              <li><a href="http://nodejs.org/api/http.html">HTTP module docs</a></li>
-            </ul>
-          </li>
-          <li>HTTP requests
-            <ul>
-              <li><a href="https://pretty-rfc.herokuapp.com/RFC2616#status.codes">Status codes</a></li>
-              <li>Headers</li>
-            </ul>
-          </li>
-          <li>CommonJS?</li>
-        </ul>
-      </li>
-      <li><a href="https://github.com/advanced-js/deck/tree/gh-pages/demos/regex.html">Regular Expressions</a>
-        <ul>
-          <li>Convert live input from a text area, e.g.
-            <ul>
-              <li>Link Twitter handles</li>
-              <li>Substitute select words for emoji, using <a href="https://afeld.github.io/emoji-css/">emoji-css</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>Object-Oriented design</li>
-      <li><a href="http://coderetreat.org/facilitating/structure-of-a-coderetreat">Code Retreat</a> – possible “problems”:
-        <ul>
-          <li><a href="http://coderetreat.org/gol">Game of Life</a></li>
-          <li>Tic Tac Toe</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ol>
+
+<p>...........</p>
 
 <h2 id="prerequisites">2. Overall Description</h2>
 
