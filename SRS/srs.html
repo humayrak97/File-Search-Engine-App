@@ -5,7 +5,8 @@
   <title>SRS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css'>
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'><link rel="stylesheet" media="screen" href="./style.css">
+<link rel="stylesheet" media="print" href="print.css" />
 
 </head>
 <body>
@@ -67,11 +68,11 @@ them. Users can use this intuitive search engine not only to easily fetch such f
 </tr>
 </tbody>
 </table>
-<h3 id="class-3">1.3 Intended Audience and Reading Suggestions</h3>
+<h3 id="intended-audience">1.3 Intended Audience and Reading Suggestions</h3>
 
 <p>Apart from project investors, this document is intended for the developers, designers, and testers who are working on “crazyCrawler.” </p>
 
-<h3 id="class-4">1.4 Prouduct Scope</h3>
+<h3 id="product-scope">1.4 Prouduct Scope</h3>
 
 
 <p>Many big data companies depend on data that is scraped from the internet. They heavily depend on web crawlers. Often their job gets messy when they are trying to
@@ -112,7 +113,7 @@ them. Users can use this intuitive search engine not only to easily fetch such f
 </ul>
 </p>
 
-<h3 id="class-3">2.3 User Classes and Characteristics.</h3>
+<h3 id="user-class">2.3 User Classes and Characteristics.</h3>
 
 <p>The following user classes are classified based on the type of use of the product:
 <ul>
@@ -123,7 +124,7 @@ them. Users can use this intuitive search engine not only to easily fetch such f
   <li>Developers: This group of people are the programmers who are and will be working on the product in order to further develop it, maintain it and update it in the future. They will be using the product to test if it is working correctly, to update certain features and maintain them on a regular basis.</li>
 </ul></p>
 
-<h3 id="class-4">2.4 Operating Environment</h3>
+<h3 id="operating-env">2.4 Operating Environment</h3>
 
 <p>
   The product will be suitable for the following hardware platforms:
@@ -143,84 +144,42 @@ them. Users can use this intuitive search engine not only to easily fetch such f
   The product will be compatible with any version of the aforementioned hardware platforms and operating system releases.
 </p>
 
-<h3 id="class-5">2.5 Design and Implementation Constraints</h3>
+<h3 id="design-imp-constraints">2.5 Design and Implementation Constraints</h3>
 
 
-<h3 id="class-5">2.6 User Documentation</h3>
+<h3 id="user-documentation">2.6 User Documentation</h3>
 
 <p>As of the current release, no user manual, online help, tutorials or any sort of user documentation will be released for the product. The product is very straight-forward and easy to use. Users will be able to use the product without any sort of guide or help whatsoever. However, in the future releases, if any advanced features are added to the product for which we think user documentation will be required, it will be released then.
 </p>
 
-<h3 id="class-5">2.7 Assumptions and Dependencies</h3>
+<h3 id="assumption-dependencies">2.7 Assumptions and Dependencies</h3>
+
 
 <h2 id="external-interface">3. External Interface Requirements</h2>
 <h3 id="user-interface">3.1 User Interfaces</h3>
 
-<p>The user interface for the search engine shall be compatible to any web browser Internet Explorer, Chrome or Brave by which user can access to the system. In addition to that it shall be compatible with mobile.</p>
-
+<p>The user interface for the search engine shall be compatible to any web browser Internet Explorer, Chrome or Brave by which user can access to the system. In addition to that it shall be compatible with mobile. There will be multiple layers of interface between the software product and the users.</p>
+<h4 id="ui-spec">User interface specifications:</h4>
+<ol>
+  <li>Sign up: Field for email, password and confirm password would be here for a user to sign up for an account. Upon clicking the button for sign up it would save the data and give a message of the account being successfully created. And if the user already has an account, upon clicking the login button it would go to the login page.</li>
+  <li>Login: A user will be able to login using social media sites like Google or Facebook along with having the option of signing in using just a username and password. And lastly clicking the sign in button it would login to a user’s account. It would also have the option of returning to the sign up page if a user has not made an account. There would be a button for recovering password as well.</li>
+  <li>Password recovery: A field for entering email would be there and clicking the reset password would send the verification to the mail for resetting the password. It would also have a button to go back to the login page.</li>
+  <li>Search: Upon giving the url in the field and clicking the search button will send the user to the result page. A user can also select different content type such as text, doc and pdf files to search./li>
+  <li>Result: The user can see the search results of the url ad visit the website links.</li>
+  <li>User profile: The user can save and edit information. An option for deleting account and resetting the password would be there.</li>
+  <li>Dashbaord:</li>
+  <li>Search with clusters:</li>
+  <li>Saved clusters:</li>
+  
+</ol>
 <h3 id="hardware-interface">3.2 Hardware Interfaces</h3>
 <p>All the hardware is required to connect to the internet, which will be hardware interface for the system.</p>
 
 <h3 id="software-interface">3.3 Software Interfaces</h3>
 
-<ol>
-  <li>Finish slides</li>
-  <li>Getting Serious example
-    <ul>
-      <li>Quick intro to Backbone.js
-        <ul>
-          <li><a href="https://jsbin.com/IGivato/1/edit?html,js,output">Boilerplate</a></li>
-          <li>Click the Box <a href="https://jsbin.com/IGivato/5/edit?css,js,output">example app</a></li>
-          <li>TDD?</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Multiple async
-    <ul>
-      <li><a href="https://github.com/advanced-js/deck/tree/gh-pages/demos/ajax/promises">Promises</a>/<a href="https://api.jquery.com/jQuery.Deferred/">jQuery.Deferred</a></li>
-      <li>Possibly show <a href="https://github.com/caolan/async#control-flow-1">async</a> library?</li>
-    </ul>
-  </li>
-</ol>
 
-<h4 id="homework-3">Homework</h4>
-
-<ul>
-  <li><a href="https://github.com/advanced-js/deck/tree/gh-pages/demos/ajax#readme">Learn about AJAX</a></li>
-  <li><a href="https://github.com/advanced-js/mashup">Mashup</a></li>
-  <li>Improve your previous assignments</li>
-</ul>
 <h3 id="com-interface">3.4 Communications Interfaces</h3>
-
-<ol>
-  <li>Finish slides</li>
-  <li>Getting Serious example
-    <ul>
-      <li>Quick intro to Backbone.js
-        <ul>
-          <li><a href="https://jsbin.com/IGivato/1/edit?html,js,output">Boilerplate</a></li>
-          <li>Click the Box <a href="https://jsbin.com/IGivato/5/edit?css,js,output">example app</a></li>
-          <li>TDD?</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Multiple async
-    <ul>
-      <li><a href="https://github.com/advanced-js/deck/tree/gh-pages/demos/ajax/promises">Promises</a>/<a href="https://api.jquery.com/jQuery.Deferred/">jQuery.Deferred</a></li>
-      <li>Possibly show <a href="https://github.com/caolan/async#control-flow-1">async</a> library?</li>
-    </ul>
-  </li>
-</ol>
-
-<h4 id="homework-3">Homework</h4>
-
-<ul>
-  <li><a href="https://github.com/advanced-js/deck/tree/gh-pages/demos/ajax#readme">Learn about AJAX</a></li>
-  <li><a href="https://github.com/advanced-js/mashup">Mashup</a></li>
-  <li>Improve your previous assignments</li>
-</ul>
+<p>The requirements associated with communications functions by this product includes forms, emails and social media platforms. Through emails or social media connection, data would be in sync, authentication will be verified and recovery of account of a user would be possible. It shall use the HTTP protocol for communication over the internet. </p>
 
 
 <h2 id="system-features">4. System Features</h2>
@@ -229,7 +188,7 @@ them. Users can use this intuitive search engine not only to easily fetch such f
 
 <h3 id="system-feature-1">4.1 System Feature 1</h3>
 
-<p>If you’re using GitHub Desktop, these general instructions will help:</p>
+
 
 <ul>
   <li><a href="https://guides.github.com/activities/forking/">https://guides.github.com/activities/forking/</a></li>
@@ -434,7 +393,7 @@ them. Users can use this intuitive search engine not only to easily fetch such f
   <li><a href="https://github.com/advanced-js/memory#v3">Memory V3</a></li>
 </ul>
 
-<h3 id="software-quality-attributes">5.4 software Quality Attributes</h3>
+<h3 id="software-quality-attributes">5.4 Software Quality Attributes</h3>
 
 <ol>
   <li>Finish slides</li>
@@ -551,6 +510,6 @@ them. Users can use this intuitive search engine not only to easily fetch such f
     </div>
   </div>
 </div>
-  
+</body> 
 
 </html>
