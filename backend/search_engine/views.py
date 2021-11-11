@@ -2,10 +2,24 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse
 from search_engine.models import People
+from django.contrib.auth.models import User, auth
+#from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
-def login(request):
+def log_in(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        pwd = request.POST['pwd']
+        #user = authenticate(email = email, pwd = pwd)
+        #if user is not None:
+        if People.objects.filter(email=email, pwd=pwd).exists():
+            #login(request, user)
+            messages.success(request, 'You are now logged in!')
+            return redirect('search_engine-signup')
+        else:
+            messages.info(request, 'Invalid email/ password')
+            return redirect('/')
     return render(request, 'search_engine/login.html', {'title': 'Login'})
 
 def accountRecovery(request):
@@ -24,7 +38,7 @@ def signup(request):
             else:
                 user = People()
                 user.email = email
-                user.passs = pass1
+                user.pwd = pass1
                 user.save()
                 messages.success(request, 'Account created successfully!')
                 return redirect('search_engine-login')
