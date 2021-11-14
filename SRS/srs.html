@@ -212,72 +212,99 @@ The requirements associated with communications functions by this product includ
  
  <img id="usecaseimage" src="UseCaseDiagram.svg" />
 
-<h3 id="search-content-url">4.2 Search content using a URL</h3>
-
-<h4>4.2.1 DESCRIPTION and PRIORITY</h4>
+<h3 id="search-content-url">4.2 Search Content</h3>
+<p><u><b>Use case:</b></u> Search content</p>
+<p><u><b>Precondition:</b></u> None</p>
+<p><u><b>Actor:</b></u> User</p>
+<p><u><b>Goal:</b></u> To search for content within a URL</p>
+<p><u><b>Overview:</b></u> </p>
 <p>Users can provide a url in the search bar and select the depth it wants the site to be crawled. The user also specifies the type of
-content he/she wants to be indexed from this URL.<br>Priotrity: High</p>
+content he/she wants to be indexed from this URL.</p>
+<p><u><b> Priotrity: </b></u>High</p>
 
-<h4>4.2.2 Stimulus/Response Sequences</h4>
+
+<p><u><b>Typical course of events:</b></u></p>
+<div class = "row">
+<div class = "column">
+<p>&nbsp &nbsp Actor:</p>
 <ul>
-	<li>Provide URL</li>
-	<li>Choose depth</li>
-	<li>Select content type: PDF, DOC, .TXT FILES, ALL CONTENTS, NON-HTML CONTENTS etc.</li>
-	<li>Search</li>
+	<li>1. Provide URL</li>
+	<li>2. Choose depth</li>
+	<li>3. Select content type: PDF, DOC, .TXT FILES, ALL CONTENTS, NON-HTML CONTENTS etc.</li>
+	<li>4. Search</li>
 </ul>
+</div>
+<div class = "column">
+<p>&nbsp &nbsp  System Response:</p>
+	<li>5. Show search result</li>
+</div>
 
-<h4>4.2.3 Functional Requirements</h4>
+</div>
+
+<p><u><b>Functional Requirements:</b></u></p>
 
 
 
-<h3 id="index-urls">4.3 Index URLs and display to user</h3>
+<h3 id="index-urls">4.3 Create clusters on search results</h3>
 
-<h4>4.3.1 DESCRIPTION and PRIORITY</h4>
-<p>Crawler indexes links leading to the documents of the type selected by the user from the categories made available in the search bar.
-<br>Priotrity: High</p>
+<p><u><b>Use case:</b></u> Create clusters on search results</p>
+<p><u><b>Precondition:</b></u> "Search Content" must be executed</p>
+<p><u><b>Actor:</b></u> User</p>
+<p><u><b>Goal:</b></u> To create clusters on search results</p>
+<p><u><b>Overview:</b></u> </p>
+<p>The search results obtained from the search page can be saved into clusters. Users can access these from their profiles.</p>
+<p><u><b> Priotrity: </b></u>High</p>
 
-<h4>4.3.2 Stimulus/Response Sequences</h4>
+
+<p><u><b>Typical course of events:</b></u></p>
+<div class = "row">
+<div class = "column">
+<p>&nbsp &nbsp Actor:</p>
 <ul>
-	<li>System crawls the web</li>
-	<li>Indexes URLs leading to contents within the depth as selected by user</li>
-	<li>Display URLs</li>
+	<li>1. Save search results</li>
+	<li>2. Form clusters</li>
+	
 </ul>
+</div>
+<div class = "column">
+<p>&nbsp &nbsp  System Response:</p>
+	<li>3. Display clusters in user's saved cluster list</li>
+</div>
 
-<h4>4.3.3 Functional Requirements</h4>
+</div>
+
+<p><u><b>Functional Requirements:</b></u></p>
 
 
+<h3 id="search-cluster">4.4 Search within clusters</h3>
 
-<h3 id="create-cluster-search">4.4 Create clusters on search results</h3>
+<p><u><b>Use case:</b></u> Search within clusters</p>
+<p><u><b>Precondition:</b></u> Create clusters must be executed</p>
+<p><u><b>Actor:</b></u> User</p>
+<p><u><b>Goal:</b></u> To search within clusters</p>
+<p><u><b>Overview:</b></u> </p>
+<p>Within the saved clusters users can search for anything by providing keywords.</p>
+<p><u><b> Priotrity: </b></u>High</p>
 
-<h4>4.4.1 DESCRIPTION and PRIORITY</h4>
-<p>The search results obtained from the search page can be saved into clusters. Users can access these from their profiles.
-<br>Priotrity: High</p>
-
-<h4>4.4.2 Stimulus/Response Sequences</h4>
+<p><u><b>Typical course of events:</b></u></p>
+<div class = "row">
+<div class = "column">
+<p>&nbsp &nbsp Actor:</p>
 <ul>
-	<li>Save search results</li>
-	<li>Form clusters</li>
-	<li>Display clusters in user's saved cluster list</li>
+	<li>1. Choose saved cluster</li>
+	<li>2. Input search keyword</li>
+	<li>3. Search within saved clusters</li>
+	
 </ul>
+</div>
+<div class = "column">
+<p>&nbsp &nbsp  System Response:</p>
+	<li>4. Display results in cluster search page</li>
+</div>
 
-<h4>4.4.3 Functional Requirements</h4>
+</div>
 
-
-<h3 id="search-cluster">4.5 Search within clusters</h3>
-
-<h4>4.5.1 DESCRIPTION and PRIORITY</h4>
-<p>Within the saved clusters users can search for anything by providing keywords.
-<br>Priotrity: High</p>
-
-<h4>4.5.2 Stimulus/Response Sequences</h4>
-<ul>
-	<li>Choose saved cluster</li>
-	<li>Input search keyword</li>
-	<li>Search within saved clusters</li>
-	<li>Display results in cluster search page</li>
-</ul>
-
-<h4>4.5.3Functional Requirements</h4>
+<p><u><b>Functional Requirements:</b></u></p>
 
 <h3 id="create-update-delete-acc">4.6 Create, Update, Delete user account</h3>
 
