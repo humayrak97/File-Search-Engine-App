@@ -212,7 +212,49 @@ The requirements associated with communications functions by this product includ
  
  <img id="usecaseimage" src="UseCaseDiagram.svg" />
 
-<h3 id="search-content-url">4.2 Search Content</h3>
+ <h3 id="expanded-use-case">4.2 Expanded Use Case</h3>
+ 
+ <h3 id="edit-profile">4.2.1 Edit user profile information</h3>
+ <p><u><b>Use Case</b></u>: Edit user profile information</p>
+ <p><u><b>Preconditions</b></u>: ‘Log in’ must have been executed</p>
+ <p><u><b>Actors</b></u>: User</p>
+ <p><u><b>Goal</b></u>: To change or edit any information of a user</p>
+
+ <p><u><b>Overview:</b></u></p>
+<p> When the user logs in their account and they choose to edit any information of their account.</p>
+ <p><u><b>Cross Reference</b></u>: R2, R3 </p>
+ <p><u><b>Typical course of events</u>:</b> </p>
+ <table>
+  <thead>
+  <th>Actor actions</th>
+  <th>System response</th>
+  </thead>
+  <tbody>
+  <tr>
+  <td>1. The user choose to edit account.</td>
+  <td>2. Displays edit mode.</td>
+  </tr>
+  <tr>
+  <td>3. The user can change birthdate, email and phone number.</td>
+  <td>4. Displays the information after changing</td>
+  </tr>
+  </tbody>
+  </table>
+  
+  <table>
+    <thead>
+    <th>Alternative courses:</th>
+    </thead>
+    <tbody>
+    <tr>
+    <td> Step 4: </td>
+    <td> The user can delete account. They can also reset password.</td>
+    </tr>
+    </tbody>
+    </table>
+      
+
+<h3 id="search-content-url">4.2.2 Search Content</h3>
 <p><u><b>Use case:</b></u> Search content</p>
 <p><u><b>Precondition:</b></u> None</p>
 <p><u><b>Actor:</b></u> User</p>
@@ -245,7 +287,7 @@ content he/she wants to be indexed from this URL.</p>
 
 
 
-<h3 id="index-urls">4.3 Create clusters on search results</h3>
+<h3 id="index-urls">4.2.3 Create clusters on search results</h3>
 
 <p><u><b>Use case:</b></u> Create clusters on search results</p>
 <p><u><b>Precondition:</b></u> "Search Content" must be executed</p>
@@ -276,7 +318,7 @@ content he/she wants to be indexed from this URL.</p>
 <p><u><b>Functional Requirements:</b></u></p>
 
 
-<h3 id="search-cluster">4.4 Search within clusters</h3>
+<h3 id="search-cluster">4.2.4 Search within clusters</h3>
 
 <p><u><b>Use case:</b></u> Search within clusters</p>
 <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
