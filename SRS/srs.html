@@ -1,444 +1,739 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>SRS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel='stylesheet' href='https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css'>
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'><link rel="stylesheet" media="screen" href="./style.css">
-<link rel="stylesheet" media="print" href="print.css" />
+  <link rel='stylesheet' href='https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.css'>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+  <link rel="stylesheet" media="screen" href="./style.css">
+  <link rel="stylesheet" media="print" href="print.css" />
+  <style>
+    .column {
+      float: left;
+      width: 50%;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  </style>
 
 </head>
+
 <body>
   <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
   <script src='https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
-<body data-spy="scroll" data-target="#toc">
-<div class="container">
-  <div class="row">
-    <div class="col-sm-3">
-      <nav id="toc" data-spy="affix" data-toggle="toc"></nav>
+
+  <body data-spy="scroll" data-target="#toc">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <nav id="toc" data-spy="affix" data-toggle="toc"></nav>
+        </div>
+        <div class="col-sm-9">
+          <h1 class="page-header" id="SRS">Software Requirements Specification</h1>
+
+          <h2 id="intro-description">1. Introduction</h2>
+
+          <h3 id="purpose">1.1 Purpose</h3>
+
+          <twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-0"
+            data-tweet-id="291978260433219584"
+            style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;">
+          </twitterwidget>
+          <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+          <p>This document details the project plan for the development of “crazyCrawler.” <br>
+
+            Apart from project investors, this document is intended for the developers, designers, and testers who are
+            working on “crazyCrawler.”
+            This plan includes a summary of:</p>
+
+          <ul>
+            <li>How the system is going to function</li>
+            <li>The technology and interfaces used for the development of the project</li>
+            <li>Scope of the project from the development viewpoint</li>
+            <li>System Features</li>
+            <li>Other nonfunctional Requirements</li>
+            <li>Overall Description</li>
+          </ul>
+
+          <p>Many big data companies depend on data that is scraped from the internet. They heavily depend on web
+            crawlers. Often their job gets messy when they are trying to
+            fetch files like pdfs, documents or texts. We are developing a search engine which any data driven company/
+            user can use to easily fetch the document they are looking
+            for. It is as easy as putting a URL in the search bar and choosing what files to get, and viola they will
+            have all links leading to such files crawled and indexed for
+            them. Users can use this intuitive search engine not only to easily fetch such files, but also to create
+            clusters on this data.</p>
+
+
+
+          <h3 id="doc-con">1.2 Document Conventions</h3>
+          <p><span style="color: #000000;">The following conventions are used in this doucment: </span></p>
+          <table style="text-align: justify; height: 78px;" border="2" width="360" cellspacing="1" cellpadding="1">
+            <tbody>
+              <tr>
+                <td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">DB</span></td>
+                <td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">Database</span></td>
+              </tr>
+              <tr>
+                <td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">RDBMS</span></td>
+                <td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">Relational Database Management
+                    System</span></td>
+              </tr>
+              <tr>
+                <td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">ER</span></td>
+                <td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">Entity Relationship</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 id="intended-audience">1.3 Intended Audience and Reading Suggestions</h3>
+
+          <p>Apart from project investors, this document is intended for the developers, designers, and testers who are
+            working on “crazyCrawler.” </p>
+
+          <h3 id="product-scope">1.4 Prouduct Scope</h3>
+
+
+          <p>Many big data companies depend on data that is scraped from the internet. They heavily depend on web
+            crawlers. Often their job gets messy when they are trying to
+            fetch files like pdfs, documents or texts. We are developing a search engine which any data driven company/
+            user can use to easily fetch the document they are looking
+            for. It is as easy as putting a URL in the search bar and choosing what files to get, and viola they will
+            have all links leading to such files crawled and indexed for
+            them. Users can use this intuitive search engine not only to easily fetch such files, but also to create
+            clusters on this data.</p>
+
+
+          <h3 id="reference">1.5 References</h3>
+
+
+          <p>...........</p>
+
+          <h2 id="overall-description">2. Overall Description</h2>
+
+          <h3 id="product-perspective">2.1 Product Perspective</h3>
+
+          <twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-0"
+            data-tweet-id="291978260433219584"
+            style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;">
+          </twitterwidget>
+          <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+          <p>"crazyCrawler" is a new, self-contained product designed with the aim to make web searching easier,
+            efficient and organized. It is a self-sustaining product without any subsystem or integrable part as of the
+            current release. The product is for any individual or group looking to search data from the web in a
+            precisely effective manner. Using it will enable users to make clusters of URLs and search for specific
+            contents in their cluster. Users can download, store and use the contents easily and efficiently. Especially
+            for the regular users, fast scraping of data using web crawlers is of great importance. With the aim to make
+            it easier for them, the product is developed.</p>
+
+          <h3 id="product-functions">2.2 Product Functions</h3>
+
+          <p>The following functionalities are included in the product:
+
+          <ul>
+            <li>Sign Up: User will sign up using a sign up form, google or facebook account.</li>
+            <li>Login: User will login to their respective accounts after creating it via the form, google or facebook
+              accounts.</li>
+            <li>Logout: User will be able to logout of the system upon completion of use.</li>
+            <li>Recover Password: User will be able to recover their lost / forgotten password. This option will be
+              available in the login page.</li>
+            <li>View User Profile: Users will be able to view their profile information.</li>
+            <li>View Dashbaord: Users can view a dashboard in their profile</li>
+            <li>Edit Profile: User will be able to edit their account, i.e. change profile photo, edit username, reset
+              password and edit other informations on the profile.</li>
+            <li>Search Content: User will search the website via a search engine for finding the desired websites to be
+              added to a cluster.</li>
+            <li>Make Clusters from Search Results: User will add the URLs of the desired websites to a selected cluster
+              after searching the web.</li>
+            <li>View Saved Clusters: Saved clusters can be viewed which idex links to contents.</li>
+            <li>Search Within Clusters: User will be able to search for a specific content type in a specific cluster
+              after making the cluster. The content types may be PDF, text, doc, non-html files or all types of contents
+              mixed.</li>
+            <li>Download / Save content: User will be able to download the searched contents into their system.</li>
+          </ul>
+          </p>
+
+          <h3 id="user-class">2.3 User Classes and Characteristics.</h3>
+
+          <p>The following user classes are classified based on the type of use of the product:
+          <ul>
+            <li>Professional Users: This includes any user who will be using the product for their professional work
+              under any company, organization or institution. They are the most important category of users who will,
+              perhaps use the product most frequently and at a large scale. A large quantity of data will be required to
+              be scraped by them for their works and this product will be of utmost urgency for them.</li>
+
+            <li>Personal Users: This class of users will be anyone who uses the product for their personal uses only.
+              Any individual such as a student, teacher, an employee or anyone who uses the product for non-professional
+              work are included in this category. After professional users, this category of users are the most
+              important.</li>
+
+            <li>Developers: This group of people are the programmers who are and will be working on the product in order
+              to further develop it, maintain it and update it in the future. They will be using the product to test if
+              it is working correctly, to update certain features and maintain them on a regular basis.</li>
+          </ul>
+          </p>
+
+          <h3 id="operating-env">2.4 Operating Environment</h3>
+
+          <p>
+            The product will be suitable for the following hardware platforms:
+          <ul>
+            <li>Computers</li>
+            <li>Mobile Phones</li>
+            <li>Tablets</li>
+          </ul>
+
+          The product will be suitable for the following operating systems:
+          <ul>
+            <li>Web Application: Any operating system having the following web browsers: Internet Explorer, Chrome or
+              Brave</li>
+
+            <li>Android Application: Only available for the devices with Android operating system.</li>
+          </ul>
+
+          The product will be compatible with any version of the aforementioned hardware platforms and operating system
+          releases.
+          </p>
+
+          <h3 id="design-imp-constraints">2.5 Design and Implementation Constraints</h3>
+
+          <p>From the part of the developers, there are some limitations. Such as, many websites (like amazon.com) do
+            not allow data crawling from their website. There are many such websites who have certain constraints over
+            data crawling. This is a limitation from the develper's end. In addition, the memory constraint is also a
+            limitation from the developer's end. All the data in all the websites need to be scraped and saved into the
+            database, which might lead to some memory issue. Lastly, since the product is for web and android only, it
+            will not be available for the users of operating systems other than android. </p>
+
+          <p>In order to use the product from any device other than android, the user must be using the web application.
+            In the making of the product, Django framework has been used with the integration of Rest API in the
+            backend. HTML, CSS, and JavaScript is used in the frontend of the web application. The product is developed
+            in Python for the web application and in Kotlin for the mobile application. The platform PyCharm is used to
+            manage, edit and integrate the different parts of the product. For the maintenance of the delivered product,
+            the developers themselves will be responsible and no intermediate oragnization will be involved.</p>
+
+          <h3 id="user-documentation">2.6 User Documentation</h3>
+
+          <p>As of the current release, no user manual, online help, tutorials or any sort of user documentation will be
+            released for the product. The product is very straight-forward and easy to use. Users will be able to use
+            the product without any sort of guide or help whatsoever. However, in the future releases, if any advanced
+            features are added to the product for which we think user documentation will be required, it will be
+            released then.
+          </p>
+
+          <h3 id="assumption-dependencies">2.7 Assumptions and Dependencies</h3>
+
+          <p>As for the web application part of the product, a browser is required to access it. It is assumed that the
+            browser that the user uses is compatible with the most updated version of HTML, CSS and JavaScript. It is
+            assumed that the browser is able to render, integrate and display the application correctly.</p>
+
+          <p>As for the mobile application part of the product, Kotlin will be used, which interoperates fully with
+            Java. So, it is assumed that the user will have Java installed on their phone. All these dependencies are
+            static and the smooth ruunning of the product depends on these factors.</p>
+
+          <h2 id="external-interface">3. External Interface Requirements</h2>
+          <h3 id="user-interface">3.1 User Interfaces</h3>
+
+          <p>The user interface for the search engine shall be compatible to any web browser Internet Explorer, Chrome
+            or Brave by which user can access to the system. In addition to that it shall be compatible with mobile.
+            There will be multiple layers of interface between the software product and the users.</p>
+          <h4 id="ui-spec">User interface specifications:</h4>
+          <ol>
+            <li>Sign up: Field for email, password and confirm password would be here for a user to sign up for an
+              account. Upon clicking the button for sign up it would save the data and give a message of the account
+              being successfully created. And if the user already has an account, upon clicking the login button it
+              would go to the login page.</li>
+            <li>Login: A user will be able to login using social media sites like Google or Facebook along with having
+              the option of signing in using just a username and password. And lastly clicking the sign in button it
+              would login to a user’s account. It would also have the option of returning to the sign up page if a user
+              has not made an account. There would be a button for recovering password as well.</li>
+            <li>Password recovery: A field for entering email would be there and clicking the reset password would send
+              the verification to the mail for resetting the password. It would also have a button to go back to the
+              login page.</li>
+            <li>Search: Upon giving the url in the field and clicking the search button will send the user to the result
+              page. A user can also select different content type such as text, doc and pdf files to search./li>
+            <li>Result: The user can see the search results of the url ad visit the website links.</li>
+            <li>User profile: The user can save and edit information. An option for deleting account and resetting the
+              password would be there.</li>
+            <li>Search with clusters: The user will be able to search from the clusters made. It can also make a cluster
+              and edit it from the navigation bar.</li>
+            <li> Saved clusters: The user can view the saved clusters.</li>
+            <li>Dashbaord: The user can easily navigate to the clusters, search, about and settings upon clicking the
+              buttons. </li>
+          </ol>
+
+          <h3 id="hardware-interface">3.2 Hardware Interfaces</h3>
+          <p>All the hardware is required to connect to the internet, which will be hardware interface for the system.
+          </p>
+
+          <h3 id="software-interface">3.3 Software Interfaces</h3>
+          <p>The following are the software interfaces used for the project:</p>
+          <table style="text-align: justify; height: 78px;" border="2" width="360" cellspacing="1" cellpadding="1">
+            <tbody>
+              <tr>
+                <td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">Operating system</span></td>
+                <td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">We have chosen Windows as the
+                    operating system for its user-friendliness</span></td>
+              </tr>
+              <tr>
+                <td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">Database</span></td>
+                <td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">To store user data, search data
+                    and cluster data we have chosen mySQL database</span></td>
+              </tr>
+              <tr>
+                <td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">Web Browsers (Any)</span></td>
+                <td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">The web app opens in any web
+                    browser</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3 id="com-interface">3.4 Communications Interfaces</h3>
+          <p>This project supports all types of web browsers.
+            The requirements associated with communications functions by this product includes forms, emails and social
+            media platforms.
+            Through emails or social media connection, data would be in sync, authentication will be verified and
+            recovery of account of a user would be possible.
+            It shall use the HTTP protocol for communication over the internet. </p>
+
+          <h2 id="system-features">4. System Features</h2>
+          <h3 id="use-case-diagram">4.1 Use Case Diagram</h3>
+
+          <img id="usecaseimage" src="UseCaseDiagram.svg" />
+
+          <h3 id="search-cluster">4.2.1 Signup</h3>
+
+          <p><u><b>Use case:</b></u> Signup</p>
+          <p><u><b>Precondition:</b></u> None</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To signup for an account</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Users can signup for an account using a valid email address or using a Google / Facebook account.</p>
+          <p><u><b> Priotrity: </b></u>Medium</p>
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. User chooses to signup</p>
+              <p>&nbsp &nbsp 3. User inputs valid email address and password</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 2. Display signup form</p>
+              <p>&nbsp &nbsp 4. Display successful signup message</p>
+              <p>&nbsp &nbsp 5. Redirect user to login page</p>
+            </div>
+
+          </div>
+          <p><u><b>Alternate course of events:</b></u></p>
+
+          <h3 id="search-cluster">4.2.2 Login</h3>
+
+          <p><u><b>Use case:</b></u> Login</p>
+          <p><u><b>Precondition:</b></u> User must have executed "Signup" at any time in the past</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To log in to user account</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Users can provide their emails and passwords saved in to the system when they signed up.
+            Or they can directly login using their Google / Facebook account.
+          </p>
+          <p><u><b> Priotrity: </b></u>Medium</p>
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. User chooses to login</p>
+              <p>&nbsp &nbsp 3. User provides email and pass <br>
+                &nbsp &nbsp &nbsp or chooses Google/ Facebook account</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 2. Display login form and Google/ Facebook login buttons</p>
+              <p>&nbsp &nbsp 4. Display successful login message</p>
+              <p>&nbsp &nbsp 5. Redirect user to dashboard page</p>
+            </div>
+
+          </div>
+          <p><u><b>Alternate course of events:</b></u></p>
+
+          <h3 id="search-cluster">4.2.3 Logout</h3>
+
+          <p><u><b>Use case:</b></u> Logout</p>
+          <p><u><b>Precondition:</b></u> "Login" must have been executed</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To log out of user account</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Users can log out of their accounts after they had logged in.</p>
+          <p><u><b> Priotrity: </b></u>High</p>
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. User chooses to logout</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 2. Display successful logout message</p>
+              <p>&nbsp &nbsp 2. Redirect to login page</p>
+            </div>
+
+          </div>
+          <p><u><b>Alternate course of events:</b></u></p>
+
+          <h3 id="search-cluster">4.2.4 Recover Password</h3>
+
+          <p><u><b>Use case:</b></u> Search within clusters</p>
+          <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To search within clusters</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Within the saved clusters users can search for anything by providing keywords.</p>
+          <p><u><b> Priotrity: </b></u>High</p>
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. Choose saved cluster</p>
+              <p>&nbsp &nbsp 2. Input search keyword</p>
+              <p>&nbsp &nbsp 3. Search within saved clusters</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 4. Display results in cluster search page</p>
+            </div>
+
+          </div>
+          <p><u><b>Alternate course of events:</b></u></p>
+
+          <h3 id="search-cluster">4.2.5 View User Profile</h3>
+
+          <p><u><b>Use case:</b></u> Search within clusters</p>
+          <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To search within clusters</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Within the saved clusters users can search for anything by providing keywords.</p>
+          <p><u><b> Priotrity: </b></u>High</p>
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. Choose saved cluster</p>
+              <p>&nbsp &nbsp 2. Input search keyword</p>
+              <p>&nbsp &nbsp 3. Search within saved clusters</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 4. Display results in cluster search page</p>
+            </div>
+
+          </div>
+          <p><u><b>Alternate course of events:</b></u></p>
+
+          <h3 id="search-cluster">4.2.6 View Dashboard</h3>
+
+          <p><u><b>Use case:</b></u> Search within clusters</p>
+          <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To search within clusters</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Within the saved clusters users can search for anything by providing keywords.</p>
+          <p><u><b> Priotrity: </b></u>High</p>
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. Choose saved cluster</p>
+              <p>&nbsp &nbsp 2. Input search keyword</p>
+              <p>&nbsp &nbsp 3. Search within saved clusters</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 4. Display results in cluster search page</p>
+            </div>
+
+          </div>
+          <p><u><b>Alternate course of events:</b></u></p>
+
+          <h3 id="search-cluster">4.2.7 Edit Profile</h3>
+
+          <p><u><b>Use case:</b></u> Search within clusters</p>
+          <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To search within clusters</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Within the saved clusters users can search for anything by providing keywords.</p>
+          <p><u><b> Priotrity: </b></u>High</p>
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. Choose saved cluster</p>
+              <p>&nbsp &nbsp 2. Input search keyword</p>
+              <p>&nbsp &nbsp 3. Search within saved clusters</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 4. Display results in cluster search page</p>
+            </div>
+
+          </div>
+          <p><u><b>Alternate course of events:</b></u></p>
+
+          <h3 id="search-content-url">4.2.8 Search Content</h3>
+          <p><u><b>Use case:</b></u> Search content</p>
+          <p><u><b>Precondition:</b></u> None</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To search for content within a URL</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Users can provide a url in the search bar and select the depth it wants the site to be crawled. The user
+            also specifies the type of
+            content he/she wants to be indexed from this URL.</p>
+          <p><u><b> Priotrity: </b></u>High</p>
+
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. Provide URL</p>
+              <p>&nbsp &nbsp 2. Choose depth</p>
+              <p>&nbsp &nbsp 3. Select content type: PDF, DOC, .TXT FILES, ALL CONTENTS, NON-HTML CONTENTS etc.</p>
+              <p>&nbsp &nbsp 4. Search</p>
+
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 5. Show search result</p>
+            </div>
+
+          </div>
+
+
+          <p><u><b>Alternate course of events:</b></u></p>
+
+
+          <h3 id="index-urls">4.2.9 Create Clusters From Search Results</h3>
+
+          <p><u><b>Use case:</b></u> Create clusters on search results</p>
+          <p><u><b>Precondition:</b></u> "Search Content" must be executed</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To create clusters on search results</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>The search results obtained from the search page can be saved into clusters. Users can access these from
+            their profiles.</p>
+          <p><u><b> Priotrity: </b></u>High</p>
+
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. Save search results</p>
+              <p>&nbsp &nbsp 2. Form clusters</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 3. Save clusters in database</p>
+              <p>&nbsp &nbsp 4. Redirect user to saved cluster list</p>
+              <p>&nbsp &nbsp 5. Display clusters in user's saved cluster list</p>
+            </div>
+
+          </div>
+
+          <p><u><b>Alternate course of events:</b></u></p>
+          <p>Steps 2-5: User's limit for creating clusters might be exceeded and they cannot create anymore clusters.
+          </p>
+
+          <h3 id="search-cluster">4.2.10 View Saved Clusters</h3>
+
+          <p><u><b>Use case:</b></u> Search within clusters</p>
+          <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To search within clusters</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Within the saved clusters users can search for anything by providing keywords.</p>
+          <p><u><b> Priotrity: </b></u>High</p>
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. Choose saved cluster</p>
+              <p>&nbsp &nbsp 2. Input search keyword</p>
+              <p>&nbsp &nbsp 3. Search within saved clusters</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 4. Display results in cluster search page</p>
+            </div>
+
+          </div>
+          <p><u><b>Alternate course of events:</b></u></p>
+
+          <h3 id="search-cluster">4.2.11 Search within clusters</h3>
+
+          <p><u><b>Use case:</b></u> Search within clusters</p>
+          <p><u><b>Precondition:</b></u> "Create Clusters" must be executed</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To search within clusters</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Within the saved clusters users can search for anything by providing keywords.</p>
+          <p><u><b> Priotrity: </b></u>High</p>
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. Choose saved cluster</p>
+              <p>&nbsp &nbsp 2. Input search keyword</p>
+              <p>&nbsp &nbsp 3. Search within saved clusters</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 4. Display results in cluster search page</p>
+            </div>
+
+          </div>
+          <p><u><b>Alternate course of events:</b></u></p>
+          <p>&nbsp &nbsp Steps 2-4: User enters keyword that is not found anywhere in the cluster.</p>
+
+          <h3 id="search-cluster">4.2.12 Download / Save Content</h3>
+
+          <p><u><b>Use case:</b></u> View Content</p>
+          <p><u><b>Precondition:</b></u> "Search Content" must be executed</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To view content following links indexed in the search result/ cluster</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Within the search results/ saved clusters links to contents of a type (previously chosen by the user)
+            are listed. Each link leads the user to the content. From there they can view the content.
+          </p>
+          <p><u><b> Priotrity: </b></u>High</p>
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. Select a link indexed in the search results/ cluster</p>
+              <p>&nbsp &nbsp 4. View content in the link</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 2. Redirect user to the content in the link</p>
+              <p>&nbsp &nbsp 3. Display content in the link</p>
+            </div>
+
+          </div>
+          <p><u><b>Alternate course of events:</b></u></p>
+
+          <h3 id="search-cluster">4.2.13 Download / Save Content</h3>
+
+          <p><u><b>Use case:</b></u> Download/ Save Content</p>
+          <p><u><b>Precondition:</b></u> "View Content" must be executed</p>
+          <p><u><b>Actor:</b></u> User</p>
+          <p><u><b>Goal:</b></u> To download content following links indexed in the search results/ cluster</p>
+          <p><u><b>Overview:</b></u> </p>
+          <p>Within the saved clusters links to contents of a type (previously chosen by the user) are listed.
+            Each link leads the user to the content. From there they can download the content.
+          </p>
+          <p><u><b> Priotrity: </b></u>High</p>
+
+          <p><u><b>Typical course of events:</b></u></p>
+          <div class="row">
+            <div class="column">
+              <p>&nbsp &nbsp Actor:</p>
+              <p>&nbsp &nbsp 1. Open content indexed by the URL
+              <p>&nbsp &nbsp 3. Choose to download content</p>
+            </div>
+            <div class="column">
+              <p>&nbsp &nbsp System Response:</p>
+              <p>&nbsp &nbsp 2. Display content</p>
+              <p>&nbsp &nbsp 4. Download content to local device</p>
+            </div>
+
+          </div>
+          <p><u><b>Alternate course of events:</b></u></p>
+          <p>Steps 3-4: User does not download the content.</p>
+
+
+
+          <h2 id="other-non-requirements">5. Other Nonfunctional Requirements</h2>
+
+          <h3 id="performance-requirements">5.1 Performance Requirements</h3>
+          <p>The performance of the product is dependent upon the hardware of the user as the product shall be based on
+            the web. It shall run from a web server so the performance speed and load time lies on the strength of the
+            internet connection. The user device must have a running web browser version of Google Chrome, Internet
+            Explorer or Brave. For the android application, the user device must have a minimum Android OS version xyz.W
+          </p>
+
+          <h3 id="safety-requirements">5.2 Safety Requirements</h3>
+          <p>To ensure that no data loss of users happen using this product. And to secure that, the developer team is
+            to do regular updates and backup. The developers are solely responsible for the safety measures and regular
+            checking and testing for bugs. It must be taken care that the files the users are using and downloading are
+            not corrupt in any way. Security must be ensured to prevent any sort of cyber attack. If any sort of
+            security is breached, appropiate measures to back up data and storage must be ensured. Recovering from it
+            properly using safety measures should be ensured. No safety certification should have to be followed in
+            particular.</p>
+
+          <h3 id="security-requirements">5.3 Security Requirements</h3>
+
+          <p>In order to maintain and ensure the user's data, a user has to go through identity authentication. The
+            identity and security measures are limited to and linked with an email, google or facebook account. User's
+            information will be linked will the product so full privacy will not be maintained. So, indirectly, the
+            security of user identification will depend on the security policy of email, google or facebook as well. Any
+            type of user having any of these identities shall be able to use the product. They do not need any
+            additional privileges to use the product. No security or privacy policy should have to be followed in
+            particular other than the aforementioned ones.</p>
+
+          <h3 id="software-quality-attributes">5.4 Software Quality Attributes</h3>
+          <ul>
+            <li>Availability:</li>
+            <li>Maintainability:</li>
+            <li>Adaptability</li>
+            <li>Flexibility</li>
+            <li>Interoperability</li>
+            <li>Portability</li>
+            <li>Reliability</li>
+            <li>Reusability</li>
+            <li>Correctness</li>
+            <li>Robustness</li>
+            <li>Testability</li>
+            <li>Usability</li>
+          </ul>
+          <h3 id="business-rules">5.5 Business Rules</h3>
+
+          <ol>
+            <li>Users must have a valid email address</li>
+            <li></li>
+          </ol>
+
+          <h2 id="other-requirements">6. Other Requirements</h2>
+
+          <h3 id="glossary">Appendix A: glossary</h3>
+
+          <h3 id="analysis-methods">Appendix B: Analysis Methods</h3>
+
+          <p>This class assumes you are confident with this material, but in case you need a brush-up…</p>
+
+          <h3 id="tb-list">Appendix C: To be determined list </h3>
+
+        </div>
+      </div>
     </div>
-    <div class="col-sm-9">
-      <h1 class="page-header" id="SRS">Software Requirements Specification</h1>
-
-<h2 id="intro-description">1. Introduction</h2>
-
-<h3 id="purpose">1.1 Purpose</h3>
-
-<twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-0" data-tweet-id="291978260433219584" style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;"></twitterwidget>
-<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<p>This document details the project plan for the development of “crazyCrawler.” <br>
-
-Apart from project investors, this document is intended for the developers, designers, and testers who are working on “crazyCrawler.” 
-This plan includes a summary of:</p>
-
-<ul>
-      <li>How the system is going to function</li>
-      <li>The technology and interfaces used for the development of the project</li>
-      <li>Scope of the project from the development viewpoint</li>
-      <li>System Features</li>
-      <li>Other nonfunctional Requirements</li>
-      <li>Overall Description</li>
-</ul>
-
-<p>Many big data companies depend on data that is scraped from the internet. They heavily depend on web crawlers. Often their job gets messy when they are trying to
-fetch files like pdfs, documents or texts. We are developing a search engine which any data driven company/ user can use to easily fetch the document they are looking 
-for. It is as easy as putting a URL in the search bar and choosing what files to get, and viola they will have all links leading to such files crawled and indexed for 
-them. Users can use this intuitive search engine not only to easily fetch such files, but also to create clusters on this data.</p>
-
-
-
-<h3 id="doc-con">1.2 Document Conventions</h3>
-<p><span style="color: #000000;">The following conventions are used in this doucment: </span></p>
-<table style="text-align: justify; height: 78px;" border="2" width="360" cellspacing="1" cellpadding="1">
-<tbody>
-<tr> 
-<td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">DB</span></td>
-<td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">Database</span></td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">RDBMS</span></td>
-<td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">Relational Database Management System</span></td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">ER</span></td>
-<td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">Entity Relationship</span></td>
-</tr>
-</tbody>
-</table>
-<h3 id="intended-audience">1.3 Intended Audience and Reading Suggestions</h3>
-
-<p>Apart from project investors, this document is intended for the developers, designers, and testers who are working on “crazyCrawler.” </p>
-
-<h3 id="product-scope">1.4 Prouduct Scope</h3>
-
-
-<p>Many big data companies depend on data that is scraped from the internet. They heavily depend on web crawlers. Often their job gets messy when they are trying to
-fetch files like pdfs, documents or texts. We are developing a search engine which any data driven company/ user can use to easily fetch the document they are looking 
-for. It is as easy as putting a URL in the search bar and choosing what files to get, and viola they will have all links leading to such files crawled and indexed for 
-them. Users can use this intuitive search engine not only to easily fetch such files, but also to create clusters on this data.</p>
-
-
-<h3 id="reference">1.5 References</h3>
-
-
-<p>...........</p>
-
-<h2 id="overall-description">2. Overall Description</h2>
-
-<h3 id="product-perspective">2.1 Product Perspective</h3>
-
-<twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-0" data-tweet-id="291978260433219584" style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;"></twitterwidget>
-<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-<p>"crazyCrawler" is a new, self-contained product designed with the aim to make web searching easier, efficient and organized. It is a self-sustaining product without any subsystem or integrable part as of the current release. The product is for any individual or group looking to search data from the web in a precisely effective manner. Using it will enable users to make clusters of URLs and search for specific contents in their cluster. Users can download, store and use the contents easily and efficiently. Especially for the regular users, fast scraping of data using web crawlers is of great importance. With the aim to make it easier for them, the product is developed.</p>
-
-<h3 id="product-functions">2.2 Product Functions</h3>
-
-<p>The following functionalities are included in the product: 
-
-<ul>
-  <li>Sign Up: User will sign up using a sign up form, google or facebook account.</li>
-  <li>Login: User will login to their respective accounts after creating it via the form, google or facebook accounts.</li>
-  <li>Logout: User will be able to logout of the system upon completion of use.</li>
-  <li>Recover Password: User will be able to recover their lost / forgotten password. This option will be available in the login page.</li>
-  <li>Edit Profile: User will be able to edit their account, i.e. change profile photo, edit username, reset password and edit other informations on the profile.</li>
-  <li>Make a cluster: User will be able to create a cluster to add URLs to.</li>
-  <li>Edit a cluster: User will be able to edit a cluster, i.e. edit the name of the cluster, add or remove URLs from the cluster or delete the entire cluster.</li>
-  <li>Search the web: User will search the website via a search engine for finding the desired websites to be added to a cluster.</li>
-  <li>Add a URL to a cluster: User will add the URLs of the desired websites to a selected cluster after searching the web.</li>
-  <li>Search within clusters: User will be able to search for a specific content type in a specific cluster after making the cluster. The content types may be PDF, text, doc, non-html files or all types of contents mixed.</li>
-  <li>Download / Save content: User will be able to download the searched contents into their system.</li>
-</ul>
-</p>
-
-<h3 id="user-class">2.3 User Classes and Characteristics.</h3>
-
-<p>The following user classes are classified based on the type of use of the product:
-<ul>
-  <li>Professional Users: This includes any user who will be using the product for their professional work under any company, organization or institution. They are the most important category of users who will, perhaps use the product most frequently and at a large scale. A large quantity of data will be required to be scraped by them for their works and this product will be of utmost urgency for them.</li>
-
-  <li>Personal Users: This class of users will be anyone who uses the product for their personal uses only. Any individual such as a student, teacher, an employee or anyone who uses the product for non-professional work are included in this category. After professional users, this category of users are the most important.</li>
-
-  <li>Developers: This group of people are the programmers who are and will be working on the product in order to further develop it, maintain it and update it in the future. They will be using the product to test if it is working correctly, to update certain features and maintain them on a regular basis.</li>
-</ul></p>
-
-<h3 id="operating-env">2.4 Operating Environment</h3>
-
-<p>
-  The product will be suitable for the following hardware platforms:
-  <ul>
-    <li>Computers</li>
-    <li>Mobile Phones</li>
-    <li>Tablets</li>
-  </ul>
-
-  The product will be suitable for the following operating systems:
-  <ul>
-    <li>Web Application: Any operating system having the following web browsers: Internet Explorer, Chrome or Brave</li>
-
-    <li>Android Application: Only available for the devices with Android operating system.</li>
-  </ul>
-
-  The product will be compatible with any version of the aforementioned hardware platforms and operating system releases.
-</p>
-
-<h3 id="design-imp-constraints">2.5 Design and Implementation Constraints</h3>
-
-<p>From the part of the developers, there are some limitations. Such as, many websites (like amazon.com) do not allow data crawling from their website. There are many such websites who have certain constraints over data crawling. This is a limitation from the develper's end. In addition, the memory constraint is also a limitation from the developer's end. All the data in all the websites need to be scraped and saved into the database, which might lead to some memory issue. Lastly, since the product is for web and android only, it will not be available for the users of operating systems other than android. </p>
-
-<p>In order to use the product from any device other than android, the user must be using the web application. In the making of the product, Django framework has been used with the integration of Rest API in the backend. HTML, CSS, and JavaScript is used in the frontend of the web application. The product is developed in Python for the web application and in Kotlin for the mobile application. The platform PyCharm is used to manage, edit and integrate the different parts of the product. For the maintenance of the delivered product, the developers themselves will be responsible and no intermediate oragnization will be involved.</p>
-
-<h3 id="user-documentation">2.6 User Documentation</h3>
-
-<p>As of the current release, no user manual, online help, tutorials or any sort of user documentation will be released for the product. The product is very straight-forward and easy to use. Users will be able to use the product without any sort of guide or help whatsoever. However, in the future releases, if any advanced features are added to the product for which we think user documentation will be required, it will be released then.
-</p>
-
-<h3 id="assumption-dependencies">2.7 Assumptions and Dependencies</h3>
-
-<p>As for the web application part of the product, a browser is required to access it. It is assumed that the browser that the user uses is compatible with the most updated version of HTML, CSS and JavaScript. It is assumed that the browser is able to render, integrate and display the application correctly.</p>
-
-<p>As for the mobile application part of the product, Kotlin will be used, which interoperates fully with Java. So, it is assumed that the user will have Java installed on their phone. All these dependencies are static and the smooth ruunning of the product depends on these factors.</p>
-
-<h2 id="external-interface">3. External Interface Requirements</h2>
-<h3 id="user-interface">3.1 User Interfaces</h3>
-
-<p>The user interface for the search engine shall be compatible to any web browser Internet Explorer, Chrome or Brave by which user can access to the system. In addition to that it shall be compatible with mobile. There will be multiple layers of interface between the software product and the users.</p>
-<h4 id="ui-spec">User interface specifications:</h4>
-<ol>
-  <li>Sign up: Field for email, password and confirm password would be here for a user to sign up for an account. Upon clicking the button for sign up it would save the data and give a message of the account being successfully created. And if the user already has an account, upon clicking the login button it would go to the login page.</li>
-  <li>Login: A user will be able to login using social media sites like Google or Facebook along with having the option of signing in using just a username and password. And lastly clicking the sign in button it would login to a user’s account. It would also have the option of returning to the sign up page if a user has not made an account. There would be a button for recovering password as well.</li>
-  <li>Password recovery: A field for entering email would be there and clicking the reset password would send the verification to the mail for resetting the password. It would also have a button to go back to the login page.</li>
-  <li>Search: Upon giving the url in the field and clicking the search button will send the user to the result page. A user can also select different content type such as text, doc and pdf files to search./li>
-  <li>Result: The user can see the search results of the url ad visit the website links.</li>
-  <li>User profile: The user can save and edit information. An option for deleting account and resetting the password would be there.</li>
-  <li>Search with clusters: The user will be able to search from the clusters made. It can also make a cluster and edit it from the navigation bar.</li>
-  <li> 	Saved clusters: The user can view the saved clusters.</li>
-  <li>Dashbaord: The user can easily navigate to the clusters, search, about and settings upon clicking the buttons. </li>
-</ol>
-
-<h3 id="hardware-interface">3.2 Hardware Interfaces</h3>
-<p>All the hardware is required to connect to the internet, which will be hardware interface for the system.</p>
-
-<h3 id="software-interface">3.3 Software Interfaces</h3>
-<p>The following are the software interfaces used for the project:</p>
-<table style="text-align: justify; height: 78px;" border="2" width="360" cellspacing="1" cellpadding="1">
-<tbody>
-<tr> 
-<td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">Operating system</span></td>
-<td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">We have chosen Windows as the operating system for its user-friendliness</span></td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">Database</span></td>
-<td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">To store user data, search data and cluster data we have chosen mySQL database</span></td>
-</tr>
-<tr>
-<td colspan="1" rowspan="1" width="21%"><span style="color: #000000;">Web Browsers (Any)</span></td>
-<td colspan="1" rowspan="1" width="78%"><span style="color: #000000;">The web app opens in any web browser</span></td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="com-interface">3.4 Communications Interfaces</h3>
-<p>This project supports all types of web browsers. 
-The requirements associated with communications functions by this product includes forms, emails and social media platforms.
- Through emails or social media connection, data would be in sync, authentication will be verified and recovery of account of a user would be possible.
- It shall use the HTTP protocol for communication over the internet. </p>
-
- <h2 id="system-features">4. System Features</h2>
- <h3 id="use-case-diagram">4.1 Use Case Diagram</h3>
- 
- <img id="usecaseimage" src="UseCaseDiagram.svg" />
-
- <h3 id="expanded-use-case">4.2 Expanded Use Case</h3>
- 
- <h3 id="edit-profile">4.2.1 Edit user profile information</h3>
- <p><u><b>Use Case</b></u>: Edit user profile information</p>
- <p><u><b>Preconditions</b></u>: ‘Log in’ must have been executed</p>
- <p><u><b>Actors</b></u>: User</p>
- <p><u><b>Goal</b></u>: To change or edit any information of a user</p>
-
- <p><u><b>Overview:</b></u></p>
-<p> When the user logs in their account and they choose to edit any information of their account.</p>
- <p><u><b>Cross Reference</b></u>: R2, R3 </p>
- <p><u><b>Typical course of events</u>:</b> </p>
- <table>
-  <thead>
-  <th>Actor actions</th>
-  <th>System response</th>
-  </thead>
-  <tbody>
-  <tr>
-  <td>1. The user choose to edit account.</td>
-  <td>2. Displays edit mode.</td>
-  </tr>
-  <tr>
-  <td>3. The user can change birthdate, email and phone number.</td>
-  <td>4. Displays the information after changing</td>
-  </tr>
-  </tbody>
-  </table>
-  
-  <table>
-    <thead>
-    <th>Alternative courses:</th>
-    </thead>
-    <tbody>
-    <tr>
-    <td> Step 4: </td>
-    <td> The user can delete account. They can also reset password.</td>
-    </tr>
-    </tbody>
-    </table>
-      
-
-<h3 id="search-content-url">4.2.2 Search Content</h3>
-<p><u><b>Use case:</b></u> Search content</p>
-<p><u><b>Precondition:</b></u> None</p>
-<p><u><b>Actor:</b></u> User</p>
-<p><u><b>Goal:</b></u> To search for content within a URL</p>
-<p><u><b>Overview:</b></u> </p>
-<p>Users can provide a url in the search bar and select the depth it wants the site to be crawled. The user also specifies the type of
-content he/she wants to be indexed from this URL.</p>
-<p><u><b> Priotrity: </b></u>High</p>
-
-
-<p><u><b>Typical course of events:</b></u></p>
-<div class = "row">
-<div class = "column">
-<p>&nbsp &nbsp Actor:</p>
-<ul>
-	<li>1. Provide URL</li>
-	<li>2. Choose depth</li>
-	<li>3. Select content type: PDF, DOC, .TXT FILES, ALL CONTENTS, NON-HTML CONTENTS etc.</li>
-	<li>4. Search</li>
-</ul>
-</div>
-<div class = "column">
-<p>&nbsp &nbsp  System Response:</p>
-	<li>5. Show search result</li>
-</div>
-
-</div>
-
-<p><u><b>Functional Requirements:</b></u></p>
-
-
-
-<h3 id="index-urls">4.2.3 Create clusters on search results</h3>
-
-<p><u><b>Use case:</b></u> Create clusters on search results</p>
-<p><u><b>Precondition:</b></u> "Search Content" must be executed</p>
-<p><u><b>Actor:</b></u> User</p>
-<p><u><b>Goal:</b></u> To create clusters on search results</p>
-<p><u><b>Overview:</b></u> </p>
-<p>The search results obtained from the search page can be saved into clusters. Users can access these from their profiles.</p>
-<p><u><b> Priotrity: </b></u>High</p>
-
-
-<p><u><b>Typical course of events:</b></u></p>
-<div class = "row">
-<div class = "column">
-<p>&nbsp &nbsp Actor:</p>
-<ul>
-	<li>1. Save search results</li>
-	<li>2. Form clusters</li>
-	
-</ul>
-</div>
-<div class = "column">
-<p>&nbsp &nbsp  System Response:</p>
-	<li>3. Display clusters in user's saved cluster list</li>
-</div>
-
-</div>
-
-<p><u><b>Functional Requirements:</b></u></p>
-
-
-<h3 id="search-cluster">4.2.4 Search within clusters</h3>
-
-<p><u><b>Use case:</b></u> Search within clusters</p>
-<p><u><b>Precondition:</b></u> Create clusters must be executed</p>
-<p><u><b>Actor:</b></u> User</p>
-<p><u><b>Goal:</b></u> To search within clusters</p>
-<p><u><b>Overview:</b></u> </p>
-<p>Within the saved clusters users can search for anything by providing keywords.</p>
-<p><u><b> Priotrity: </b></u>High</p>
-
-<p><u><b>Typical course of events:</b></u></p>
-<div class = "row">
-<div class = "column">
-<p>&nbsp &nbsp Actor:</p>
-<ul>
-	<li>1. Choose saved cluster</li>
-	<li>2. Input search keyword</li>
-	<li>3. Search within saved clusters</li>
-	
-</ul>
-</div>
-<div class = "column">
-<p>&nbsp &nbsp  System Response:</p>
-	<li>4. Display results in cluster search page</li>
-</div>
-
-</div>
-
-<p><u><b>Functional Requirements:</b></u></p>
-
-<h3 id="create-update-delete-acc">4.6 Create, Update, Delete user account</h3>
-
-<h4>4.6.1 DESCRIPTION and PRIORITY</h4>
-<p>Users can create account using email/ social media account. In their account they can find saved clusters and account information.
-<br>Priotrity: Medium</p>
-
-<h4>4.6.2 Stimulus/Response Sequences</h4>
-<ul>
-	<li>Create user account by signing up using email/ social media account</li>
-	<li>Log in to account by signing in</li>
-	<li>Update/ delete account</li>
-</ul>
-
-<h4>4.6.3 Functional Requirements</h4>
-
-
-
-<h2 id="other-non-requirements">5. Other Nonfunctional Requirements</h2>
-
-<h3 id="performance-requirements">5.1 Performance Requirements</h3>
-<p>The performance of the product is dependent upon the hardware of the user as the product shall be based on the web. It shall run from a web server so the performance speed and load time lies on the strength of the internet connection. The user device must have a running web browser version of Google Chrome, Internet Explorer or Brave. For the android application, the user device must have a minimum Android OS version xyz.W</p>
-
-<h3 id="safety-requirements">5.2 Safety Requirements</h3>
-<p>To ensure that no data loss of users happen using this product. And to secure that, the developer team is to do regular updates and backup. The developers are solely responsible for the safety measures and regular checking and testing for bugs. It must be taken care that the files the users are using and downloading are not corrupt in any way. Security must be ensured to prevent any sort of cyber attack. If any sort of security is breached, appropiate measures to back up data and storage must be ensured. Recovering from it properly using safety measures should be ensured. No safety certification should have to be followed in particular.</p>
-
-<h3 id="security-requirements">5.3 Security Requirements</h3>
-
-<p>In order to maintain and ensure the user's data, a user has to go through identity authentication. The identity and security measures are limited to and linked with an email, google or facebook account. User's information will be linked will the product so full privacy will not be maintained. So, indirectly, the security of user identification will depend on the security policy of email, google or facebook as well. Any type of user having any of these identities shall be able to use the product. They do not need any additional privileges to use the product. No security or privacy policy should have to be followed in particular other than the aforementioned ones.</p>
-
-<h3 id="software-quality-attributes">5.4 Software Quality Attributes</h3>
-<ul>
-	<li>Availability:</li>
-	<li>Maintainability:</li>
-	<li>Adaptability</li>
-	<li>Flexibility</li>
-	<li>Interoperability</li>
-	<li>Portability</li>
-	<li>Reliability</li>
-	<li>Reusability</li>
-	<li>Correctness</li>
-	<li>Robustness</li>
-	<li>Testability</li>
-	<li>Usability</li>
-</ul>
-<h3 id="business-rules">5.5 Business Rules</h3>
-
-<p>N/A</p>
-
-<h2 id="other-requirements">6. Other Requirements</h2>
-
-<h3 id="glossary">Appendix A: glossary</h3>
-
-<ul>
-  <li><a href="https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml">Google JavaScript Style Guide</a></li>
-  <li><a href="https://bonsaiden.github.com/JavaScript-Garden/">JavaScript Garden</a></li>
-  <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript">Mozilla’s Introduction to Object-Oriented Javascript</a></li>
-  <li><a href="http://blog.parse.com/learn/engineering/whats-so-great-about-javascript-promises/">What’s so great about JavaScript Promises?</a></li>
-</ul>
-
-<h3 id="analysis-methods">Appendix B: Analysis Methods</h3>
-
-<p>This class assumes you are confident with this material, but in case you need a brush-up…</p>
-
-<ul>
-  <li>Codecademy – <a href="https://www.codecademy.com/learn/javascript">JavaScript</a> and <a href="https://www.codecademy.com/learn/jquery">jQuery</a></li>
-  <li><a href="http://eloquentjavascript.net/index.html">Eloquent JavaScript</a> by Marijn Haverbeke, Chapters 1-5</li>
-  <li><a href="https://medium.com/@_cmdv_/i-want-to-learn-javascript-in-2015-e96cd85ad225">Want to learn JavaScript in 2015?</a></li>
-  <li><a href="https://learn.jquery.com/about-jquery/how-jquery-works/">How jQuery Works</a></li>
-  <li>see also – <a href="#other-lists">Other Lists</a></li>
-</ul>
-
-<h3 id="tb-list">Appendix C: To be determined list </h3>
-
-<ul>
-  <li><a href="http://shop.oreilly.com/product/0636920028857.do">Functional JavaScript</a> by Michael Fogus</li>
-  <li><a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions">Front-end Job Interview Questions</a> by @darcyclarke (for testing yourself)</li>
-  <li><a href="http://www.thinkful.com/learn/javascript-best-practices-1/">JavaScript Best Practices</a></li>
-  <li><a href="https://shichuan.github.io/javascript-patterns/">JavaScript Patterns</a> by @shichuan (thanks @iandrewfuchs)</li>
-  <li><a href="http://www.amazon.com/JavaScript-Patterns-Stoyan-Stefanov/dp/0596806752">JavaScript Patterns</a> by Stoyan Stephanov</li>
-  <li><a href="http://www.amazon.com/JavaScript-Web-Applications-Alex-MacCaw/dp/144930351X/">JavaScript Web Applications</a> by Alex MacCaw</li>
-  <li><a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">JavaScript: The Good Parts</a> by Douglas Crockford</li>
-  <li><a href="http://ejohn.org/apps/learn/">Learning Advanced JavaScript slides</a> by John Resig</li>
-  <li><a href="http://www.staticapps.org/">Static Web Apps</a></li>
-  <li><a href="http://www.amazon.com/Test-Driven-JavaScript-Development-Developers-Library/dp/0321683919">Test-Driven JavaScript Development</a> by Christian Johansen</li>
-  <li><a href="http://www.slideshare.net/marthakelly/js-interpreter-interpreted">The JavaScript Interpreter, Interpreted</a> by Martha Girdler <a href="https://www.youtube.com/watch?v=iSxNCYcPAFk">(video)</a></li>
-</ul>
-
-
-    </div>
-  </div>
-</div>
-</body> 
+  </body>
 
 </html>
