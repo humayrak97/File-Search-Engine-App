@@ -30,7 +30,15 @@ nav[data-toggle=toc] {
 .affix {
  border: 1px solid #eee;
 max-height: 90%;
+padding: 100px 40x 0px 0px;
+ margin-right: 80%;
+align: left;
 	overflow-y: scroll;
+}
+
+.col-sm-9
+{
+  padding: 0px 0px 0px 150px;
 }
 
 nav[data-toggle=toc] .nav>li>a {

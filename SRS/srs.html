@@ -20,11 +20,28 @@
       display: table;
       clear: both;
     }
+
+    .print {
+      display: none;
+    }
+
+    @media print {
+
+      /* visible when printed */
+      .print {
+        display: block;
+      }
+
+    }
   </style>
 
 </head>
 
 <body>
+
+  <div class="print">
+  </div>
+
   <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
   <script src='https://cdn.rawgit.com/afeld/bootstrap-toc/v0.4.1/dist/bootstrap-toc.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
@@ -50,8 +67,8 @@
 
           <p>This document details the project plan for the development of “crazyCrawler.” <br>
 
-            Apart from project investors, this document is intended for the developers, designers, and testers who are
-            working on “crazyCrawler.”
+            Apart from project investors, this document is intended for the developers, designers, testers, professional
+            and personal users who are working on “crazyCrawler.”
             This plan includes a summary of:</p>
 
           <ul>
@@ -96,7 +113,7 @@
           <h3 id="intended-audience">1.3 Intended Audience and Reading Suggestions</h3>
 
           <p>Apart from project investors, this document is intended for the developers, designers, and testers who are
-            working on “crazyCrawler.” </p>
+            working on “crazyCrawler.” <br> Reading Suggestions: Sequentially</p>
 
           <h3 id="product-scope">1.4 Prouduct Scope</h3>
 
@@ -113,8 +130,6 @@
 
           <h3 id="reference">1.5 References</h3>
 
-
-          <p>...........</p>
 
           <h2 id="overall-description">2. Overall Description</h2>
 
@@ -306,8 +321,10 @@
           <h2 id="system-features">4. System Features</h2>
           <h3 id="use-case-diagram">4.1 Use Case Diagram</h3>
           <div class="center">
-          <img id="UseCaseDiagram" src="images/UseCaseDiagram.svg" >
-          <p><i><center>Figure: Use Case Diagram</center></i></p>
+            <img id="UseCaseDiagram" src="images/UseCaseDiagram.svg">
+            <p><i>
+                <center>Figure: Use Case Diagram</center>
+              </i></p>
           </div>
           <h3 id="expanded-use-case">4.2 Expanded Use Case</h3>
 
@@ -339,8 +356,8 @@
 
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
-          <p>Step 1: &nbsp &nbsp The user doesnt choose to sign up but they can still search. </p>
-          
+          <p>Steps 3-5: &nbsp &nbsp The user doesnt provide a valid email and cannot signup. </p>
+
           <h3 id="log-in">4.2.2 Login</h3>
 
           <p><u><b>Use case:</b></u> Login</p>
@@ -407,7 +424,8 @@
           <p><u><b>Actor:</b></u> User</p>
           <p><u><b>Goal:</b></u> To recover account if password forgotten</p>
           <p><u><b>Overview:</b></u> </p>
-          <p>Within the recover password the user will be able to reset password through email and able to sign in their account</p>
+          <p>Within the recover password the user will be able to reset password through email and able to sign in their
+            account</p>
           <p><u><b> Priotrity: </b></u>Medium</p>
           <p><u><b>Cross Reference</b></u>:</p>
           <p>R1, R8</p>
@@ -483,7 +501,8 @@
 
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
-          <p>Step 2 and 3: &nbsp &nbsp The user can also choose to select account information, about, or clusters for which it shows those information. </p>
+          <p>Step 2 and 3: &nbsp &nbsp The user can also choose to select account information, about, or clusters for
+            which it shows those information. </p>
 
           <h3 id="edit-profile">4.2.7 Edit Profile</h3>
 
@@ -492,7 +511,7 @@
           <p><u><b>Actor:</b></u> User</p>
           <p><u><b>Goal:</b></u> To change or edit any information of a user</p>
           <p><u><b>Overview:</b></u> </p>
-          <p>When the user logs in their account and they choose to edit any information of their account.  </p>
+          <p>When the user logs in their account and they choose to edit any information of their account. </p>
           <p><u><b> Priotrity: </b></u>Low</p>
           <p><u><b>Cross Reference</b></u>:</p>
           <p>R3, R5</p>
@@ -547,7 +566,8 @@
 
 
           <p><u><b>Alternate course of events:</b></u></p>
-          <p>Step 3:&nbsp &nbsp The user can also select other content type such as DOC, .TXT FILES, ALL CONTENTS, NON-HTML CONTENTS etc. and search.</p>
+          <p>Step 3:&nbsp &nbsp The user can also select other content type such as DOC, .TXT FILES, ALL CONTENTS,
+            NON-HTML CONTENTS etc. and search.</p>
 
           <h3 id="index-urls">4.2.9 Make Clusters From Search Results</h3>
 
@@ -580,7 +600,8 @@
           </div>
 
           <p><u><b>Alternate course of events:</b></u></p>
-          <p>Steps 2-5:&nbsp &nbsp User's limit for creating clusters might be exceeded and they cannot create anymore clusters.
+          <p>Steps 2-5:&nbsp &nbsp User's limit for creating clusters might be exceeded and they cannot create anymore
+            clusters.
           </p>
 
           <h3 id="view-saved-cluster">4.2.10 View Saved Clusters</h3>
@@ -703,80 +724,128 @@
 
           <h2 id="other-non-requirements">5. Other Nonfunctional Requirements</h2>
 
-<h3 id="performance-requirements">5.1 Performance Requirements</h3>
-<p>The performance of the product is dependent upon the hardware of the user as the product shall be based on the web. It shall run from a web server so the performance speed and load time lies on the strength of the internet connection. The user device must have a running web browser version of Google Chrome, Internet Explorer or Brave. For the android application, the user device must have a minimum Android OS version xyz.W</p>
+          <h3 id="performance-requirements">5.1 Performance Requirements</h3>
+          <p>The performance of the product is dependent upon the hardware of the user as the product shall be based on
+            the web. It shall run from a web server so the performance speed and load time lies on the strength of the
+            internet connection. The user device must have a running web browser version of Google Chrome, Internet
+            Explorer or Brave. For the android application, the user device must have a minimum Android OS version xyz.W
+          </p>
 
-<h3 id="safety-requirements">5.2 Safety Requirements</h3>
-<p>To ensure that no data loss of users happen using this product. And to secure that, the developer team is to do regular updates and backup. The developers are solely responsible for the safety measures and regular checking and testing for bugs.  No safety certification should have to be followed in particular.</p>
+          <h3 id="safety-requirements">5.2 Safety Requirements</h3>
+          <p>To ensure that no data loss of users happen using this product. And to secure that, the developer team is
+            to do regular updates and backup. The developers are solely responsible for the safety measures and regular
+            checking and testing for bugs. No safety certification should have to be followed in particular.</p>
 
-<h3 id="security-requirements">5.3 Security Requirements</h3>
+          <h3 id="security-requirements">5.3 Security Requirements</h3>
 
-<p>
-  The product must follow industry recommended practices for secure software development. At a minimum, the software development team must practice the principle of least privilege for defining access-level requirements of the software system and its associated services. The following specific security measures must be ensured:
-  <ul>
-    <li>Local DNS servers should be tested for their response to high work loads. The Web crawler should detect a condition in which, for example, if 90% of DNS lookups failed during one cycle, it should stop. The Web crawler also could avoid resolving more than a fixed number of domain names at the same time and with the same DNS server.</li>
+          <p>
+            The product must follow industry recommended practices for secure software development. At a minimum, the
+            software development team must practice the principle of least privilege for defining access-level
+            requirements of the software system and its associated services. The following specific security measures
+            must be ensured:
+          <ul>
+            <li>Local DNS servers should be tested for their response to high work loads. The Web crawler should detect
+              a condition in which, for example, if 90% of DNS lookups failed during one cycle, it should stop. The Web
+              crawler also could avoid resolving more than a fixed number of domain names at the same time and with the
+              same DNS server.</li>
 
-    <li>The crawler should re-try each web page a number of times if the page is down, and the interval should be several hours.</li>
+            <li>The crawler should re-try each web page a number of times if the page is down, and the interval should
+              be several hours.</li>
 
-    <li>The crawler should avoid overloading Web sites.</li>
+            <li>The crawler should avoid overloading Web sites.</li>
 
-    <li>All network operations should have a timeout. The crawler must be prepared, because at any point of the download operation it could stop receiving data.</li>
+            <li>All network operations should have a timeout. The crawler must be prepared, because at any point of the
+              download operation it could stop receiving data.</li>
 
-    <li>Besides a timeout, a lower speed limit should be enforced by the crawler to ensure smooth crawling of data.</li>
+            <li>Besides a timeout, a lower speed limit should be enforced by the crawler to ensure smooth crawling of
+              data.</li>
 
 
-  </ul>
-</p>
+          </ul>
+          </p>
 
-<h3 id="software-quality-attributes">5.4 Software Quality Attributes</h3>
-<ul>
-	<li>Availability: It should be ensured that the system is operating properly when it is requested for use. In other words, it should be ensured that a system is not failed or undergoing a repair action when it needs to be used.</li>
-	<li>Maintainability: It should be ensured that the system can be modified to correct faults, improve performance or other attributes, or adapt to a changed environment.</li>
-	<li>Adaptability: It is to be ensured that the system adapts to change in its environment. An adaptable software system can tolerate changes in its environment without external intervention and tolerate some deviations in the environment.</li>
-	<li>Flexibility: It must be ensured that the system will respond to potential internal or external changes in a timely and cost-effective manner.</li>
-	<li>Interoperability: It must be ensured that the product is capable of different solutions and that they can communicate with one another freely and easily. The system can exchange information in real-time, without the need for specialized IT support or behind-the-scenes coding.</li>
-	<li>Portability: It must be ensured that the product is able to run properly in a different platform to the one it was designed for, with little or no modification. Where modification is needed, the task of modifying the software to allow it to run in the new environment by porting must be ensured.</li>
-	<li>Reliability: Reliability must be ensured via a failure-free operation of the product for a specified period in a specified environment. The product must be reliable in an operational environment with excellent accuracy.</li>
-	<li>Reusability: Reusability must be ensured through the use of existing assets in some form within the software product development process. These assets are products and by-products of the software development life cycle and include code, software components, test suites, designs and documentation.</li>
-	<li>Correctness: It must be ensured that the product responses accurately to the user when the user uses it accurately. Strict adherence to how the users can interact with the software should be ensured.</li>
-	<li>Robustness: The software product must be robust, i.e. the product should be able to function properly in the presence of various invalid inputs and stressful environments. The product should not break down and become dysfunctional immediately under these circumstances.</li>
-	<li>Testability: The product should have a high degree of supporting unit testing in a given text context. If the testability of the product is good, finding faults in the system will be very easy if the system has one.</li>
-	<li>Usability: It should be ensured that the usability of the product is strong. That is, the quality of a user's experience when using the product should be good. Effective, efficient and satisfactory experience is the target of this product.</li>
-</ul>
-<h3 id="business-rules">5.5 Business Rules</h3>
+          <h3 id="software-quality-attributes">5.4 Software Quality Attributes</h3>
+          <ul>
+            <li>Availability: It should be ensured that the system is operating properly when it is requested for use.
+              In other words, it should be ensured that a system is not failed or undergoing a repair action when it
+              needs to be used.</li>
+            <li>Maintainability: It should be ensured that the system can be modified to correct faults, improve
+              performance or other attributes, or adapt to a changed environment.</li>
+            <li>Adaptability: It is to be ensured that the system adapts to change in its environment. An adaptable
+              software system can tolerate changes in its environment without external intervention and tolerate some
+              deviations in the environment.</li>
+            <li>Flexibility: It must be ensured that the system will respond to potential internal or external changes
+              in a timely and cost-effective manner.</li>
+            <li>Interoperability: It must be ensured that the product is capable of different solutions and that they
+              can communicate with one another freely and easily. The system can exchange information in real-time,
+              without the need for specialized IT support or behind-the-scenes coding.</li>
+            <li>Portability: It must be ensured that the product is able to run properly in a different platform to the
+              one it was designed for, with little or no modification. Where modification is needed, the task of
+              modifying the software to allow it to run in the new environment by porting must be ensured.</li>
+            <li>Reliability: Reliability must be ensured via a failure-free operation of the product for a specified
+              period in a specified environment. The product must be reliable in an operational environment with
+              excellent accuracy.</li>
+            <li>Reusability: Reusability must be ensured through the use of existing assets in some form within the
+              software product development process. These assets are products and by-products of the software
+              development life cycle and include code, software components, test suites, designs and documentation.</li>
+            <li>Correctness: It must be ensured that the product responses accurately to the user when the user uses it
+              accurately. Strict adherence to how the users can interact with the software should be ensured.</li>
+            <li>Robustness: The software product must be robust, i.e. the product should be able to function properly in
+              the presence of various invalid inputs and stressful environments. The product should not break down and
+              become dysfunctional immediately under these circumstances.</li>
+            <li>Testability: The product should have a high degree of supporting unit testing in a given text context.
+              If the testability of the product is good, finding faults in the system will be very easy if the system
+              has one.</li>
+            <li>Usability: It should be ensured that the usability of the product is strong. That is, the quality of a
+              user's experience when using the product should be good. Effective, efficient and satisfactory experience
+              is the target of this product.</li>
+          </ul>
+          <h3 id="business-rules">5.5 Business Rules</h3>
 
-<p>The following business rules must be followed in the making of the product:
-<ul>
-  <li>There will be no admin dependency of the product.</li>
-  <li>The developers will be responsible for for all back-end system configurations.</li>
-  <li>The developers will be responsible for all schemas and templates.</li>
-  <li>The developers will be responsible for maintaining and supervising all the user accounts.</li>
-  <li>The developers will be responsible for maintaining all the predefinded queries.</li>
-  <li>The users must create an authenticated account in order to make clusters and search within the clusters.</li>
-  <li></li>
-</ul>
-</p>
+          <p>The following business rules must be followed in the making of the product:
+          <ul>
+            <li>There will be no admin dependency of the product.</li>
+            <li>The developers will be responsible for for all back-end system configurations.</li>
+            <li>The developers will be responsible for all schemas and templates.</li>
+            <li>The developers will be responsible for maintaining and supervising all the user accounts.</li>
+            <li>The developers will be responsible for maintaining all the predefinded queries.</li>
+            <li>Users must register with a valid email ID</li>
+            <li>The users must create an authenticated account in order to make clusters and search within the clusters.
+            </li>
+            <li></li>
+          </ul>
+          </p>
 
-<h2 id="other-requirements">6. Other Requirements</h2>
+          <h2 id="other-requirements">6. Other Requirements</h2>
 
-<h3 id="glossary">Appendix A: Glossary</h3>
+          <h3 id="glossary">Appendix A: Glossary</h3>
 
-<ul>
-  <li>Application Programming Interface (API): A system of tools and resources (e.g., subroutine definitions, protocols) in an operating system that enables developers to create
-  software applications.</li>
-  <li>Extensible Markup Language (XML): A markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable in accordance with the World Wide Web Consortium (W3C) specification.</li>
-  <li>HyperText Markup Language (HTML): The standard markup language for creating web pages and web applications in accordance with ISO/IEC 15445 and W3C HTML5.</li>
-  <li>HyperText Transfer Protocol (HTTP): An application protocol for distributed, collaborative, and hypermedia information systems in accordance with RFC 7230 and RFC 7540.</li>
-  <li>HyperText Transfer Protocol Secure (HTTPS): A communications protocol for secure communication over a computer network using Hypertext Transfer Protocol (HTTP) within a connection encrypted by Transport Layer Security (TLS), or its predecessor, Secure Sockets Layer (SSL).</li>
-  <li>Entityrelationshipdiagram</li>
-  <li>Actor: A person, a system or a technical device in the context of a system that interacts with the system.</li>
-  <li>Bug: Any kind of defect in a product.</li>
-  <li>Class: Represents a set of objects of the same kind by describing the structure of the objects, the ways they can be manipulated and how they behave.</li>
-  <li>Constraint: A requirement that limits the solution space beyond what is necessary for meeting the given functional requirements and quality requirements.</li>
-  <li>Domain: A range of relevant things (for some given matter); for example, an application domain.</li>
-  <li>Efficiency: The degree to which a result is achieved with minimum consumption of resources.</li>
-  <li></li>
-</ul>
+          <ul>
+            <li>Application Programming Interface (API): A system of tools and resources (e.g., subroutine definitions,
+              protocols) in an operating system that enables developers to create
+              software applications.</li>
+            <li>Extensible Markup Language (XML): A markup language that defines a set of rules for encoding documents
+              in a format that is both human-readable and machine-readable in accordance with the World Wide Web
+              Consortium (W3C) specification.</li>
+            <li>HyperText Markup Language (HTML): The standard markup language for creating web pages and web
+              applications in accordance with ISO/IEC 15445 and W3C HTML5.</li>
+            <li>HyperText Transfer Protocol (HTTP): An application protocol for distributed, collaborative, and
+              hypermedia information systems in accordance with RFC 7230 and RFC 7540.</li>
+            <li>HyperText Transfer Protocol Secure (HTTPS): A communications protocol for secure communication over a
+              computer network using Hypertext Transfer Protocol (HTTP) within a connection encrypted by Transport Layer
+              Security (TLS), or its predecessor, Secure Sockets Layer (SSL).</li>
+            <li>Entityrelationshipdiagram</li>
+            <li>Actor: A person, a system or a technical device in the context of a system that interacts with the
+              system.</li>
+            <li>Bug: Any kind of defect in a product.</li>
+            <li>Class: Represents a set of objects of the same kind by describing the structure of the objects, the ways
+              they can be manipulated and how they behave.</li>
+            <li>Constraint: A requirement that limits the solution space beyond what is necessary for meeting the given
+              functional requirements and quality requirements.</li>
+            <li>Domain: A range of relevant things (for some given matter); for example, an application domain.</li>
+            <li>Efficiency: The degree to which a result is achieved with minimum consumption of resources.</li>
+            <li></li>
+          </ul>
 
           <h3 id="tb-list">Appendix C: To be determined list </h3>
 
