@@ -308,7 +308,9 @@
 
           <img id="usecaseimage" src="UseCaseDiagram.svg" />
 
-          <h3 id="search-cluster">4.2.1 Signup</h3>
+          <h3 id="expanded-use-case">4.2 Expanded Use Case</h3>
+
+          <h3 id="sign-up">4.2.1 Signup</h3>
 
           <p><u><b>Use case:</b></u> Signup</p>
           <p><u><b>Precondition:</b></u> None</p>
@@ -335,7 +337,7 @@
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
 
-          <h3 id="search-cluster">4.2.2 Login</h3>
+          <h3 id="log-in">4.2.2 Login</h3>
 
           <p><u><b>Use case:</b></u> Login</p>
           <p><u><b>Precondition:</b></u> User must have executed "Signup" at any time in the past</p>
@@ -365,7 +367,7 @@
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
 
-          <h3 id="search-cluster">4.2.3 Logout</h3>
+          <h3 id="log-out">4.2.3 Logout</h3>
 
           <p><u><b>Use case:</b></u> Logout</p>
           <p><u><b>Precondition:</b></u> "Login" must have been executed</p>
@@ -390,7 +392,7 @@
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
 
-          <h3 id="search-cluster">4.2.4 Recover Password</h3>
+          <h3 id="recover-pass">4.2.4 Recover Password</h3>
 
           <p><u><b>Use case:</b></u> Search within clusters</p>
           <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
@@ -416,7 +418,7 @@
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
 
-          <h3 id="search-cluster">4.2.5 View User Profile</h3>
+          <h3 id="view-user-profile">4.2.5 View User Profile</h3>
 
           <p><u><b>Use case:</b></u> Search within clusters</p>
           <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
@@ -442,57 +444,63 @@
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
 
-          <h3 id="search-cluster">4.2.6 View Dashboard</h3>
+          <h3 id="view-dashboard">4.2.6 View Dashboard</h3>
 
-          <p><u><b>Use case:</b></u> Search within clusters</p>
-          <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
+          <p><u><b>Use case:</b></u> View Dashaboard</p>
+          <p><u><b>Precondition:</b></u> 'Log in' must be executed</p>
           <p><u><b>Actor:</b></u> User</p>
-          <p><u><b>Goal:</b></u> To search within clusters</p>
+          <p><u><b>Goal:</b></u> To be able go to different menu</p>
           <p><u><b>Overview:</b></u> </p>
-          <p>Within the saved clusters users can search for anything by providing keywords.</p>
-          <p><u><b> Priotrity: </b></u>High</p>
+          <p>Within dashboard the user can go to their account, search and view clusters. </p>
+          <p><u><b> Priotrity: </b></u> Medium</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R2, R3</p>
+
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
-              <p>&nbsp &nbsp 1. Choose saved cluster</p>
-              <p>&nbsp &nbsp 2. Input search keyword</p>
-              <p>&nbsp &nbsp 3. Search within saved clusters</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
+              <p>&nbsp &nbsp 1. Choose Dashboard</p>
+              <p>&nbsp &nbsp 2. Select search.</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
-              <p>&nbsp &nbsp 4. Display results in cluster search page</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
+              <p>&nbsp &nbsp 3.Display search bar to search</p>
             </div>
 
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
+          <p>Step 2 and 3: &nbsp &nbsp The user can also choose to select account information, about, or clusters for which it shows those information. </p>
 
-          <h3 id="search-cluster">4.2.7 Edit Profile</h3>
+          <h3 id="edit-profile">4.2.7 Edit Profile</h3>
 
-          <p><u><b>Use case:</b></u> Search within clusters</p>
-          <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
+          <p><u><b>Use case:</b></u> Edit user profile information</p>
+          <p><u><b>Precondition:</b></u> Log in’ must have been executed</p>
           <p><u><b>Actor:</b></u> User</p>
-          <p><u><b>Goal:</b></u> To search within clusters</p>
+          <p><u><b>Goal:</b></u> To change or edit any information of a user</p>
           <p><u><b>Overview:</b></u> </p>
-          <p>Within the saved clusters users can search for anything by providing keywords.</p>
-          <p><u><b> Priotrity: </b></u>High</p>
+          <p>When the user logs in their account and they choose to edit any information of their account.  </p>
+          <p><u><b> Priotrity: </b></u>Low</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R2, R3</p>
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
-              <p>&nbsp &nbsp 1. Choose saved cluster</p>
-              <p>&nbsp &nbsp 2. Input search keyword</p>
-              <p>&nbsp &nbsp 3. Search within saved clusters</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
+              <p>&nbsp &nbsp 1. The user chooses to edit account</p>
+              <p>&nbsp &nbsp 3. The user can change birthdate, email and phone number.</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
-              <p>&nbsp &nbsp 4. Display results in cluster search page</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
+              <p>&nbsp &nbsp 2. Displays edit mode.</p>
+              <p>&nbsp &nbsp 4. Displays the information after changing</p>
             </div>
 
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
+          <p>Step 4: &nbsp &nbsp The user can delete account. They can also reset password.</p>
 
           <h3 id="search-content-url">4.2.8 Search Content</h3>
           <p><u><b>Use case:</b></u> Search content</p>
@@ -559,7 +567,7 @@
           <p>Steps 2-5: User's limit for creating clusters might be exceeded and they cannot create anymore clusters.
           </p>
 
-          <h3 id="search-cluster">4.2.10 View Saved Clusters</h3>
+          <h3 id="view-saved-cluster">4.2.10 View Saved Clusters</h3>
 
           <p><u><b>Use case:</b></u> Search within clusters</p>
           <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
@@ -612,7 +620,7 @@
           <p><u><b>Alternate course of events:</b></u></p>
           <p>&nbsp &nbsp Steps 2-4: User enters keyword that is not found anywhere in the cluster.</p>
 
-          <h3 id="search-cluster">4.2.12 Download / Save Content</h3>
+          <h3 id="view-content">4.2.12 View Content</h3>
 
           <p><u><b>Use case:</b></u> View Content</p>
           <p><u><b>Precondition:</b></u> "Search Content" must be executed</p>
@@ -640,7 +648,7 @@
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
 
-          <h3 id="search-cluster">4.2.13 Download / Save Content</h3>
+          <h3 id="download-save-content">4.2.13 Download / Save Content</h3>
 
           <p><u><b>Use case:</b></u> Download/ Save Content</p>
           <p><u><b>Precondition:</b></u> "View Content" must be executed</p>
