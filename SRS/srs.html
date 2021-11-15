@@ -305,9 +305,10 @@
 
           <h2 id="system-features">4. System Features</h2>
           <h3 id="use-case-diagram">4.1 Use Case Diagram</h3>
-
-          <img id="usecaseimage" src="UseCaseDiagram.svg" />
-
+          <div class="center">
+          <img id="UseCaseDiagram" src="images/UseCaseDiagram.svg" >
+          <p><i><center>Figure: Use Case Diagram</center></i></p>
+          </div>
           <h3 id="expanded-use-case">4.2 Expanded Use Case</h3>
 
           <h3 id="sign-up">4.2.1 Signup</h3>
@@ -319,16 +320,18 @@
           <p><u><b>Overview:</b></u> </p>
           <p>Users can signup for an account using a valid email address or using a Google / Facebook account.</p>
           <p><u><b> Priotrity: </b></u>Medium</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R2, R4, R8</p>
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
               <p>&nbsp &nbsp 1. User chooses to signup</p>
               <p>&nbsp &nbsp 3. User inputs valid email address and password</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
               <p>&nbsp &nbsp 2. Display signup form</p>
               <p>&nbsp &nbsp 4. Display successful signup message</p>
               <p>&nbsp &nbsp 5. Redirect user to login page</p>
@@ -336,7 +339,8 @@
 
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
-
+          <p>Step 1: &nbsp &nbsp The user doesnt choose to sign up but they can still search. </p>
+          
           <h3 id="log-in">4.2.2 Login</h3>
 
           <p><u><b>Use case:</b></u> Login</p>
@@ -348,24 +352,26 @@
             Or they can directly login using their Google / Facebook account.
           </p>
           <p><u><b> Priotrity: </b></u>Medium</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R3, R5, R6, R7, R8, R9, R10, R11, R12, R13</p>
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
               <p>&nbsp &nbsp 1. User chooses to login</p>
-              <p>&nbsp &nbsp 3. User provides email and pass <br>
-                &nbsp &nbsp &nbsp or chooses Google/ Facebook account</p>
+              <p>&nbsp &nbsp 3. User provides email and pass</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
-              <p>&nbsp &nbsp 2. Display login form and Google/ Facebook login buttons</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
+              <p>&nbsp &nbsp 2. Display login form </p>
               <p>&nbsp &nbsp 4. Display successful login message</p>
               <p>&nbsp &nbsp 5. Redirect user to dashboard page</p>
             </div>
 
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
+          <p>Step 3: &nbsp &nbsp User chooses to log in through Google/Facebook account.</p>
 
           <h3 id="log-out">4.2.3 Logout</h3>
 
@@ -376,17 +382,19 @@
           <p><u><b>Overview:</b></u> </p>
           <p>Users can log out of their accounts after they had logged in.</p>
           <p><u><b> Priotrity: </b></u>High</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R1, R2, R4, R8</p>
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
               <p>&nbsp &nbsp 1. User chooses to logout</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
               <p>&nbsp &nbsp 2. Display successful logout message</p>
-              <p>&nbsp &nbsp 2. Redirect to login page</p>
+              <p>&nbsp &nbsp 3. Redirect to login page</p>
             </div>
 
           </div>
@@ -394,51 +402,55 @@
 
           <h3 id="recover-pass">4.2.4 Recover Password</h3>
 
-          <p><u><b>Use case:</b></u> Search within clusters</p>
-          <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
+          <p><u><b>Use case:</b></u> Recover Password</p>
+          <p><u><b>Precondition:</b></u> 'Sign up' must be executed</p>
           <p><u><b>Actor:</b></u> User</p>
-          <p><u><b>Goal:</b></u> To search within clusters</p>
+          <p><u><b>Goal:</b></u> To recover account if password forgotten</p>
           <p><u><b>Overview:</b></u> </p>
-          <p>Within the saved clusters users can search for anything by providing keywords.</p>
-          <p><u><b> Priotrity: </b></u>High</p>
+          <p>Within the recover password the user will be able to reset password through email and able to sign in their account</p>
+          <p><u><b> Priotrity: </b></u>Medium</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R1, R8</p>
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
-              <p>&nbsp &nbsp 1. Choose saved cluster</p>
-              <p>&nbsp &nbsp 2. Input search keyword</p>
-              <p>&nbsp &nbsp 3. Search within saved clusters</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
+              <p>&nbsp &nbsp 1. Choose forgot password</p>
+              <p>&nbsp &nbsp 3. Input email address</p>
+              <p>&nbsp &nbsp 4. Enter new password</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
-              <p>&nbsp &nbsp 4. Display results in cluster search page</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
+              <p>&nbsp &nbsp 2. Display a bar to enter email address</p>
+              <p>&nbsp &nbsp 3. Displays reset password option</p>
             </div>
 
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
+          <p>Step 3: &nbsp &nbsp The user creates a new account and logs in with that new account. </p>
 
           <h3 id="view-user-profile">4.2.5 View User Profile</h3>
 
-          <p><u><b>Use case:</b></u> Search within clusters</p>
-          <p><u><b>Precondition:</b></u> Create clusters must be executed</p>
+          <p><u><b>Use case:</b></u> View User Profile</p>
+          <p><u><b>Precondition:</b></u> 'Log In' must be executed</p>
           <p><u><b>Actor:</b></u> User</p>
-          <p><u><b>Goal:</b></u> To search within clusters</p>
+          <p><u><b>Goal:</b></u> To able to view user information</p>
           <p><u><b>Overview:</b></u> </p>
-          <p>Within the saved clusters users can search for anything by providing keywords.</p>
-          <p><u><b> Priotrity: </b></u>High</p>
+          <p>Within the user profile, the user can view all information related to the user's account</p>
+          <p><u><b> Priotrity: </b></u>Low</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R3, R6, R7, R8 </p>
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
-              <p>&nbsp &nbsp 1. Choose saved cluster</p>
-              <p>&nbsp &nbsp 2. Input search keyword</p>
-              <p>&nbsp &nbsp 3. Search within saved clusters</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
+              <p>&nbsp &nbsp 1. Select user profile</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
-              <p>&nbsp &nbsp 4. Display results in cluster search page</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
+              <p>&nbsp &nbsp 2. Displays all information of the user</p>
             </div>
 
           </div>
@@ -454,7 +466,7 @@
           <p>Within dashboard the user can go to their account, search and view clusters. </p>
           <p><u><b> Priotrity: </b></u> Medium</p>
           <p><u><b>Cross Reference</b></u>:</p>
-          <p>R2, R3</p>
+          <p>R3, R5, R8, R10</p>
 
 
           <p><u><b>Typical course of events:</b></u></p>
@@ -476,14 +488,14 @@
           <h3 id="edit-profile">4.2.7 Edit Profile</h3>
 
           <p><u><b>Use case:</b></u> Edit user profile information</p>
-          <p><u><b>Precondition:</b></u> Log in’ must have been executed</p>
+          <p><u><b>Precondition:</b></u> 'Log in’ must have been executed</p>
           <p><u><b>Actor:</b></u> User</p>
           <p><u><b>Goal:</b></u> To change or edit any information of a user</p>
           <p><u><b>Overview:</b></u> </p>
           <p>When the user logs in their account and they choose to edit any information of their account.  </p>
           <p><u><b> Priotrity: </b></u>Low</p>
           <p><u><b>Cross Reference</b></u>:</p>
-          <p>R2, R3</p>
+          <p>R3, R5</p>
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
@@ -512,20 +524,22 @@
             also specifies the type of
             content he/she wants to be indexed from this URL.</p>
           <p><u><b> Priotrity: </b></u>High</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R3, R5, R9</p>
 
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
               <p>&nbsp &nbsp 1. Provide URL</p>
               <p>&nbsp &nbsp 2. Choose depth</p>
-              <p>&nbsp &nbsp 3. Select content type: PDF, DOC, .TXT FILES, ALL CONTENTS, NON-HTML CONTENTS etc.</p>
+              <p>&nbsp &nbsp 3. Select content type: PDF</p>
               <p>&nbsp &nbsp 4. Search</p>
 
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
               <p>&nbsp &nbsp 5. Show search result</p>
             </div>
 
@@ -533,9 +547,9 @@
 
 
           <p><u><b>Alternate course of events:</b></u></p>
+          <p>Step 3:&nbsp &nbsp The user can also select other content type such as DOC, .TXT FILES, ALL CONTENTS, NON-HTML CONTENTS etc. and search.</p>
 
-
-          <h3 id="index-urls">4.2.9 Create Clusters From Search Results</h3>
+          <h3 id="index-urls">4.2.9 Make Clusters From Search Results</h3>
 
           <p><u><b>Use case:</b></u> Create clusters on search results</p>
           <p><u><b>Precondition:</b></u> "Search Content" must be executed</p>
@@ -545,17 +559,19 @@
           <p>The search results obtained from the search page can be saved into clusters. Users can access these from
             their profiles.</p>
           <p><u><b> Priotrity: </b></u>High</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R3, R10</p>
 
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
               <p>&nbsp &nbsp 1. Save search results</p>
               <p>&nbsp &nbsp 2. Form clusters</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
               <p>&nbsp &nbsp 3. Save clusters in database</p>
               <p>&nbsp &nbsp 4. Redirect user to saved cluster list</p>
               <p>&nbsp &nbsp 5. Display clusters in user's saved cluster list</p>
@@ -564,7 +580,7 @@
           </div>
 
           <p><u><b>Alternate course of events:</b></u></p>
-          <p>Steps 2-5: User's limit for creating clusters might be exceeded and they cannot create anymore clusters.
+          <p>Steps 2-5:&nbsp &nbsp User's limit for creating clusters might be exceeded and they cannot create anymore clusters.
           </p>
 
           <h3 id="view-saved-cluster">4.2.10 View Saved Clusters</h3>
@@ -576,18 +592,18 @@
           <p><u><b>Overview:</b></u> </p>
           <p>Within the saved clusters users can search for anything by providing keywords.</p>
           <p><u><b> Priotrity: </b></u>High</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R3, R11</p>
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
               <p>&nbsp &nbsp 1. Choose saved cluster</p>
-              <p>&nbsp &nbsp 2. Input search keyword</p>
-              <p>&nbsp &nbsp 3. Search within saved clusters</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
-              <p>&nbsp &nbsp 4. Display results in cluster search page</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
+              <p>&nbsp &nbsp 2. Display results in cluster search page</p>
             </div>
 
           </div>
@@ -602,23 +618,25 @@
           <p><u><b>Overview:</b></u> </p>
           <p>Within the saved clusters users can search for anything by providing keywords.</p>
           <p><u><b> Priotrity: </b></u>High</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R3. R12</p>
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
               <p>&nbsp &nbsp 1. Choose saved cluster</p>
               <p>&nbsp &nbsp 2. Input search keyword</p>
               <p>&nbsp &nbsp 3. Search within saved clusters</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
               <p>&nbsp &nbsp 4. Display results in cluster search page</p>
             </div>
 
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
-          <p>&nbsp &nbsp Steps 2-4: User enters keyword that is not found anywhere in the cluster.</p>
+          <p>Steps 2-4:&nbsp &nbsp User enters keyword that is not found anywhere in the cluster.</p>
 
           <h3 id="view-content">4.2.12 View Content</h3>
 
@@ -631,16 +649,18 @@
             are listed. Each link leads the user to the content. From there they can view the content.
           </p>
           <p><u><b> Priotrity: </b></u>High</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p>R3, R13</p>
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
               <p>&nbsp &nbsp 1. Select a link indexed in the search results/ cluster</p>
               <p>&nbsp &nbsp 4. View content in the link</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
               <p>&nbsp &nbsp 2. Redirect user to the content in the link</p>
               <p>&nbsp &nbsp 3. Display content in the link</p>
             </div>
@@ -648,9 +668,9 @@
           </div>
           <p><u><b>Alternate course of events:</b></u></p>
 
-          <h3 id="download-save-content">4.2.13 Download / Save Content</h3>
+          <h3 id="download-save-content">4.2.13 Download Content</h3>
 
-          <p><u><b>Use case:</b></u> Download/ Save Content</p>
+          <p><u><b>Use case:</b></u> Download Content</p>
           <p><u><b>Precondition:</b></u> "View Content" must be executed</p>
           <p><u><b>Actor:</b></u> User</p>
           <p><u><b>Goal:</b></u> To download content following links indexed in the search results/ cluster</p>
@@ -659,16 +679,18 @@
             Each link leads the user to the content. From there they can download the content.
           </p>
           <p><u><b> Priotrity: </b></u>High</p>
+          <p><u><b>Cross Reference</b></u>:</p>
+          <p></p>
 
           <p><u><b>Typical course of events:</b></u></p>
           <div class="row">
             <div class="column">
-              <p>&nbsp &nbsp Actor:</p>
+              <p><b>&nbsp &nbsp Actor:</b></p>
               <p>&nbsp &nbsp 1. Open content indexed by the URL
               <p>&nbsp &nbsp 3. Choose to download content</p>
             </div>
             <div class="column">
-              <p>&nbsp &nbsp System Response:</p>
+              <p><b>&nbsp &nbsp System Response:</b></p>
               <p>&nbsp &nbsp 2. Display content</p>
               <p>&nbsp &nbsp 4. Download content to local device</p>
             </div>
