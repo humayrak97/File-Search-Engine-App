@@ -3,6 +3,57 @@ body {
   position: relative;
 }
 
+/*---------------------------------------------*/
+  .nav{
+  position: absolute;
+  top: 100px;
+  right: 10px;
+  padding: 1.5%;
+  float: right;
+}
+
+.sidenavigation {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  text-decoration: none;
+  color: #fc00ff;
+  border-color: #fc00ff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  font-family: Montserrat-SemiBold;
+  font-size: 18px;
+  line-height: 1.2;
+  background-color: crimson;
+}
+
+.sidenavigation a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenavigation a:hover {
+  color: white;
+}
+
+.sidenavigation .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+  
+  /*---------------------------------------------*/
+
 #navbar {
   display: flex;
   height: 80px;

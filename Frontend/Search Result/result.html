@@ -8,6 +8,21 @@
 </head>
 
 <body>
+
+    <div id="mySidenavigation" class="sidenavigation">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNavigation()">&times;</a>
+      <a href="#">Profile</a>
+      <a href="#">Make a cluster</a>
+      <a href="#">Saved clusters</a>
+      <a href="#">Search</a>
+      <a href="#">About</a>
+      <a href="#">Settings</a>
+    </div>
+
+    <div class = "nav" style="font-size:40px;cursor:pointer; color: crimson;" onclick="openNavigation()">&#9776;</span>
+      
+    </div>
+
     <div id="header">
         <div id="navbar">
             <img id="searchbarimage" src='images/search.png' />
@@ -145,6 +160,16 @@
             <li>Terms</li>
         </ul>
     </div>
+
+    <script>
+    function openNavigation() {
+      document.getElementById("mySidenavigation").style.width = "250px";
+    }
+
+    function closeNavigation() {
+      document.getElementById("mySidenavigation").style.width = "0";
+    }
+    </script>
 </body>
 
 </html>
