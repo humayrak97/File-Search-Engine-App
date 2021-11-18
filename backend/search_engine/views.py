@@ -48,3 +48,12 @@ def signup(request):
 
 
     return render(request, 'search_engine/signup.html', {'title': 'Signup'})
+
+def dashboard(request):
+    return render(request, 'search_engine/dashboard.html', {'title': 'dashboard'})
+
+def search(request):
+    return render(request, 'search_engine/search.html', {'title': 'search'})
+
+def searchClusters(request):
+    return render(request, 'search_engine/searchClusters.html', {'title': 'searchClusters'})
