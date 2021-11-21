@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'rest_framework',  
     'dbmanager',
     'dbbackup',  # django-dbbackup
+    'knox',      #user-authentication
 ]
 
 #Backing up data in base directory/ backup
@@ -165,8 +166,9 @@ LOGOUT_REDIRECT_URL = '/'
 
 
 REST_FRAMEWORK = {
-    # Default: using Django's standard `django.contrib.auth` permissions/ allow read-only access to users not authenticated.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    'DEFAULT_AUTHENTICATION_CLASSES': [ 
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',  #token-based user authentication
     ]
 }
