@@ -19,7 +19,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'search_engine.apps.SearchEngineConfig',
+    'search_engine.apps.SearchEngineConfig', #connecting search_engine app 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -32,10 +32,16 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
-    'rest_framework',
+    'rest_framework',  
+    'dbmanager',
+    'dbbackup',  # django-dbbackup
 ]
 
-SITE_ID = 4
+#Backing up data in base directory/ backup
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup'}
+
+SITE_ID = 4 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,7 +74,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
-# Database
+# Database 
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
@@ -81,6 +87,16 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+
+DBBACKUP_CONNECTORS = {
+    'default': {
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost'
+    }
+}
+
 
 
 # Password validation
@@ -143,7 +159,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-
+#Redirecting upon login/ logout 
 LOGIN_REDIRECT_URL = '/signup/'
 LOGOUT_REDIRECT_URL = '/'
 
