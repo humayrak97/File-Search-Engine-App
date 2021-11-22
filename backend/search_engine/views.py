@@ -7,25 +7,23 @@ from rest_framework import generics, permissions
 from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer
+from django.contrib.auth import login
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from knox.views import LoginView as KnoxLoginView
 
 #from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
-def log_in(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        pwd = request.POST['pwd']
-        #user = authenticate(email = email, pwd = pwd)
-        #if user is not None:
-        if People.objects.filter(email=email, pwd=pwd).exists():
-            #login(request, user)
-            messages.success(request, 'You are now logged in!')
-            return redirect('search_engine-signup')
-        else:
-            messages.info(request, 'Invalid email/ password')
-            return redirect('/')
-    return render(request, 'search_engine/login.html', {'title': 'Login'})
+class LoginAPI(KnoxLoginView):
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, format=None):
+        serializer = AuthTokenSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        login(request, user)
+        return super(LoginAPI, self).post(request, format=None)
 
 def accountRecovery(request):
     return render(request, 'search_engine/recoveryPass.html', {'title': 'accountRecovery'})

@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'rest_framework',  
-    'dbmanager',
+    #'dbmanager',
     'dbbackup',  # django-dbbackup
     'knox',      #user-authentication
 ]

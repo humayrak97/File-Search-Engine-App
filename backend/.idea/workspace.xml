@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30eed702-0bd5-47f7-bbdf-3c5d947026d0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search_engine/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/search_engine/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search_engine/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/search_engine/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/search_engine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/search_engine/views.py" afterDir="false" />
     </list>
