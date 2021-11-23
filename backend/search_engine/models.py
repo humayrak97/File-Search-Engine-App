@@ -1,6 +1,11 @@
 from django.db import models
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django import forms
 
-class People(models.Model):
-    email = models.EmailField(max_length=200, unique = True, blank = False)
-    pwd = models.CharField(max_length=100, default="", blank = False)
-    #created_at = models.DateTimeField(auto_now_add = True)
+class People(UserCreationForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']

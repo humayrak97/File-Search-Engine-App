@@ -10,6 +10,7 @@ from .serializers import UserSerializer, RegisterSerializer
 from django.contrib.auth import login
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
+from django.contrib.auth.forms import UserCreationForm
 
 #from django.contrib.auth import authenticate, login
 
@@ -41,6 +42,21 @@ class RegisterAPI(generics.GenericAPIView):
         "user": UserSerializer(user, context=self.get_serializer_context()).data,
         "token": AuthToken.objects.create(user)[1]
         })
+
+def signup(request):
+    if request.method == 'POST':
+        form = People(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}!')
+            return redirect('search_engine-login')
+    else:
+        form = People()
+    return render(request, 'search_engine/signup.html', {'form': form})
+
+def log_in(request):
+    return render(request, 'search_engine/login.html', {'title': 'login'})
 
 def dashboard(request):
     return render(request, 'search_engine/dashboard.html', {'title': 'dashboard'})

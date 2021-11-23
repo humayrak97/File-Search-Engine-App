@@ -36,7 +36,10 @@ INSTALLED_APPS = [
     #'dbmanager',
     'dbbackup',  # django-dbbackup
     'knox',      #user-authentication
+    'crispy_forms',  #user registration form
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 #Backing up data in base directory/ backup
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
@@ -83,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'people',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'junu.100',
         'HOST': 'localhost',
         'PORT': '3306',
     }

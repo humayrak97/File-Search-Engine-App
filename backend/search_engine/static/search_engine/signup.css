@@ -1,27 +1,27 @@
 
 @font-face {
   font-family: Poppins-Regular;
-  src: url('fonts/poppins/Poppins-Regular.ttf'); 
+  src: url('fonts/poppins/Poppins-Regular.ttf');
 }
 
 @font-face {
   font-family: Poppins-Medium;
-  src: url('fonts/poppins/Poppins-Medium.ttf'); 
+  src: url('fonts/poppins/Poppins-Medium.ttf');
 }
 
 @font-face {
   font-family: Montserrat-Medium;
-  src: url('fonts/montserrat/Montserrat-Medium.ttf'); 
+  src: url('fonts/montserrat/Montserrat-Medium.ttf');
 }
 
 @font-face {
   font-family: Montserrat-SemiBold;
-  src: url('fonts/montserrat/Montserrat-SemiBold.ttf'); 
+  src: url('fonts/montserrat/Montserrat-SemiBold.ttf');
 }
 
 * {
-	margin: 0px; 
-	padding: 0px; 
+	margin: 0px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 
@@ -34,6 +34,7 @@ body, html {
 input {
 	outline: none;
 	border: none;
+	width: 100%;
 }
 
 textarea {
@@ -97,7 +98,7 @@ iframe {
 }
 
 .container-profilesignUp {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -108,7 +109,7 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  
+
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;;
@@ -140,7 +141,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: space-between;
 }
- 
+
 .profilesignUp-form-title {
   width: 100%;
   padding-bottom: 53px;
