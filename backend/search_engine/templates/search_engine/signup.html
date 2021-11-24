@@ -25,10 +25,12 @@
 						Sign Up
 				</span>
 
-				<form class="form-group" method = "post">
+				<form method = "post">
 					{% csrf_token %}
 
-					{{ form|crispy }}
+					<fieldset class="form-group">
+						{{ form|crispy }}
+					</fieldset>
 
 					{% if messages %}
 						{% for message in messages %}

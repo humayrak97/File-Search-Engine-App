@@ -1,16 +1,29 @@
+{% block content %}
 <html>
   <head>
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700" rel="stylesheet" />
     <link href="/static/search_engine/search.css" rel="stylesheet" />
   </head>
   <body>
+    {% if user.is_authenticated %}
+    <div id="mySidenavigation" class="sidenavigation">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNavigation()">&times;</a>
+      <a href="#">Profile</a>
+      <a href="#">Saved clusters</a>
+      <a href="#">Search</a>
+      <a href="#">About</a>
+      <a href="#">Settings</a>
+	  <a href="{% url 'search_engine-logout' %}">Logout</a>
+    </div>
 
+    {% else %}
     <div id="mySidenavigation" class="sidenavigation">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNavigation()">&times;</a>
       <a href="#">Login</a>
       <a href="#">Signup</a>
       <a href="#">About</a>
     </div>
+    {% endif %}
 
     <div class = "nav" style="font-size:40px;cursor:pointer; color: crimson;" onclick="openNavigation()">&#9776;</span>
       
@@ -70,3 +83,4 @@
 
   </body>
 </html>
+{% endblock content %}

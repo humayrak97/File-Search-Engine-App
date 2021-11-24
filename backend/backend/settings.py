@@ -164,8 +164,8 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 #Redirecting upon login/ logout 
-LOGIN_REDIRECT_URL = '/signup/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'search_engine-search'
+LOGOUT_REDIRECT_URL = ''
 
 
 REST_FRAMEWORK = {
