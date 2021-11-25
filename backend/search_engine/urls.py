@@ -8,6 +8,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', views.search, name='search_engine-search'),
     path('signup/', views.signup, name='search_engine-signup'),
+    path('about/', views.about, name='search_engine-about'),
     path('accountRecovery/', views.accountRecovery, name='search_engine-accountRecovery'),
     path('dashboard/', views.dashboard, name='search_engine-dashboard'),
     path('login/', auth_views.LoginView.as_view(template_name = 'search_engine/login.html'), name='search_engine-login'),

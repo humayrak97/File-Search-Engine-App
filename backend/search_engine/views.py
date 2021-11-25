@@ -66,3 +66,6 @@ def search(request):
 
 def searchClusters(request):
     return render(request, 'search_engine/searchClusters.html', {'title': 'searchClusters'})
+
+def about(request):
+    return render(request, 'search_engine/about.html', {'title': 'about'})

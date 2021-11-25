@@ -21,7 +21,6 @@
 
 * {
 	margin: 0px;
-	padding: 0px;
 	box-sizing: border-box;
 }
 
@@ -29,7 +28,6 @@ body, html {
 	height: 100%;
 	font-family: Poppins-Regular, sans-serif;
 }
-
 
 input {
 	outline: none;
@@ -42,10 +40,57 @@ textarea {
   border: none;
 }
 
-textarea:focus, input:focus {
-  border-color: transparent !important;
+
+
+/*---------------------------------------------*/
+
+.nav{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1.5%;
 }
 
+.sidenavigation {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  text-decoration: none;
+  color: #fc00ff;
+  border-color: #fc00ff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  font-family: Montserrat-SemiBold;
+  font-size: 18px;
+  line-height: 1.2;
+  background-color: cyan;
+}
+
+.sidenavigation a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenavigation a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.sidenavigation .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
 
 /*---------------------------------------------*/
 button {
@@ -294,6 +339,7 @@ iframe {
   .wrap-profilesignUp {
     padding: 0px 60px 0px 60px;
   }
+}
 
 @media (max-width: 576px) {
   .wrap-profilesignUp {
