@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponse
 from search_engine.models import People
 from django.contrib.auth.models import User, auth
 from rest_framework import generics, permissions
@@ -10,9 +9,7 @@ from .serializers import UserSerializer, RegisterSerializer
 from django.contrib.auth import login
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
-from django.contrib.auth.forms import UserCreationForm
-
-#from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -58,14 +55,20 @@ def signup(request):
 def log_in(request):
     return render(request, 'search_engine/login.html', {'title': 'login'})
 
+@login_required
 def dashboard(request):
     return render(request, 'search_engine/dashboard.html', {'title': 'dashboard'})
 
 def search(request):
     return render(request, 'search_engine/search.html', {'title': 'search'})
 
+@login_required
 def searchClusters(request):
     return render(request, 'search_engine/searchClusters.html', {'title': 'searchClusters'})
 
 def about(request):
     return render(request, 'search_engine/about.html', {'title': 'about'})
+
+@login_required
+def user(request):
+    return render(request, 'search_engine/user.html', {'title': 'user'})

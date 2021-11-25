@@ -1,36 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>User Profile</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'><link rel="stylesheet" href="./main.css">
-
-</head>
-<body  style="background-image: url('images/background-1.jpg');">
-
+  <link rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css'>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+  <link rel="stylesheet" href="/static/search_engine/user.css">
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js'></script>
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js'></script>
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js'></script>
   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.js'></script>
-  <script src='https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js'></script><script  src="./main.js"></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.js'></script>
+  <script src="/static/search_engine/user.js"></script>
 
-   <div id="mySidenavigation" class="sidenavigation">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNavigation()">&times;</a>
-      <a href="#">Profile</a>
-      <a href="#">Make a cluster</a>
-      <a href="#">Saved clusters</a>
-      <a href="#">Search</a>
-      <a href="#">About</a>
-      <a href="#">Settings</a>
-    </div>
+</head>
 
-    <div class = "nav" style="font-size:40px;cursor:pointer; color: fuchsia;" onclick="openNavigation()">&#9776;</span>
-      
-    </div>
-
+<body style="background-image: url('/static/search_engine/images/background-1.jpg');">
   <div class="container-user">
     <div class="wrap-user">
       <div ng-app="userProfile" ng-controller="Ctrl">
@@ -144,17 +132,6 @@
       </div>
     </div>
   </div>
-
-  <script>
-    function openNavigation() {
-      document.getElementById("mySidenavigation").style.width = "250px";
-    }
-
-    function closeNavigation() {
-      document.getElementById("mySidenavigation").style.width = "0";
-    }
-    </script>
-
 </body>
 
 </html>

@@ -166,6 +166,7 @@ SOCIALACCOUNT_PROVIDERS = {
 #Redirecting upon login/ logout 
 LOGIN_REDIRECT_URL = 'search_engine-search'
 LOGOUT_REDIRECT_URL = ''
+LOGIN_URL = 'search_engine-login'
 
 
 REST_FRAMEWORK = {
