@@ -1,3 +1,6 @@
+{% load crispy_forms_tags %}
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,6 +47,22 @@
           <p>{{ user.email }}</p><br>
           <p>Joined On: {{ user.date_joined }}</p>
           <p></p>
+
+          <form method = "post" enctype="multipart/form-data">
+            {% csrf_token %}
+  
+            <fieldset class="form-group">
+              {{ u_form|crispy }}
+              {{ p_form|crispy }}
+            </fieldset>
+  
+            <div class="container-profilesignUp-form-button">
+              <button class="profilesignUp-form-button">
+                Update
+              </button>
+            </div>
+            
+          </form>
         </div>
       </div>
     </header>
@@ -62,3 +81,5 @@
 </body>
 
 </html>
+
+{% endblock content %}
