@@ -3,9 +3,15 @@ import textract
 from itertools import chain
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
+import io
+import PyPDF2
+import urllib.request
+import scrapy
+from scrapy.item import Item
+import ssl
 
 #allowed extensions 
-ALLOWED_EXTENSIONS = [".doc", ".pdf", ".docx"]
+ALLOWED_EXTENSIONS = [".pdf"]
 
 #StrategyLinkExtractor subclasses LinkExtractor
 class StrategyLinkExtractor(LinkExtractor):
@@ -19,15 +25,15 @@ class StrategyLinkExtractor(LinkExtractor):
 class ContentSpider(CrawlSpider):
     name = "content"  #spider
     start_urls = [ #urls to be crawled
-        'https://www.imagescape.com/media/uploads/zinnia/2018/08/20/scrape_me.html',
+        #'https://www.imagescape.com/media/uploads/zinnia/2018/08/20/scrape_me.html',
         # book
         # https://codex.cs.yale.edu/avi/os-book/OSE2/index.html,
         # review ques 
-        # https://codex.cs.yale.edu/avi/os-book/OSE2/review-dir/index.html,
+         'https://codex.cs.yale.edu/avi/os-book/OSE2/review-dir/index.html',
         # practice questions
         # https://codex.cs.yale.edu/avi//os-book/OS9/practice-exer-dir/index.html,
         # 311db -practice exercises
-        # https://www.db-book.com/Practice-Exercises/index-solu.html,
+        #'https://www.db-book.com/Practice-Exercises/index-solu.html',
 
     ]
 
@@ -47,9 +53,24 @@ class ContentSpider(CrawlSpider):
             #filtering out extensions that are in our ALLOWED_EXTENSIONS list from the list of returned urls  
             extension = list(filter(lambda x: response.url.lower().endswith(x), ALLOWED_EXTENSIONS))[0] 
             if extension: #if extensions are found
-	            #writing the scraped URLs in the text file in append mode 
-                with open("scraped.txt", "a") as f:  
-                    f.write(response.url) 
+            #writing the scraped URLs in the text file in append mode 
+                with open("scraped.txt", "a") as f:
+                    f.write("    URL:\n==============\n")   
+                    f.write(response.url) #writes urls in file
                     f.write("\n")
+                    #bypassing ssl
+                    ssl._create_default_https_context = ssl._create_unverified_context
+                    # calling urllib to create a reader of the pdf url
+                    r = urllib.request.urlopen(response.url)
+                    reader = PyPDF2.pdf.PdfFileReader(io.BytesIO(r.read()))
+  
+                    f.write("    CONTENT:\n==============\n") 
+                    # creating data string by scanning pdf pages 
+                    data=""
+                    for datas in reader.pages:
+                        data += datas.extractText()
+                    #print(data)  #prints content in terminal
+                    f.write(data) #writes content in file   
+                    f.write("\n\n")
 
  
