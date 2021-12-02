@@ -17,7 +17,7 @@ class CrawlingPipeline(object):
         self.conn = mysql.connector.connect(
             host = 'localhost',
             user = 'root',
-            passwd = 'junu.100',
+            passwd = '',
             database = 'people'
         )
         self.curr = self.conn.cursor()

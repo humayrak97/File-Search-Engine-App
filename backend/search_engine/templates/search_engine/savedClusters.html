@@ -8,13 +8,12 @@
   <body>
 
     <div id="mySidenavigation" class="sidenavigation">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNavigation()">&times;</a>
-      <a href="#">Profile</a>
-      <a href="#">Make a cluster</a>
-      <a href="#">Saved clusters</a>
-      <a href="#">Search</a>
-      <a href="#">About</a>
-      <a href="#">Settings</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNavigation()">&times;</a>
+    <a href="{% url 'search_engine-user' %}">Profile</a>
+    <a href="{% url 'search_engine-searchClusters' %}">Clusters</a>
+    <a href="{% url 'search_engine-search' %}">Search</a>
+    <a href="{% url 'search_engine-about' %}">About</a>
+    <a href="{% url 'search_engine-logout' %}">Logout</a>
     </div>
 
     <span style="font-size:40px;cursor:pointer; color: floralwhite;" onclick="openNavigation()">&#9776;</span>
@@ -31,8 +30,6 @@
 
     <img class = "middle" src="images/saved.svg">
 
-      
-    </div>
     <script>
     function openNavigation() {
       document.getElementById("mySidenavigation").style.width = "250px";
