@@ -4,6 +4,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -15,10 +16,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
 # Application definition
 
 INSTALLED_APPS = [
-    'search_engine.apps.SearchEngineConfig',  # connecting search_engine app
+    'search_engine.apps.SearchEngineConfig', #connecting search_engine app 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -31,20 +33,20 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
-    'rest_framework',
-    # 'dbmanager',
+    'rest_framework',  
+    #'dbmanager',
     'dbbackup',  # django-dbbackup
-    'knox',  # user-authentication
-    'crispy_forms',  # user registration form
+    'knox',      #user-authentication
+    'crispy_forms',  #user registration form
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# Backing up data in base directory/ backup
+#Backing up data in base directory/ backup
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup'}
 
-SITE_ID = 4
+SITE_ID = 4 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,7 +78,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# Database
+
+# Database 
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
@@ -90,6 +93,7 @@ DATABASES = {
     }
 }
 
+
 DBBACKUP_CONNECTORS = {
     'default': {
         'USER': 'root',
@@ -97,6 +101,8 @@ DBBACKUP_CONNECTORS = {
         'HOST': 'localhost'
     }
 }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -116,6 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -129,12 +136,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -158,15 +167,16 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-# Redirecting upon login/ logout
+#Redirecting upon login/ logout 
 LOGIN_REDIRECT_URL = 'search_engine-search'
 LOGOUT_REDIRECT_URL = ''
 LOGIN_URL = 'search_engine-login'
 
+
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'DEFAULT_AUTHENTICATION_CLASSES': [ 
         # 'rest_framework.authentication.BasicAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
-        'knox.auth.TokenAuthentication',  # token-based user authentication
+        'knox.auth.TokenAuthentication',  #token-based user authentication
     ]
 }

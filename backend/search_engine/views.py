@@ -1,3 +1,4 @@
+from os import write
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from search_engine.forms import People, UserUpdateForm, ProfileUpdateForm
@@ -60,6 +61,20 @@ def dashboard(request):
     return render(request, 'search_engine/dashboard.html', {'title': 'dashboard'})
 
 def search(request):
+    if request.method == 'POST':
+        urltext = request.POST.get('urlsText')
+        urls = urltext.split(",")
+        clusterName = request.POST.get('cluster')
+        user = request.user
+        f = open("urls.txt", "w")
+        f.write(str(len(urls)))
+        f.write("\n")
+        for x in urls:
+            f.write(x + "\n")
+        f.write(clusterName + "\n")
+        f.write(user.username + "\n")
+        f.close()
+
     return render(request, 'search_engine/search.html', {'title': 'search'})
 
 @login_required

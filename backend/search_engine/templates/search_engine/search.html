@@ -32,7 +32,8 @@
 
   <div class="searching">
 
-    <form>
+    <form action = "" method = "POST">
+      {% csrf_token %}
       <fieldset>
         <legend>SEARCH THE WEB</legend>
       </fieldset>
@@ -40,8 +41,18 @@
         <div class="left">
           <div class="input-wrap first">
             <div class="input-field first">
-              <label>URL</label>
-              <input type="text" placeholder="ex: www.nsu.com" />
+              <label>Cluster Name</label>
+              <input type="text" name = "cluster" placeholder="ex: Education PDFs" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="inner-form">
+        <div class="left">
+          <div class="input-wrap first">
+            <div class="input-field first">
+              <label>URLs</label>
+              <input type="text" name = "urlsText" placeholder="ex: www.nsu.com, www.bracu.com" />
             </div>
           </div>
           <div class="input-wrap second">
@@ -59,7 +70,7 @@
             </div>
           </div>
         </div>
-        <button class="btn-search" type="button">SEARCH</button>
+        <button class="btn-search" type="submit">SEARCH</button>
       </div>
     </form>
   </div>

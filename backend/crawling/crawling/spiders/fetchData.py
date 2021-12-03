@@ -25,24 +25,21 @@ class StrategyLinkExtractor(LinkExtractor):
 #ContentSpider subclasses CrawlSpider
 class ContentSpider(CrawlSpider):
     name = "content"  #spider
-    start_urls = [ #urls to be crawled
-        #'https://www.imagescape.com/media/uploads/zinnia/2018/08/20/scrape_me.html',
-        # book
-        # https://codex.cs.yale.edu/avi/os-book/OSE2/index.html,
-        # review ques 
-        #'https://codex.cs.yale.edu/avi/os-book/OSE2/review-dir/index.html',
-        # practice questions
-        # https://codex.cs.yale.edu/avi//os-book/OS9/practice-exer-dir/index.html,
-        # 311db -practice exercises
-        #'https://www.db-book.com/Practice-Exercises/index-solu.html',
-        'http://www.northsouth.edu/'
-        #'http://books.toscrape.com/'
-    ]
+    start_urls = []
 
     def __init__(self, *args, **kwargs):
         #Follows the rule set in StrategyLinkExtractor class
         #parse() method is used for parsing the data 
         #CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to avoid unexpected behaviour 
+        f = open("C:/Users/Junayed/Desktop/backend/urls.txt", "r")
+        x = int(f.readline())
+
+        for i in range(x):
+            self.start_urls.append(f.readline())
+
+        for i in self.start_urls:
+            print(i + "\n")
+
         self.rules = (Rule(StrategyLinkExtractor(), follow=True, callback="parse",process_links=None, process_request=None, errback=None),)
         super(ContentSpider, self).__init__(*args, **kwargs)
 

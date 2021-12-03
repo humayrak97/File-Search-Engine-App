@@ -215,6 +215,8 @@ select {
   display: flex;
   -ms-flex-pack: justify;
       justify-content: space-between;
+  
+  margin: 10px;
 }
 
 .searching form .inner-form .left {
