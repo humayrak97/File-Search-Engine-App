@@ -26,6 +26,7 @@ class StrategyLinkExtractor(LinkExtractor):
 class ContentSpider(CrawlSpider):
     name = "content"  #spider
     start_urls = []
+    items = CrawlingItem()
 
     def __init__(self, *args, **kwargs):
         #Follows the rule set in StrategyLinkExtractor class
@@ -37,8 +38,8 @@ class ContentSpider(CrawlSpider):
         for i in range(x):
             self.start_urls.append(f.readline())
 
-        for i in self.start_urls:
-            print(i + "\n")
+        self.items['clustername'] = f.readline()
+        self.items['username'] = f.readline()
 
         self.rules = (Rule(StrategyLinkExtractor(), follow=True, callback="parse",process_links=None, process_request=None, errback=None),)
         super(ContentSpider, self).__init__(*args, **kwargs)
@@ -54,8 +55,8 @@ class ContentSpider(CrawlSpider):
             if extension: #if extensions are found
             #writing the scraped URLs in the text file in append mode 
                     #bypassing ssl
-                    items = CrawlingItem()
-                    items['link'] = str(response.url)
+                    
+                    self.items['link'] = str(response.url)
                     ssl._create_default_https_context = ssl._create_unverified_context
                     # calling urllib to create a reader of the pdf url
                     r = urllib.request.urlopen(response.url)
@@ -68,7 +69,7 @@ class ContentSpider(CrawlSpider):
                     #print(data)  #prints content in terminal
                     
                 
-                    items['content'] = str(data)
-                    yield items
+                    self.items['content'] = str(data)
+                    yield self.items
 
  

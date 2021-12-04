@@ -8,5 +8,8 @@ import scrapy
 
 class CrawlingItem(scrapy.Item):
     # define the fields for your item here like:
+    username = scrapy.Field()
+    clustername = scrapy.Field()
     link = scrapy.Field()
     content = scrapy.Field()
+    
