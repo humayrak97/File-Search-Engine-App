@@ -13,6 +13,12 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
+class ToBeSearched(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    clusterName = models.CharField(max_length=100)
+    depth = models.CharField(max_length=100)
+    strategy = models.CharField(max_length=100)
+
 class Cluster(models.Model):
     clusterName = models.CharField(max_length=100)
 
