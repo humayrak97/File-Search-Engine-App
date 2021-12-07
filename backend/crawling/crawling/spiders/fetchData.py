@@ -55,7 +55,6 @@ class ContentSpider(CrawlSpider):
             if extension: #if extensions are found
             #writing the scraped URLs in the text file in append mode 
                     #bypassing ssl
-                    
                     self.items['link'] = str(response.url)
                     ssl._create_default_https_context = ssl._create_unverified_context
                     # calling urllib to create a reader of the pdf url

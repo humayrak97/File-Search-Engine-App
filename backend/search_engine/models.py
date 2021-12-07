@@ -13,20 +13,9 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-class ToBeSearched(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+class CrawlingQueue(models.Model):
+    userName = models.CharField(max_length=100)
     clusterName = models.CharField(max_length=100)
     depth = models.CharField(max_length=100)
     strategy = models.CharField(max_length=100)
-
-class Cluster(models.Model):
-    clusterName = models.CharField(max_length=100)
-
-    link = []
-
-    def addLink(self, link):
-        self.link.append(link)
-
-class Link(models.Model):
-    url = models.CharField(max_length=1000)
-    content = models.TextField()
+    url = models.CharField(max_length=100)

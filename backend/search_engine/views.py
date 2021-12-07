@@ -1,16 +1,19 @@
-from os import write
+from pyexpat.errors import messages
+
 from django.shortcuts import render, redirect
-from django.contrib import messages
-from search_engine.forms import People, UserUpdateForm, ProfileUpdateForm
-from django.contrib.auth.models import User
-from rest_framework import generics, permissions
-from rest_framework.response import Response
-from knox.models import AuthToken
-from .serializers import UserSerializer, RegisterSerializer
 from django.contrib.auth import login
-from rest_framework.authtoken.serializers import AuthTokenSerializer
-from knox.views import LoginView as KnoxLoginView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from knox.models import AuthToken
+from knox.views import LoginView as KnoxLoginView
+from rest_framework import generics, permissions
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.response import Response
+from search_engine.forms import People, ProfileUpdateForm, UserUpdateForm
+from search_engine.models import CrawlingQueue
+from .serializers import UserSerializer, RegisterSerializer
+
 
 # Create your views here.
 
@@ -62,19 +65,15 @@ def dashboard(request):
 
 def search(request):
     if request.method == 'POST':
-        urltext = request.POST.get('urlsText')
-        urls = urltext.split(",")
-        clusterName = request.POST.get('cluster')
-        user = request.user
-        f = open("urls.txt", "w")
-        f.write(str(len(urls)))
-        f.write("\n")
-        for x in urls:
-            f.write(x + "\n")
-        f.write(clusterName + "\n")
-        f.write(user.username + "\n")
-        f.close()
+        urltext = request.POST.get('urlsText')    # getting list of urls input by user
+        urls_List = urltext.split(",")            # splitting into individual url
+        clusterID = request.POST.get('cluster')
+        username = request.user                   # requesting current user
 
+        for url in urls_List:
+            url = url.strip()    # trims whitespace
+            crawl_item = CrawlingQueue(userName = username, clusterName = clusterID, url = url)
+            crawl_item.save()    # the entries are passed to CrawlingQueue model and saved to Database
     return render(request, 'search_engine/search.html', {'title': 'search'})
 
 @login_required
@@ -95,7 +94,6 @@ def user(request):
             p_form.save()
             messages.success(request, f'Your account has been updated!')
             return redirect('search_engine-user')
-        
     
     else:
         u_form = UserUpdateForm(instance=request.user)
