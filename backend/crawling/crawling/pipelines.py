@@ -6,21 +6,23 @@
 
 # useful for handling different item types with a single interface
 import mysql.connector
-
+from search_engine.models import CrawlingQueue
 
 class CrawlingPipeline(object):
+
     def __init__(self):
         self.create_connection()
         self.create_table()
+        #self.get_table()
 
-    def create_connection(self):
+    def create_connection(self):     # connecting to database
         self.conn = mysql.connector.connect(
             host = 'localhost',
             user = 'root',
-            passwd = 'junu.100',
+            passwd = '',
             database = 'people'
         )
-        self.curr = self.conn.cursor()
+        self.curr = self.conn.cursor(buffered=True)
 
     def create_table(self):
         self.curr.execute("""DROP TABLE IF EXISTS links_tb""")
@@ -30,6 +32,18 @@ class CrawlingPipeline(object):
             link longtext,
             content longtext
         )""")
+
+    def get_user(self):    # fetch users from crawling_queue database table
+        user = self.curr.execute("""SELECT userName FROM search_engine_crawlingqueue LIMIT 1;""")
+        return user
+
+    def get_cluster(self):  # fetch clusters from crawling_queue database table
+        cluster = self.curr.execute("""SELECT clusterName FROM search_engine_crawlingqueue LIMIT 1;""")
+        return cluster
+
+    def get_url(self):      # fetch urls from crawling_queue database table
+        urlsText = self.curr.execute("""SELECT url FROM search_engine_crawlingqueue LIMIT 1;""")
+        return urlsText
 
     def process_item(self, item, spider):
         self.store_db(item)

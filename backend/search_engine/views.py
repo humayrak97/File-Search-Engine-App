@@ -1,6 +1,4 @@
 from pyexpat.errors import messages
-
-from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -12,6 +10,7 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.response import Response
 from search_engine.forms import People, ProfileUpdateForm, UserUpdateForm
 from search_engine.models import CrawlingQueue
+
 from .serializers import UserSerializer, RegisterSerializer
 
 
@@ -49,8 +48,7 @@ def signup(request):
         form = People(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Your account has been created! You are now able to log in.')
+            messages.success(request, f'Your account has been created! You can now log in.')
             return redirect('search_engine-login')
     else:
         form = People()
@@ -66,18 +64,22 @@ def dashboard(request):
 def search(request):
     if request.method == 'POST':
         urltext = request.POST.get('urlsText')    # getting list of urls input by user
-        urls_List = urltext.split(",")            # splitting into individual url
-        clusterID = request.POST.get('cluster')
+        clusterID = request.POST.get('cluster')   # getting cluster name from user
         username = request.user                   # requesting current user
+        depth = request.POST.get('depth')
+        strategy = request.POST.get('strategy')
 
-        for url in urls_List:
-            url = url.strip()    # trims whitespace
-            crawl_item = CrawlingQueue(userName = username, clusterName = clusterID, url = url)
-            crawl_item.save()    # the entries are passed to CrawlingQueue model and saved to Database
+        crawl_item = CrawlingQueue(userName=username, clusterName=clusterID, url=urltext)
+        crawl_item.save()  # the entries are passed to CrawlingQueue model and saved to Database
+
     return render(request, 'search_engine/search.html', {'title': 'search'})
 
 @login_required
 def searchClusters(request):
+    if request.method == 'POST':
+        clusterID = request.POST.get('cluster')
+        keyword = request.POST.get('keyword')
+        username = request.user
     return render(request, 'search_engine/searchClusters.html', {'title': 'searchClusters'})
 
 def about(request):
