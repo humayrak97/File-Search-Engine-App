@@ -19,6 +19,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'search_engine.apps.SearchEngineConfig',  # connecting search_engine app
+    #'crawling.apps.CrawlingConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -166,7 +167,7 @@ LOGIN_URL = 'search_engine-login'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         # 'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication', # session-based user authentication
         'knox.auth.TokenAuthentication',  # token-based user authentication
     ]
 }
