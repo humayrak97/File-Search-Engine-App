@@ -28,7 +28,6 @@ django.setup()
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
-DEPTH_LIMIT = 2
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
@@ -97,3 +96,7 @@ ITEM_PIPELINES = {
 # HTTPCACHE_DIR = 'httpcache'
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+#DOMAIN_DEPTHS = {}
+#global DEPTH_LIMIT
+

@@ -18,6 +18,6 @@ class Profile(models.Model):
 class CrawlingQueue(models.Model):  # model to store queue of crawler requests made by users
     userName = models.CharField(max_length=100)
     clusterName = models.CharField(max_length=100)
-    depth = models.CharField(max_length=100)
+    depth = models.IntegerField()
     strategy = models.CharField(max_length=100)
     url = models.TextField()  # un-parsed urls as long text

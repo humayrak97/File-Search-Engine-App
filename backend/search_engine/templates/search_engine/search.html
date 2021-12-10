@@ -35,7 +35,7 @@
     <form action = "" method = "POST">
       {% csrf_token %}
       <fieldset>
-        <legend>SEARCH THE WEB</legend>
+        <legend>CRAWL THE WEB</legend>
       </fieldset>
       <div class="inner-form">
         <div class="left">
@@ -43,6 +43,20 @@
             <div class="input-field first">
               <label>Cluster Name</label>
               <input type="text" name = "cluster" placeholder="ex: Education PDFs" />
+            </div>
+          </div>
+          <div class="input-wrap second">
+            <div class="input-field second">
+              <label>Depth</label>
+              <div class="input-select">
+                <select name="depth">{
+                  <option placeholder="">1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>}
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -59,12 +73,12 @@
             <div class="input-field second">
               <label>Content</label>
               <div class="input-select">
-                <select data-trigger="" name="choices-single-defaul">
-                  <option placeholder="">All Content</option>
+                <select data-trigger="" name="content_type">
+                  {<option placeholder="">PDF Files</option>
                   <option>TEXT Files</option>
                   <option>DOC Files</option>
-                  <option>PDF Files</option>
-                  <option>Non-HTML Files</option>
+                  <option>All Content</option>
+                  <option>Non-HTML Files</option>}
                 </select>
               </div>
             </div>

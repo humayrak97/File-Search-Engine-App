@@ -2,15 +2,16 @@ import io
 import ssl
 import urllib.request
 import PyPDF2
+from scrapy import crawler
 from scrapy.linkextractors import LinkExtractor
+from scrapy.settings.default_settings import DEPTH_LIMIT
 from scrapy.spiders import CrawlSpider, Rule
 
 # allowed extensions
 from search_engine.models import CrawlingQueue
 from ..pipelines import CrawlingPipeline
 from ..items import CrawlingItem
-
-# from search_engine.models import CrawlingQueue
+from ..settings import DepthLimit
 
 ALLOWED_EXTENSIONS = [".pdf"]
 
@@ -27,7 +28,17 @@ class StrategyLinkExtractor(LinkExtractor):
 class ContentSpider(CrawlSpider):
     name = "content"  # spider
 
-    items = CrawlingItem()
+    # setting default depth limit
+    depth: int = 1
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,
+        'DEPTH_LIMIT': depth,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
     start_urls = []
 
     # useful links for crawling:
@@ -41,6 +52,8 @@ class ContentSpider(CrawlSpider):
     # 311db -practice exercises
     # https://www.db-book.com/Practice-Exercises/index-solu.html,
 
+    items = CrawlingItem()
+
     def __init__(self, *args, **kwargs):
 
         self.get_objects_in_queue()
@@ -49,8 +62,8 @@ class ContentSpider(CrawlSpider):
         # parse() method is used for parsing the data
         # CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to avoid unexpected behaviour
         self.rules = (
-        Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
-             errback=None),)
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
         super(ContentSpider, self).__init__(*args, **kwargs)
 
     def set_urls(self, urltext):
@@ -59,13 +72,25 @@ class ContentSpider(CrawlSpider):
             url = url.strip()  # trims whitespace
             self.start_urls.append(url)
 
+    # sets depth in crawler's settings.py
+    def set_depth(self, depth):
+        # settings = crawler.overridden_settings(DEPTH_LIMIT=depth)
+        # super.DEPTH_LIMIT = 1
+        return depth
+
     def get_objects_in_queue(self):
         objects_in_queue = CrawlingQueue.objects.all()  # fetches all objects from DB table
         for object_in_queue in objects_in_queue:
             self.items['clustername'] = object_in_queue.clusterName  # attributes of the objects are to items
             self.items['username'] = object_in_queue.userName
+            # global depth
+            # self.depth = object_in_queue.depth
+            # self.depth = 2
+            # self.dep = object_in_queue.depth
+            # self.set_depth(object_in_queue.depth)
             self.set_urls(object_in_queue.url)
             print(self.start_urls)
+
 
     # parse() processes response and returns scraped data
     def parse(self, response):
@@ -92,3 +117,4 @@ class ContentSpider(CrawlSpider):
 
                 self.items['content'] = str(data)
                 yield self.items
+

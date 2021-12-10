@@ -67,9 +67,9 @@ def search(request):
         clusterID = request.POST.get('cluster')   # getting cluster name from user
         username = request.user                   # requesting current user
         depth = request.POST.get('depth')
-        strategy = request.POST.get('strategy')
+        strategy = request.POST.get('content_type')
 
-        crawl_item = CrawlingQueue(userName=username, clusterName=clusterID, url=urltext)
+        crawl_item = CrawlingQueue(userName=username, clusterName=clusterID, url=urltext, depth = depth, strategy = strategy)
         crawl_item.save()  # the entries are passed to CrawlingQueue model and saved to Database
 
     return render(request, 'search_engine/search.html', {'title': 'search'})
