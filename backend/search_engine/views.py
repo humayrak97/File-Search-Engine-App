@@ -61,6 +61,7 @@ def log_in(request):
 def dashboard(request):
     return render(request, 'search_engine/dashboard.html', {'title': 'dashboard'})
 
+@login_required
 def search(request):
     if request.method == 'POST':
         urltext = request.POST.get('urlsText')    # getting list of urls input by user
@@ -81,6 +82,7 @@ def searchClusters(request):
         keyword = request.POST.get('keyword')
         username = request.user
     return render(request, 'search_engine/searchClusters.html', {'title': 'searchClusters'})
+
 
 def about(request):
     return render(request, 'search_engine/about.html', {'title': 'about'})

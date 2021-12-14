@@ -24,17 +24,14 @@
 
 <body style="background-image: url('/static/search_engine/images/background-1.jpg');">
   <div class="profile">
-    {% if user.is_authenticated %}
-    <div id="mySidenavigation" class="sidenavigation">
+    <div id="mySidenavigation" class="sidenavigation" style="font-weight: bold;">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNavigation()">&times;</a>
       <a href="{% url 'search_engine-user' %}">Profile</a>
-      <a href="#">Saved clusters</a>
+      <a href="{% url 'search_engine-searchClusters' %}">Make A Cluster</a>
       <a href="{% url 'search_engine-search' %}">Search</a>
       <a href="{% url 'search_engine-about' %}">About</a>
-      <a href="#">Settings</a>
       <a href="{% url 'search_engine-logout' %}">Logout</a>
     </div>
-    {% endif %}
 
     <div class="nav" style="font-size:40px;cursor:pointer; color: rgb(0, 160, 253);" onclick="openNavigation()">
       &#9776;</span>

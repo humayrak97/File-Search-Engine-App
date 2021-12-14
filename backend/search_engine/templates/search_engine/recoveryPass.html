@@ -9,13 +9,12 @@
 <body>
 	
 	<div class="passwordRecovery">
-		<div id="mySidenavigation" class="sidenavigation">
-			  <a href="javascript:void(0)" class="closebtn" onclick="closeNavigation()">&times;</a>
-			  <a href="#">Search</a>
-				<a href="#">Login</a>
-			  <a href="#">Signup</a>
-			  <a href="#">About</a>
-			</div>
+		<div id="mySidenavigation" class="sidenavigation" style="font-weight: bold;">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNavigation()">&times;</a>
+			<a href="{% url 'search_engine-login' %}">Login</a>
+			<a href="{% url 'search_engine-signup' %}">Signup</a>
+			<a href="{% url 'search_engine-about' %}">About</a>
+		</div>
 
 			<div class = "nav" style="font-size:40px;cursor:pointer; color: black;" onclick="openNavigation()">&#9776;</span>
 
