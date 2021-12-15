@@ -24,21 +24,10 @@ class StrategyLinkExtractor(LinkExtractor):
         # leaving default values in "deny_extensions" other than the ones we want.
         self.deny_extensions = [ext for ext in self.deny_extensions if ext not in ALLOWED_EXTENSIONS]
 
-
-# ContentSpider subclasses CrawlSpider
-class ContentSpider(CrawlSpider):
-    name = "content"  # spider
-
+# Spider subclasses CrawlSpider
+class Spider(CrawlSpider):
     # setting default depth limit
     depth: int = 1
-
-    # custom settings for spider
-    custom_settings = {
-        'DOWNLOAD_DELAY': 0,
-        'DEPTH_LIMIT': depth,
-        'AUTOTHROTTLE_ENABLED': True,
-        'AUTOTHROTTLE_DEBUG': True,
-    }
 
     start_urls = []
 
@@ -53,19 +42,7 @@ class ContentSpider(CrawlSpider):
     # 311db -practice exercises
     # https://www.db-book.com/Practice-Exercises/index-solu.html,
 
-    items = CrawlingItem()
 
-    def __init__(self, *args, **kwargs):
-
-        self.get_objects_in_queue()
-
-        # Follows the rule set in StrategyLinkExtractor class
-        # parse() method is used for parsing the data
-        # CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to avoid unexpected behaviour
-        self.rules = (
-            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
-                 errback=None),)
-        super(ContentSpider, self).__init__(*args, **kwargs)
 
     def set_urls(self, urltext):
         urls_list = urltext.split(",")
@@ -91,6 +68,34 @@ class ContentSpider(CrawlSpider):
             # self.set_depth(object_in_queue.depth)
             self.set_urls(object_in_queue.url)
             print(self.start_urls)
+
+# PDFSpider subclasses Spider
+class PDFSpider (Spider):
+    name = "content"  # spider
+
+    def __init__(self, *args, **kwargs):
+
+        self.get_objects_in_queue()
+
+        # Follows the rule set in StrategyLinkExtractor class
+        # parse() method is used for parsing the data
+        # CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to avoid unexpected behaviour
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(PDFSpider, self).__init__(*args, **kwargs)
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,
+        'DEPTH_LIMIT': depth,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
+
+
+    items = CrawlingItem()
 
 
     # parse() processes response and returns scraped data
@@ -119,21 +124,16 @@ class ContentSpider(CrawlSpider):
                 self.items['content'] = str(data)
                 yield self.items
 
-class DocSpider(CrawlSpider):
+class DocSpider(Spider):
     name = "DocSpider"  # spider
-
-    # setting default depth limit
-    depth: int = 2
 
     # custom settings for spider
     custom_settings = {
         'DOWNLOAD_DELAY': 0,
-        'DEPTH_LIMIT': depth,
+        'DEPTH_LIMIT': super.depth,
         'AUTOTHROTTLE_ENABLED': True,
         'AUTOTHROTTLE_DEBUG': True,
     }
-
-    start_urls = ['https://file-examples.com/index.php/sample-documents-download/sample-doc-download']
 
     items = CrawlingItem()
 
@@ -149,19 +149,6 @@ class DocSpider(CrawlSpider):
                  errback=None),)
         super(DocSpider, self).__init__(*args, **kwargs)
 
-    def set_urls(self, urltext):
-        urls_list = urltext.split(",")
-        for url in urls_list:
-            url = url.strip()  # trims whitespace
-            self.start_urls.append(url)
-
-    def get_objects_in_queue(self):
-        objects_in_queue = CrawlingQueue.objects.all()  # fetches all objects from DB table
-        for object_in_queue in objects_in_queue:
-            self.items['clustername'] = object_in_queue.clusterName  # attributes of the objects are to items
-            self.items['username'] = object_in_queue.userName
-            self.set_urls(object_in_queue.url)
-            print(self.start_urls)
 
 
     # parse() processes response and returns scraped data
