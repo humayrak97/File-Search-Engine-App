@@ -2,6 +2,7 @@ import io
 import ssl
 import urllib.request
 import PyPDF2
+import zope.interface
 from scrapy import crawler
 from scrapy.linkextractors import LinkExtractor
 from docx2python import docx2python
@@ -12,9 +13,87 @@ from scrapy.spiders import CrawlSpider, Rule
 from search_engine.models import CrawlingQueue
 from ..pipelines import CrawlingPipeline
 from ..items import CrawlingItem
-#from ..settings import DepthLimit
 
-ALLOWED_EXTENSIONS = [".pdf"]
+
+# from ..settings import DepthLimit
+
+class SpiderInterface(zope.interface.Interface):
+    name = zope.interface.Attribute("")
+
+    def parse(self, x):
+        pass
+
+    def method2(self):
+        pass
+
+
+# The zope.interface package provides an implementation of “object interfaces” for Python
+@zope.interface.implementer(SpiderInterface)
+class PDFClass(CrawlSpider):
+    name = "pdf_crawler"
+
+    def parse(self, response):
+        self.logger.info('Yippee! We have found: %s', response.url)
+        # shows a message with response
+        if hasattr(response, "text"):
+            pass  # we disregard any HTML text
+        else:
+            # filtering out extensions that are in our ALLOWED_EXTENSIONS list from the list of returned urls
+            extension = list(filter(lambda x: response.url.lower().endswith(x), ALLOWED_EXTENSIONS))[0]
+            if extension:  # if extensions are found
+
+                # writing the scraped URLs in the text file in append mode
+                self.items['link'] = str(response.url)
+
+                # bypassing ssl
+                ssl._create_default_https_context = ssl._create_unverified_context
+
+                # calling urllib to create a reader of the pdf url
+                r = urllib.request.urlopen(response.url)
+                reader = PyPDF2.pdf.PdfFileReader(io.BytesIO(r.read()))
+
+                # creating data string by scanning pdf pages
+                data = ""
+                for datas in reader.pages:
+                    data += datas.extractText()
+                # print(data)  #prints content in terminal
+
+                self.items['content'] = str(data)
+                yield self.items
+
+
+@zope.interface.implementer(SpiderInterface)
+class DocumentClass(CrawlSpider):
+    name = "doc_crawler"
+
+    # parse() processes response and returns scraped data
+    def parse(self, response):
+        self.logger.info('Yippy! We have found: %s', response.url)  # shows a message with response
+        if hasattr(response, "text"):
+            pass  # we disregard any HTML text
+        else:
+            # filtering out extensions that are in our ALLOWED_EXTENSIONS list from the list of returned urls
+            extension = list(filter(lambda x: response.url.lower().endswith(x), ALLOWED_EXTENSIONS))[0]
+            if extension:
+                # writing the scraped URLs in the text file in append mode
+                self.items['link'] = str(response.url)
+
+                # bypassing ssl
+                ssl._create_default_https_context = ssl._create_unverified_context
+
+                # r = urllib.request.urlopen(response.url)
+                # reader = docx2python(io.BytesIO(r.read()))
+                reader = docx2python(response.url)
+
+                # creating data string by scanning text from docx file
+                data = reader[0]
+                print(data)  # prints content in terminal
+
+                self.items['content'] = str(data)
+                yield self.items
+
+
+ALLOWED_EXTENSIONS = []
 
 
 # StrategyLinkExtractor subclasses LinkExtractor
@@ -24,10 +103,12 @@ class StrategyLinkExtractor(LinkExtractor):
         # leaving default values in "deny_extensions" other than the ones we want.
         self.deny_extensions = [ext for ext in self.deny_extensions if ext not in ALLOWED_EXTENSIONS]
 
+
 # Spider subclasses CrawlSpider
 class Spider(CrawlSpider):
-    # setting default depth limit
-    depth: int = 1
+    name = "MainSpider"
+
+    strategy = ""
 
     start_urls = []
 
@@ -42,7 +123,29 @@ class Spider(CrawlSpider):
     # 311db -practice exercises
     # https://www.db-book.com/Practice-Exercises/index-solu.html,
 
+    def __init__(self, *args, **kwargs):
+        self.get_objects_in_queue()
 
+        # Follows the rule set in StrategyLinkExtractor class
+        # parse() method is used for parsing the data
+        # CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to avoid unexpected behaviour
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(Spider, self).__init__(*args, **kwargs)
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,
+        'DEPTH_LIMIT': 1,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
+    items = CrawlingItem()
+
+    # def parse(self, response, **kwargs):
+    #    PDFClass.parse(self, response)
 
     def set_urls(self, urltext):
         urls_list = urltext.split(",")
@@ -67,110 +170,6 @@ class Spider(CrawlSpider):
             # self.dep = object_in_queue.depth
             # self.set_depth(object_in_queue.depth)
             self.set_urls(object_in_queue.url)
+            global strategy
+            self.strategy = object_in_queue.strategy
             print(self.start_urls)
-
-# PDFSpider subclasses Spider
-class PDFSpider (Spider):
-    name = "content"  # spider
-
-    def __init__(self, *args, **kwargs):
-
-        self.get_objects_in_queue()
-
-        # Follows the rule set in StrategyLinkExtractor class
-        # parse() method is used for parsing the data
-        # CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to avoid unexpected behaviour
-        self.rules = (
-            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
-                 errback=None),)
-        super(PDFSpider, self).__init__(*args, **kwargs)
-
-    # custom settings for spider
-    custom_settings = {
-        'DOWNLOAD_DELAY': 0,
-        'DEPTH_LIMIT': depth,
-        'AUTOTHROTTLE_ENABLED': True,
-        'AUTOTHROTTLE_DEBUG': True,
-    }
-
-
-
-    items = CrawlingItem()
-
-
-    # parse() processes response and returns scraped data
-    def parse(self, response):
-        self.logger.info('Yippy! We have found: %s', response.url)  # shows a message with response
-        if hasattr(response, "text"):
-            pass  # we disregard any HTML text
-        else:
-            # filtering out extensions that are in our ALLOWED_EXTENSIONS list from the list of returned urls
-            extension = list(filter(lambda x: response.url.lower().endswith(x), ALLOWED_EXTENSIONS))[0]
-            if extension:  # if extensions are found
-                # writing the scraped URLs in the text file in append mode
-                self.items['link'] = str(response.url)
-                # bypassing ssl
-                ssl._create_default_https_context = ssl._create_unverified_context
-                # calling urllib to create a reader of the pdf url
-                r = urllib.request.urlopen(response.url)
-                reader = PyPDF2.pdf.PdfFileReader(io.BytesIO(r.read()))
-
-                # creating data string by scanning pdf pages
-                data = ""
-                for datas in reader.pages:
-                    data += datas.extractText()
-                # print(data)  #prints content in terminal
-
-                self.items['content'] = str(data)
-                yield self.items
-
-class DocSpider(Spider):
-    name = "DocSpider"  # spider
-
-    # custom settings for spider
-    custom_settings = {
-        'DOWNLOAD_DELAY': 0,
-        'DEPTH_LIMIT': super.depth,
-        'AUTOTHROTTLE_ENABLED': True,
-        'AUTOTHROTTLE_DEBUG': True,
-    }
-
-    items = CrawlingItem()
-
-    def __init__(self, *args, **kwargs):
-
-        #self.get_objects_in_queue()
-
-        # Follows the rule set in StrategyLinkExtractor class
-        # parse() method is used for parsing the data
-        # CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to avoid unexpected behaviour
-        self.rules = (
-            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
-                 errback=None),)
-        super(DocSpider, self).__init__(*args, **kwargs)
-
-
-
-    # parse() processes response and returns scraped data
-    def parse(self, response):
-        self.logger.info('Yippy! We have found: %s', response.url)  # shows a message with response
-        if hasattr(response, "text"):
-            pass  # we disregard any HTML text
-        else:
-            # filtering out extensions that are in our ALLOWED_EXTENSIONS list from the list of returned urls
-            extension = list(filter(lambda x: response.url.lower().endswith(x), ALLOWED_EXTENSIONS))[0]
-            if extension:
-                # writing the scraped URLs in the text file in append mode
-                self.items['link'] = str(response.url)
-                # bypassing ssl
-                ssl._create_default_https_context = ssl._create_unverified_context
-                #r = urllib.request.urlopen(response.url)
-                #reader = docx2python(io.BytesIO(r.read()))
-                reader = docx2python(response.url)
-
-                # creating data string by scanning text from docx file
-                data = reader[0]
-                print(data)  #prints content in terminal
-
-                self.items['content'] = str(data)
-                yield self.items
