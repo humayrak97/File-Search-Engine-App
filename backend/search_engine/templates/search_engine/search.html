@@ -1,4 +1,5 @@
 {% block content %}
+{% load crispy_forms_tags %}
 <html>
 
 <head>
@@ -7,6 +8,13 @@
 </head>
 
 <body>
+  {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      <h4> {{ message }} </h4>
+    </div>
+    {% endfor %}
+    {% endif %}
   <div id="mySidenavigation" class="sidenavigation">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNavigation()">&times;</a>
     <a href="{% url 'search_engine-user' %}">Profile</a>
@@ -20,7 +28,8 @@
 
   </div>
 
-  <div class="searching">
+  <div class="searching" >
+
 
     <form action = "" method = "POST">
       {% csrf_token %}

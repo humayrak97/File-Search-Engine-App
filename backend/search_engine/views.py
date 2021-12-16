@@ -1,4 +1,4 @@
-from pyexpat.errors import messages
+from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -68,20 +68,30 @@ def search(request):
         clusterID = request.POST.get('cluster')   # getting cluster name from user
         username = request.user                   # requesting current user
         depth = request.POST.get('depth')
-        strategy = request.POST.get('content_type')
+        strategy = request.POST.get('contentType')
 
         crawl_item = CrawlingQueue(userName=username, clusterName=clusterID, url=urltext, depth = depth, strategy = strategy)
         crawl_item.save()  # the entries are passed to CrawlingQueue model and saved to Database
+        messages.success(request, f'Cluster created successfully!')
+        return render(request, 'search_engine/search.html', {'title': 'search'})
+
 
     return render(request, 'search_engine/search.html', {'title': 'search'})
 
 @login_required
 def searchClusters(request):
+    clusters = CrawlingQueue.objects.all().values_list('clusterName').filter(
+        userName=request.user.username).distinct()  # get all clusters for current logged in user as tuples
+
+    clusters = [x[0] for x in clusters]  # convert tuples to values of a list
+
     if request.method == 'POST':
         clusterID = request.POST.get('cluster')
         keyword = request.POST.get('keyword')
-        username = request.user
-    return render(request, 'search_engine/searchClusters.html', {'title': 'searchClusters'})
+        username = request.user.username
+        return render(request, 'search_engine/searchClusters.html', {'clusters': clusters})  # render the clusters to html template using clusters
+    return render(request, 'search_engine/searchClusters.html',
+                  {'clusters': clusters})  # render the clusters to html template using clusters
 
 
 def about(request):

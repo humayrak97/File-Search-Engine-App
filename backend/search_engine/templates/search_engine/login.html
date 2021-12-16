@@ -24,16 +24,16 @@
 
 <body>
 	<div class="login">
-		{% if messages %}
+
+		<div class="container-profileLogin"
+			style="background-image: url('/static/search_engine/images/background-1.jpg');">
+			{% if messages %}
 			{% for message in messages %}
 			<div class="alert alert-{{ message.tags }}">
 				<h4> {{ message }} </h4>
 			</div>
 			{% endfor %}
 			{% endif %}
-		<div class="container-profileLogin"
-			style="background-image: url('/static/search_engine/images/background-1.jpg');">
-			
 
 			<div id="mySidenavigation" class="sidenavigation" style="font-weight: bold;">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNavigation()">&times;</a>
