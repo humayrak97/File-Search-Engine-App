@@ -1,10 +1,11 @@
+{% block content %}
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>Result Page</title>
-    <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="shortcut icon" type="image/ico" href="" />
+    <link rel="stylesheet" type="text/css" href="/static/search_engine/result.css" />
 </head>
 
 <body>
@@ -24,11 +25,11 @@
 
     <div id="header">
         <div id="navbar">
-            <img id="searchbarimage" src='images/search.png' />
+            <img id="searchbarimage" src='/static/search_engine/images/search.png' />
             <div id="searchbar" type="text">
                 <input id="searchbartext" type="text" value="web crawlers" />
                 <button id="searchbarmic">
-                    <img src="images/mic.png" />
+                    <img src="/static/search_engine/images/mic.png" />
                 </button>
                 <button id="searchbarbutton">
                     <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -41,7 +42,7 @@
 
             <div id="boxesicon"></div>
             
-            <img id="profileimage" src="images/profile.png" />
+            <img id="profileimage" src="/static/search_engine/images/profile.png" />
       </div>
       <div id="optionsbar"> 
       </div>
@@ -172,3 +173,4 @@
 </body>
 
 </html>
+{% endblock content %}

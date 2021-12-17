@@ -17,6 +17,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name = 'search_engine/login.html'), name='search_engine-login'),
     path('logout/', auth_views.LogoutView.as_view(template_name = 'search_engine/search.html'), name='search_engine-logout'),
     path('searchClusters/', views.searchClusters, name='search_engine-searchClusters'),
+    path('searchClusters/result', views.result, name='search_engine-result'),
     path('api/register/', RegisterAPI.as_view(), name='register'),
     path('api/login/', LoginAPI.as_view(), name='login'),
     path('api/logout/', knox_views.LogoutView.as_view(), name='logout'),

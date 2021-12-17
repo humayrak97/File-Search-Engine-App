@@ -10,7 +10,7 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.response import Response
 from search_engine.forms import People, ProfileUpdateForm, UserUpdateForm
 from search_engine.models import CrawlingQueue
-
+from crawling.crawling.items import CrawlingItem
 from .serializers import UserSerializer, RegisterSerializer
 
 
@@ -78,6 +78,9 @@ def search(request):
 
     return render(request, 'search_engine/search.html', {'title': 'search'})
 
+clusterID = ''
+keyword = ''
+
 @login_required
 def searchClusters(request):
     clusters = CrawlingQueue.objects.all().values_list('clusterName').filter(
@@ -88,12 +91,18 @@ def searchClusters(request):
     if request.method == 'POST':
         clusterID = request.POST.get('cluster')
         keyword = request.POST.get('keyword')
-        username = request.user.username
-        return render(request, 'search_engine/searchClusters.html', {'clusters': clusters})  # render the clusters to html template using clusters
+        return render(request, 'search_engine/result.html', {'clusterID': clusterID, 'keyword': keyword})  # render the clusters to html template using clusters
     return render(request, 'search_engine/searchClusters.html',
                   {'clusters': clusters})  # render the clusters to html template using clusters
 
+@login_required
+def result(request):
+    relevant_links = CrawlingItem.objects.all().values_list('link').filter(username = request.user.username, clustername = clusterID, link__icontains = keyword)
+    print(clusterID)
+    print(keyword)
+    return render(request, 'search_engine/result.html')
 
+@login_required
 def about(request):
     return render(request, 'search_engine/about.html', {'title': 'about'})
 
