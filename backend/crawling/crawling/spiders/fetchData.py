@@ -28,6 +28,7 @@ class SpiderInterface(zope.interface.Interface):
 
 
 # The zope.interface package provides an implementation of “object interfaces” for Python
+# Implements spider for scraping pdf files
 @zope.interface.implementer(SpiderInterface)
 class PDFClass(CrawlSpider):
     name = "pdf_crawler"
@@ -61,7 +62,7 @@ class PDFClass(CrawlSpider):
                 self.items['content'] = str(data)
                 yield self.items
 
-
+# Implements spider for scraping MS Word Documents
 @zope.interface.implementer(SpiderInterface)
 class DocumentClass(CrawlSpider):
     name = "doc_crawler"
@@ -91,6 +92,74 @@ class DocumentClass(CrawlSpider):
 
                 self.items['content'] = str(data)
                 yield self.items
+
+# Implements spider for scraping .txt files
+@zope.interface.implementer(SpiderInterface)
+class TextClass(CrawlSpider):
+    name = "txt_crawler"
+
+    # parse() processes response and returns scraped data
+    def parse(self, response):
+        self.logger.info('Yippy! We have found: %s', response.url)  # shows a message with response
+        if hasattr(response, "text"):
+            pass  # we disregard any HTML text
+        else:
+            # filtering out extensions that are in our ALLOWED_EXTENSIONS list from the list of returned urls
+            extension = list(filter(lambda x: response.url.lower().endswith(x), ALLOWED_EXTENSIONS))[0]
+            if extension:
+                # writing the scraped URLs in the text file in append mode
+                self.items['link'] = str(response.url)
+
+                # bypassing ssl
+                ssl._create_default_https_context = ssl._create_unverified_context
+
+                # read data from txt file
+
+                # creating data string by scanning text from txt file
+                data : tuple
+                print(data)  # prints content in terminal
+
+                self.items['content'] = str(data)
+                yield self.items
+
+# Implements spider for scraping HTML content
+@zope.interface.implementer(SpiderInterface)
+class HTMLClass(CrawlSpider):
+    name = "html_crawler"
+
+    # parse() processes response and returns scraped data
+    def parse(self, response):
+        self.logger.info('Yippy! We have found: %s', response.url)  # shows a message with response
+        if hasattr(response, "text"):
+            # bypassing ssl
+            ssl._create_default_https_context = ssl._create_unverified_context
+
+            # read HTML
+
+            # creating data string by read HTML tags
+            data : tuple
+            print(data)  # prints content in terminal
+
+            self.items['content'] = str(data)
+            yield self.items
+
+        else:
+            pass
+
+@zope.interface.implementer(SpiderInterface)
+class NonHtmlClass(CrawlSpider):
+    name = "NonHtml_crawler"
+
+    # parse() processes response and returns scraped data
+    def parse(self, response):
+        self.logger.info('Yippy! We have found: %s', response.url)  # shows a message with response
+        if hasattr(response, "text"):
+            pass  # we disregard any HTML text
+        else:
+                #strategy
+
+# Abstract Factory for creating strategy object
+class StrategyFactory(strategy):
 
 
 ALLOWED_EXTENSIONS = []
@@ -153,23 +222,19 @@ class Spider(CrawlSpider):
             url = url.strip()  # trims whitespace
             self.start_urls.append(url)
 
-    # sets depth in crawler's settings.py
+    # sets depth in spider's custom settings
     def set_depth(self, depth):
-        # settings = crawler.overridden_settings(DEPTH_LIMIT=depth)
-        # super.DEPTH_LIMIT = 1
-        return depth
+        global custom_settings
+        custom_settings.update({'DEPTH_LIMIT' : depth})  # updates the default depth limit
 
     def get_objects_in_queue(self):
         objects_in_queue = CrawlingQueue.objects.all()  # fetches all objects from DB table
         for object_in_queue in objects_in_queue:
             self.items['clustername'] = object_in_queue.clusterName  # attributes of the objects are to items
             self.items['username'] = object_in_queue.userName
-            # global depth
-            # self.depth = object_in_queue.depth
-            # self.depth = 2
-            # self.dep = object_in_queue.depth
-            # self.set_depth(object_in_queue.depth)
+            self.set_depth(object_in_queue.depth)
             self.set_urls(object_in_queue.url)
-            global strategy
-            self.strategy = object_in_queue.strategy
+            # global strategy
+            # self.strategy = object_in_queue.strategy
+            StrategyFactory(object_in_queue.strategy)
             print(self.start_urls)
