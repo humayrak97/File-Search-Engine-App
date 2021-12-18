@@ -1,12 +1,12 @@
 import io
 import ssl
 import urllib.request
+from abc import ABC
+
 import PyPDF2
 import zope.interface
-from scrapy import crawler
 from scrapy.linkextractors import LinkExtractor
 from docx2python import docx2python
-from scrapy.settings.default_settings import DEPTH_LIMIT
 from scrapy.spiders import CrawlSpider, Rule
 
 # allowed extensions
@@ -146,21 +146,40 @@ class HTMLClass(CrawlSpider):
         else:
             pass
 
-@zope.interface.implementer(SpiderInterface)
-class NonHtmlClass(CrawlSpider):
-    name = "NonHtml_crawler"
+# Abstract Factory for creating strategy objects
+class StrategyFactory():
 
-    # parse() processes response and returns scraped data
-    def parse(self, response):
-        self.logger.info('Yippy! We have found: %s', response.url)  # shows a message with response
-        if hasattr(response, "text"):
-            pass  # we disregard any HTML text
-        else:
-                #strategy
+    @staticmethod
+    def create_strategy(self, strategy):
 
-# Abstract Factory for creating strategy object
-class StrategyFactory(strategy):
+        # creating a list of strategy objects
+        object_list = []
 
+        if strategy == "pdf":
+            object_list.append(PDFClass())
+
+        elif strategy == "doc":
+            object_list.append(DocumentClass())
+
+        elif strategy == "txt":
+            object_list.append(TextClass())
+
+        # after introducing new strategies append here:
+
+        elif strategy == "All Content":
+            object_list.append(HTMLClass())
+            object_list.append(PDFClass())
+            object_list.append(DocumentClass())
+            object_list.append(TextClass())
+
+        # after introducing new non-html strategies append here:
+
+        elif strategy == "Non-HTML":
+            object_list.append(PDFClass())
+            object_list.append(DocumentClass())
+            object_list.append(TextClass())
+
+        return object_list
 
 ALLOWED_EXTENSIONS = []
 
@@ -174,10 +193,8 @@ class StrategyLinkExtractor(LinkExtractor):
 
 
 # Spider subclasses CrawlSpider
-class Spider(CrawlSpider):
+class Spider(CrawlSpider, ABC):
     name = "MainSpider"
-
-    strategy = ""
 
     start_urls = []
 
@@ -205,36 +222,45 @@ class Spider(CrawlSpider):
 
     # custom settings for spider
     custom_settings = {
-        'DOWNLOAD_DELAY': 0,
-        'DEPTH_LIMIT': 1,
+        'DOWNLOAD_DELAY': 0,    # default download_delay
+        'DEPTH_LIMIT': 1,       # default depth_limit
         'AUTOTHROTTLE_ENABLED': True,
         'AUTOTHROTTLE_DEBUG': True,
     }
 
+    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
     items = CrawlingItem()
 
-    # def parse(self, response, **kwargs):
-    #    PDFClass.parse(self, response)
-
     def set_urls(self, urltext):
+        # cleaning urltext
         urls_list = urltext.split(",")
         for url in urls_list:
-            url = url.strip()  # trims whitespace
-            self.start_urls.append(url)
+            url = url.strip()            # trims whitespace
+            self.start_urls.append(url)  # each url is appended to start_urls list
 
     # sets depth in spider's custom settings
     def set_depth(self, depth):
-        global custom_settings
-        custom_settings.update({'DEPTH_LIMIT' : depth})  # updates the default depth limit
+        self.custom_settings.update({'DEPTH_LIMIT' : depth})
+        # updates the default depth limit
 
     def get_objects_in_queue(self):
         objects_in_queue = CrawlingQueue.objects.all()  # fetches all objects from DB table
         for object_in_queue in objects_in_queue:
-            self.items['clustername'] = object_in_queue.clusterName  # attributes of the objects are to items
+
+            # attributes of the objects are passed to items
+            self.items['clustername'] = object_in_queue.clusterName
             self.items['username'] = object_in_queue.userName
+
+            # setting depth_limit using user input
             self.set_depth(object_in_queue.depth)
+
+            # setting start_urls using user input
             self.set_urls(object_in_queue.url)
-            # global strategy
-            # self.strategy = object_in_queue.strategy
-            StrategyFactory(object_in_queue.strategy)
+
+            # gets list of strategy objects from StrategyFactory class
+            # for each object representing a strategy class, its parse method is invoked
+            for obj in StrategyFactory.create_strategy(object_in_queue.strategy):
+                obj.parse()
+
+            # printing list of start_urls in terminal (for client developer)
             print(self.start_urls)
