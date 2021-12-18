@@ -3,10 +3,13 @@ import ssl
 import urllib.request
 from abc import ABC
 
+import requests
 import PyPDF2
 import zope.interface
 from scrapy.linkextractors import LinkExtractor
 from docx2python import docx2python
+import lxml.etree
+import lxml.html
 from scrapy.spiders import CrawlSpider, Rule
 
 # allowed extensions
@@ -114,9 +117,12 @@ class TextClass(CrawlSpider):
                 ssl._create_default_https_context = ssl._create_unverified_context
 
                 # read data from txt file
-
+                response = requests.get(response.url)
+                 
                 # creating data string by scanning text from txt file
-                data : tuple
+                data = ""
+                data += response.text
+                
                 print(data)  # prints content in terminal
 
                 self.items['content'] = str(data)
@@ -135,9 +141,16 @@ class HTMLClass(CrawlSpider):
             ssl._create_default_https_context = ssl._create_unverified_context
 
             # read HTML
+            reader = urllib.request(response.url)
+            
+            root = lxml.html.fromstring(response.body)
+            
+            lxml.etree.strip_elements(root, lxml.etree.Comment, "script", "head")
 
             # creating data string by read HTML tags
-            data : tuple
+            data = ""
+            data += lxml.html.tostring(root, method="text", encoding=str)
+            
             print(data)  # prints content in terminal
 
             self.items['content'] = str(data)
