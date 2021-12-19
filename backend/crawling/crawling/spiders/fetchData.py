@@ -11,6 +11,7 @@ from docx2python import docx2python
 import lxml.etree
 import lxml.html
 from scrapy.spiders import CrawlSpider, Rule
+from scrapy.crawler import CrawlerProcess
 
 # allowed extensions
 from search_engine.models import CrawlingQueue
@@ -65,6 +66,7 @@ class PDFClass(CrawlSpider):
                 self.items['content'] = str(data)
                 yield self.items
 
+
 # Implements spider for scraping MS Word Documents
 @zope.interface.implementer(SpiderInterface)
 class DocumentClass(CrawlSpider):
@@ -96,6 +98,7 @@ class DocumentClass(CrawlSpider):
                 self.items['content'] = str(data)
                 yield self.items
 
+
 # Implements spider for scraping .txt files
 @zope.interface.implementer(SpiderInterface)
 class TextClass(CrawlSpider):
@@ -118,15 +121,16 @@ class TextClass(CrawlSpider):
 
                 # read data from txt file
                 response = requests.get(response.url)
-                 
+
                 # creating data string by scanning text from txt file
                 data = ""
                 data += response.text
-                
+
                 print(data)  # prints content in terminal
 
                 self.items['content'] = str(data)
                 yield self.items
+
 
 # Implements spider for scraping HTML content
 @zope.interface.implementer(SpiderInterface)
@@ -142,15 +146,15 @@ class HTMLClass(CrawlSpider):
 
             # read HTML
             reader = urllib.request(response.url)
-            
+
             root = lxml.html.fromstring(response.body)
-            
+
             lxml.etree.strip_elements(root, lxml.etree.Comment, "script", "head")
 
             # creating data string by read HTML tags
             data = ""
             data += lxml.html.tostring(root, method="text", encoding=str)
-            
+
             print(data)  # prints content in terminal
 
             self.items['content'] = str(data)
@@ -159,16 +163,36 @@ class HTMLClass(CrawlSpider):
         else:
             pass
 
+
+ALLOWED_EXTENSIONS = []
+
+
 # Abstract Factory for creating strategy objects
 class StrategyFactory():
 
     @staticmethod
-    def create_strategy(self, strategy):
+    def set_extension(strategy):
+
+        ALLOWED_EXTENSIONS.clear()
+
+        if strategy == "PDF Files":
+            ALLOWED_EXTENSIONS.append(".pdf")
+
+        elif strategy == "doc":
+            ALLOWED_EXTENSIONS.append(".docx")
+
+        elif strategy == "txt":
+            ALLOWED_EXTENSIONS.append(".txt")
+
+    @staticmethod
+    def create_strategy(strategy):
 
         # creating a list of strategy objects
         object_list = []
 
-        if strategy == "pdf":
+        StrategyFactory.set_extension(strategy)
+
+        if strategy == "PDF Files":
             object_list.append(PDFClass())
 
         elif strategy == "doc":
@@ -194,8 +218,6 @@ class StrategyFactory():
 
         return object_list
 
-ALLOWED_EXTENSIONS = []
-
 
 # StrategyLinkExtractor subclasses LinkExtractor
 class StrategyLinkExtractor(LinkExtractor):
@@ -205,11 +227,14 @@ class StrategyLinkExtractor(LinkExtractor):
         self.deny_extensions = [ext for ext in self.deny_extensions if ext not in ALLOWED_EXTENSIONS]
 
 
+start_urls = [""]
+
+
 # Spider subclasses CrawlSpider
 class Spider(CrawlSpider, ABC):
     name = "MainSpider"
 
-    start_urls = []
+    # start_urls = []
 
     # useful links for crawling:
     # 'https://www.imagescape.com/media/uploads/zinnia/2018/08/20/scrape_me.html',
@@ -233,10 +258,12 @@ class Spider(CrawlSpider, ABC):
                  errback=None),)
         super(Spider, self).__init__(*args, **kwargs)
 
+    strategy_list = []
+
     # custom settings for spider
     custom_settings = {
-        'DOWNLOAD_DELAY': 0,    # default download_delay
-        'DEPTH_LIMIT': 1,       # default depth_limit
+        'DOWNLOAD_DELAY': 0,  # default download_delay
+        'DEPTH_LIMIT': 1,  # default depth_limit
         'AUTOTHROTTLE_ENABLED': True,
         'AUTOTHROTTLE_DEBUG': True,
     }
@@ -248,18 +275,20 @@ class Spider(CrawlSpider, ABC):
         # cleaning urltext
         urls_list = urltext.split(",")
         for url in urls_list:
-            url = url.strip()            # trims whitespace
-            self.start_urls.append(url)  # each url is appended to start_urls list
+            url = url.strip()  # trims whitespace
+            start_urls.append(url)  # each url is appended to start_urls list
 
     # sets depth in spider's custom settings
     def set_depth(self, depth):
-        self.custom_settings.update({'DEPTH_LIMIT' : depth})
+        self.custom_settings.update({'DEPTH_LIMIT': depth})
         # updates the default depth limit
+
+    def set_strategy(self, depth):
+        self.custom_settings.update({'DEPTH_LIMIT': depth})
 
     def get_objects_in_queue(self):
         objects_in_queue = CrawlingQueue.objects.all()  # fetches all objects from DB table
         for object_in_queue in objects_in_queue:
-
             # attributes of the objects are passed to items
             self.items['clustername'] = object_in_queue.clusterName
             self.items['username'] = object_in_queue.userName
@@ -270,10 +299,23 @@ class Spider(CrawlSpider, ABC):
             # setting start_urls using user input
             self.set_urls(object_in_queue.url)
 
+            # self.set_strategy(object_in_queue.url)
+
+            self.strategy_list = StrategyFactory.create_strategy(object_in_queue.strategy)
             # gets list of strategy objects from StrategyFactory class
             # for each object representing a strategy class, its parse method is invoked
-            for obj in StrategyFactory.create_strategy(object_in_queue.strategy):
-                obj.parse()
+            # for obj in StrategyFactory.create_strategy(object_in_queue.strategy):
+            #    obj.parse(self, response)
 
             # printing list of start_urls in terminal (for client developer)
             print(self.start_urls)
+
+    def parse(self, response):
+        for obj in self.strategy_list:
+            obj.parse(self, response)
+
+
+process = CrawlerProcess()
+process.crawl(PDFClass)
+process.crawl(DocumentClass)
+process.start() # the script will block here until all crawling jobs are finished

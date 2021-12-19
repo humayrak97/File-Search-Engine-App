@@ -32,7 +32,7 @@ class CrawlingPipeline(object):
             link longtext,
             content longtext
         )""")
-        self.curr.execute("""alter table links_tb add index(username, clustername, link, content)""")
+        # self.curr.execute("""alter table links_tb add index(username, clustername, link, content)""")
 
     def get_user(self):    # fetch users from crawling_queue database table
         user = self.curr.execute("""SELECT userName FROM search_engine_crawlingqueue LIMIT 1;""")
