@@ -19,7 +19,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'search_engine.apps.SearchEngineConfig',  # connecting search_engine app
-    #'crawling.apps.CrawlingConfig',
+    'crawling.apps.CrawlingConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
