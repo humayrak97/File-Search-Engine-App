@@ -18,8 +18,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.contenttypes.models.ContentType',
     'search_engine.apps.SearchEngineConfig',  # connecting search_engine app
-    'crawling.apps.CrawlingConfig',
+    # 'crawling.apps.CrawlingConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -48,6 +49,7 @@ DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup'}
 SITE_ID = 4
 
 MIDDLEWARE = [
+    'django.contrib.contenttypes',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

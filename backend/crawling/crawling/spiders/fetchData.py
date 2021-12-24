@@ -7,15 +7,20 @@ import scrapy
 import os
 import django
 
-# sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "..."))
-# sys.path.append("D:/COMP SCI/repos/cse327.1.2/backend/search_engine")
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
-# django.setup()
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "..."))
+sys.path.append("D:/COMP SCI/repos/cse327.1.2/backend/search_engine")
 
-#from django.conf import settings
-#settings.configure()
+from django.conf import settings
+
+settings.configure()
+
+django.setup()
 
 sys.path.append("C:/Users/USER PC/AppData/Local/Programs/Python/Python39/Lib/site-packages/PyPDF2")
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
+
+
+# from backend.search_engine.models import CrawlingQueue
 
 # from twisted.internet import reactor
 import scrapy.crawler as crawler
@@ -42,7 +47,7 @@ from backend.crawling.crawling.items import CrawlingItem
 
 ALLOWED_EXTENSIONS = []
 
-#from backend.search_engine.models import CrawlingQueue
+
 
 # StrategyLinkExtractor subclasses LinkExtractor
 class StrategyLinkExtractor(LinkExtractor):
@@ -575,7 +580,6 @@ from scrapy.crawler import CrawlerRunner
 from scrapy.utils.log import configure_logging
 from backend.search_engine.models import CrawlingQueue
 
-
 configure_logging()
 runner = CrawlerRunner()
 runner.crawl(PDFClass)
@@ -585,23 +589,22 @@ d.addBoth(lambda _: reactor.stop())
 
 reactor.run()  # the script will block here until all crawling jobs are finished
 
-
-def runspider(spider):
-    def f(q):
-        try:
-            runner = crawler.CrawlerRunner()
-            deferred = runner.crawl(spider)
-            deferred.addBoth(lambda: reactor.stop())
-            reactor.run()
-            q.put(None)
-        except Exception as e:
-            q.put(e)
-
-    q = Queue()
-    p = Process(target=f, args=(q,))
-    p.start()
-    result = q.get()
-    p.join()
-
-    if result is not None:
-        raise result
+# def runspider(spider):
+#     def f(q):
+#         try:
+#             runner = crawler.CrawlerRunner()
+#             deferred = runner.crawl(spider)
+#             deferred.addBoth(lambda: reactor.stop())
+#             reactor.run()
+#             q.put(None)
+#         except Exception as e:
+#             q.put(e)
+#
+#     q = Queue()
+#     p = Process(target=f, args=(q,))
+#     p.start()
+#     result = q.get()
+#     p.join()
+#
+#     if result is not None:
+#         raise result

@@ -12,7 +12,7 @@ from search_engine.forms import People, ProfileUpdateForm, UserUpdateForm
 from search_engine.models import CrawlingQueue
 from crawling.crawling.items import CrawlingItem
 from .serializers import UserSerializer, RegisterSerializer
-from backend.crawling.crawling.spiders.fetchData import PDFClass, DocumentClass
+# from backend.crawling.crawling.spiders.fetchData import PDFClass, DocumentClass
 
 # Create your views here.
 
