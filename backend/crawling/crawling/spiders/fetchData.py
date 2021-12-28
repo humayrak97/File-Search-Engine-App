@@ -19,7 +19,6 @@ django.setup()
 sys.path.append("C:/Users/USER PC/AppData/Local/Programs/Python/Python39/Lib/site-packages/PyPDF2")
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 
-
 # from backend.search_engine.models import CrawlingQueue
 
 # from twisted.internet import reactor
@@ -48,7 +47,6 @@ from backend.crawling.crawling.items import CrawlingItem
 ALLOWED_EXTENSIONS = []
 
 
-
 # StrategyLinkExtractor subclasses LinkExtractor
 class StrategyLinkExtractor(LinkExtractor):
     def __init__(self, *args, **kwargs):
@@ -68,20 +66,6 @@ class SpiderInterface(zope.interface.Interface):
 # Implements spider for scraping pdf files
 @zope.interface.implementer(SpiderInterface)
 class PDFClass(scrapy.Spider):
-    name = "pdf_crawler"
-
-    start_urls = []
-
-    # custom settings for spider
-    custom_settings = {
-        'DOWNLOAD_DELAY': 0,  # default download_delay
-        'DEPTH_LIMIT': 1,  # default depth_limit
-        'AUTOTHROTTLE_ENABLED': True,
-        'AUTOTHROTTLE_DEBUG': True,
-    }
-
-    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
-    items = CrawlingItem()
 
     def set_urls(self, urltext):
         # cleaning urltext
@@ -94,9 +78,6 @@ class PDFClass(scrapy.Spider):
     def set_depth(self, depth):
         self.custom_settings.update({'DEPTH_LIMIT': depth})
         # updates the default depth limit
-
-    # def set_strategy(self, depth):
-    #    self.custom_settings.update({'DEPTH_LIMIT': depth})
 
     def get_objects_in_queue(self):
         objects_in_queue = CrawlingQueue.objects.all()  # fetches all objects from DB table
@@ -163,21 +144,141 @@ class PDFClass(scrapy.Spider):
                 yield self.items
 
 
-# Implements spider for scraping MS Word Documents
-@zope.interface.implementer(SpiderInterface)
-class DocumentClass(CrawlSpider):
-    name = "doc_crawler"
+# PDF Crawler with Depth = 1
+class PDFClassOne(PDFClass):
+    name = "pdf_one"
 
     start_urls = []
 
     # custom settings for spider
     custom_settings = {
         'DOWNLOAD_DELAY': 0,  # default download_delay
-        'DEPTH_LIMIT': 1,  # default depth_limit
+        'DEPTH_LIMIT': 1,
         'AUTOTHROTTLE_ENABLED': True,
         'AUTOTHROTTLE_DEBUG': True,
     }
 
+    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
+    items = CrawlingItem()
+
+    def __init__(self, *args, **kwargs):
+        self.get_objects_in_queue()
+
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(PDFClassOne, self).__init__(*args, **kwargs)
+
+
+
+# PDF Crawler with Depth = 2
+class PDFClassTwo(PDFClass):
+    name = "pdf_two"
+
+    start_urls = []
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,  # default download_delay
+        'DEPTH_LIMIT': 2,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
+    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
+    items = CrawlingItem()
+
+    def __init__(self, *args, **kwargs):
+        self.get_objects_in_queue()
+
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(PDFClassTwo, self).__init__(*args, **kwargs)
+
+
+
+# PDF Crawler with Depth = 3
+class PDFClassThree(PDFClass):
+    name = "pdf_three"
+
+    start_urls = []
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,  # default download_delay
+        'DEPTH_LIMIT': 3,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
+    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
+    items = CrawlingItem()
+
+    def __init__(self, *args, **kwargs):
+        self.get_objects_in_queue()
+
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(PDFClassThree, self).__init__(*args, **kwargs)
+
+
+# PDF Crawler with Depth = 4
+class PDFClassFour(PDFClass):
+    name = "pdf_four"
+
+    start_urls = []
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,  # default download_delay
+        'DEPTH_LIMIT': 4,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
+    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
+    items = CrawlingItem()
+
+    def __init__(self, *args, **kwargs):
+        self.get_objects_in_queue()
+
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(PDFClassFour, self).__init__(*args, **kwargs)
+
+
+# PDF Crawler with Depth = 5
+class PDFClassFive(PDFClass):
+    name = "pdf_five"
+
+    start_urls = []
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,  # default download_delay
+        'DEPTH_LIMIT': 5,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
+    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
+    items = CrawlingItem()
+
+    def __init__(self, *args, **kwargs):
+        self.get_objects_in_queue()
+
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(PDFClassFive, self).__init__(*args, **kwargs)
+
+
+# Implements spider for scraping MS Word Documents
+@zope.interface.implementer(SpiderInterface)
+class DocumentClass(CrawlSpider):
     # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
     items = CrawlingItem()
 
@@ -192,9 +293,6 @@ class DocumentClass(CrawlSpider):
     def set_depth(self, depth):
         self.custom_settings.update({'DEPTH_LIMIT': depth})
         # updates the default depth limit
-
-    # def set_strategy(self, depth):
-    #    self.custom_settings.update({'DEPTH_LIMIT': depth})
 
     def get_objects_in_queue(self):
         objects_in_queue = CrawlingQueue.objects.all()  # fetches all objects from DB table
@@ -256,6 +354,177 @@ class DocumentClass(CrawlSpider):
 
                 self.items['content'] = str(data)
                 yield self.items
+
+
+# Document Crawler with Depth = 1
+class DocumentDepthOne(DocumentClass):
+    name = "doc_one"
+
+    start_urls = []
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,  # default download_delay
+        'DEPTH_LIMIT': 1,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
+    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
+    items = CrawlingItem()
+
+    def __init__(self, *args, **kwargs):
+        self.get_objects_in_queue()
+
+        # Follows the rule set in StrategyLinkExtractor class
+        # parse() method is used for parsing the data
+        # CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to avoid unexpected behaviour
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(DocumentDepthOne, self).__init__(*args, **kwargs)
+
+
+# Document Crawler with Depth = 2
+class DocumentDepthTwo(DocumentClass):
+    name = "doc_two"
+
+    start_urls = []
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,  # default download_delay
+        'DEPTH_LIMIT': 2,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
+    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
+    items = CrawlingItem()
+
+    def __init__(self, *args, **kwargs):
+        self.get_objects_in_queue()
+
+        # Follows the rule set in StrategyLinkExtractor class parse() method is used for parsing the data
+        # CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to
+        # avoid unexpected behaviour
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(DocumentDepthTwo, self).__init__(*args, **kwargs)
+
+
+# Document Crawler with Depth = 3
+class DocumentDepthThree(DocumentClass):
+    name = "doc_three"
+
+    start_urls = []
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,  # default download_delay
+        'DEPTH_LIMIT': 3,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
+    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
+    items = CrawlingItem()
+
+    def __init__(self, *args, **kwargs):
+        self.get_objects_in_queue()
+
+        # Follows the rule set in StrategyLinkExtractor class
+        # parse() method is used for parsing the data
+        # CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to avoid unexpected behaviour
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(DocumentDepthThree, self).__init__(*args, **kwargs)
+
+    # parse() processes response and returns scraped data
+    def parse(self, response):
+        self.logger.info('Yippy! We have found: %s', response.url)  # shows a message with response
+        if hasattr(response, "text"):
+            pass  # we disregard any HTML text
+        else:
+            # filtering out extensions that are in our ALLOWED_EXTENSIONS list from the list of returned urls
+            extension = list(filter(lambda x: response.url.lower().endswith(x), ALLOWED_EXTENSIONS))[0]
+            if extension:
+                # writing the scraped URLs in the text file in append mode
+                self.items['link'] = str(response.url)
+
+                # bypassing ssl
+                ssl._create_default_https_context = ssl._create_unverified_context
+
+                # r = urllib.request.urlopen(response.url)
+                # reader = docx2python(io.BytesIO(r.read()))
+                reader = docx2python(response.url)
+
+                # creating data string by scanning text from docx file
+                data = reader[0]
+                print(data)  # prints content in terminal
+
+                self.items['content'] = str(data)
+                yield self.items
+
+
+# Document Crawler with Depth = 4
+class DocumentDepthFour(DocumentClass):
+    name = "doc_four"
+
+    start_urls = []
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,  # default download_delay
+        'DEPTH_LIMIT': 4,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
+    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
+    items = CrawlingItem()
+
+    def __init__(self, *args, **kwargs):
+        self.get_objects_in_queue()
+
+        # Follows the rule set in StrategyLinkExtractor class
+        # parse() method is used for parsing the data
+        # CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to avoid unexpected behaviour
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(DocumentDepthFour, self).__init__(*args, **kwargs)
+
+
+# Document Crawler with Depth = 5
+class DocumentDepthFive(DocumentClass):
+    name = "doc_five"
+
+    start_urls = []
+
+    # custom settings for spider
+    custom_settings = {
+        'DOWNLOAD_DELAY': 0,  # default download_delay
+        'DEPTH_LIMIT': 5,
+        'AUTOTHROTTLE_ENABLED': True,
+        'AUTOTHROTTLE_DEBUG': True,
+    }
+
+    # instantiating CrawlingItem to carry data to pipelines which then stores each item in each link_tb (database) row
+    items = CrawlingItem()
+
+    def __init__(self, *args, **kwargs):
+        self.get_objects_in_queue()
+
+        # Follows the rule set in StrategyLinkExtractor class
+        # parse() method is used for parsing the data
+        # CrawlSpider-based spiders have internal implementation, so we explicitly set callbacks for new requests to avoid unexpected behaviour
+        self.rules = (
+            Rule(StrategyLinkExtractor(), follow=True, callback="parse", process_links=None, process_request=None,
+                 errback=None),)
+        super(DocumentDepthFive, self).__init__(*args, **kwargs)
 
 
 # Implements spider for scraping .txt files
